@@ -1,23 +1,31 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <allegro5/allegro.h>
+#include <allegro5/allegro5.h>
 #include <allegro5/allegro_primitives.h>
+#include <allegro5/allegro_native_dialog.h>
+#include <allegro5/allegro_image.h>
 
 bool rodando;
-int larguraTela;
-int alturaTela;
+int larguraTela = 600;
+int alturaTela = 600;
 
 int tamahoPassoPersonagem = 5;
 int tamanhoPersonagemX = 20;
 int tamanhoPersonagemY = 20;
+float cameraPosition[2] = { 0 , 0 };
 
 ALLEGRO_DISPLAY* display = NULL;;
 ALLEGRO_EVENT_QUEUE* eventos = NULL;
+ALLEGRO_BITMAP* personagem = NULL;
+ALLEGRO_BITMAP* background = NULL;
+ALLEGRO_TRANSFORM camera;
 
 void configurarTela(void);
 void registrarEventos(void);
 void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento, int* posicao_x, int* posicao_y);
 void moverPersonagem(int posicaoX, int posicaoY);
+void cameraUpdate(float* cameraPosition, int posicaoX, int posicaoY, int tamanhoPersonagemX, int tamanhoPersonagemY);
 
 typedef struct {
 	bool cima;
@@ -51,9 +59,14 @@ int main(void) {
 	movimento.cima = movimento.baixo = movimento.esquerda = movimento.direita = false;
 	movimento.posicaoX = movimento.posicaoY = 0;
 
+	al_init();
 	al_install_keyboard();
 	al_install_mouse();
 	al_init_primitives_addon();
+	al_init_image_addon();
+
+	background = al_load_bitmap("BG-0001.png");
+	personagem = al_load_bitmap("Sprite-0001.png");
 
 	configurarTela();
 
@@ -62,7 +75,7 @@ int main(void) {
 
 	moverPersonagem(posicao_x, posicao_y);
 	al_flip_display();
-	al_clear_to_color(al_map_rgb(0, 0, 0));
+	
 
 	while (rodando)
 	{
@@ -73,10 +86,14 @@ int main(void) {
 
 		al_flip_display();
 		al_clear_to_color(al_map_rgb(0, 0, 0));
+		al_draw_bitmap(background, 0, 0, 0);
+		
 	}
 
 	al_destroy_display(display);
 	al_destroy_event_queue(eventos);
+	al_destroy_bitmap(personagem);
+	al_destroy_bitmap(background);
 
 	return 0;
 }
@@ -103,16 +120,16 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento, int* posicao_x, int* posi
 	{
 		switch (event.keyboard.keycode)
 		{
-		case ALLEGRO_KEY_UP:
+		case ALLEGRO_KEY_W:
 			chaves[CIMA] = true;
 			break;
-		case ALLEGRO_KEY_DOWN:
+		case ALLEGRO_KEY_S:
 			chaves[BAIXO] = true;
 			break;
-		case ALLEGRO_KEY_RIGHT:
+		case ALLEGRO_KEY_D:
 			chaves[DIREITA] = true;
 			break;
-		case ALLEGRO_KEY_LEFT:
+		case ALLEGRO_KEY_A:
 			chaves[ESQUERDA] = true;
 			break;
 		}
@@ -121,20 +138,19 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento, int* posicao_x, int* posi
 	{
 		switch (event.keyboard.keycode)
 		{
-		case ALLEGRO_KEY_UP:
+		case ALLEGRO_KEY_W:
 			chaves[CIMA] = false;
 			break;
-		case ALLEGRO_KEY_DOWN:
+		case ALLEGRO_KEY_S:
 			chaves[BAIXO] = false;
 			break;
-		case ALLEGRO_KEY_RIGHT:
+		case ALLEGRO_KEY_D:
 			chaves[DIREITA] = false;
 			break;
-		case ALLEGRO_KEY_LEFT:
+		case ALLEGRO_KEY_A:
 			chaves[ESQUERDA] = false;
 			break;
 		}
-		al_clear_to_color(al_map_rgb(0, 0, 0));
 	}
 	else if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
 		rodando = false;
@@ -145,8 +161,25 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento, int* posicao_x, int* posi
 	*posicao_x += chaves[DIREITA] ? tamahoPassoPersonagem : 0;
 
 	moverPersonagem(*posicao_x, *posicao_y);
+	cameraUpdate(cameraPosition, *posicao_x, *posicao_y, tamanhoPersonagemX, tamanhoPersonagemY);
+
+	al_identity_transform(&camera);
+	al_translate_transform(&camera, -cameraPosition[0], -cameraPosition[1]);
+	al_use_transform(&camera);
 }
 
 void moverPersonagem(int posicaoX, int posicaoY) {
-	al_draw_filled_rectangle(posicaoX, posicaoY, posicaoX + tamanhoPersonagemX, posicaoY + tamanhoPersonagemY, al_map_rgb(255, 0, 255));
+	al_draw_bitmap(personagem, posicaoX + tamanhoPersonagemX, posicaoY + tamanhoPersonagemY, NULL);
+}
+
+void cameraUpdate(float* cameraPosition, int posicaoX, int posicaoY, int tamanhoPersonagemX, int tamanhoPersonagemY)
+{
+	cameraPosition[0] = -(larguraTela / 2) + (posicaoX + tamanhoPersonagemX / 2);
+	cameraPosition[1] = -(alturaTela / 2) + (posicaoY + tamanhoPersonagemY / 2);
+
+	if (cameraPosition[0] < 0)
+		cameraPosition[0] = 0;
+	if (cameraPosition[1] < 0)
+		cameraPosition[1] = 0;
+
 }
