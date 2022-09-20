@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <allegro5/allegro.h>
-#include <allegro5/allegro5.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_native_dialog.h>
 #include <allegro5/allegro_image.h>
@@ -10,9 +9,14 @@ bool rodando;
 int larguraTela = 600;
 int alturaTela = 600;
 
+bool rodando;
+int larguraTela;
+int alturaTela;
+
 int tamahoPassoPersonagem = 5;
 int tamanhoPersonagemX = 20;
 int tamanhoPersonagemY = 20;
+
 float cameraPosition[2] = { 0 , 0 };
 
 ALLEGRO_DISPLAY* display = NULL;;
@@ -20,6 +24,9 @@ ALLEGRO_EVENT_QUEUE* eventos = NULL;
 ALLEGRO_BITMAP* personagem = NULL;
 ALLEGRO_BITMAP* background = NULL;
 ALLEGRO_TRANSFORM camera;
+
+ALLEGRO_DISPLAY* display = NULL;;
+ALLEGRO_EVENT_QUEUE* eventos = NULL;
 
 void configurarTela(void);
 void registrarEventos(void);
@@ -67,6 +74,9 @@ int main(void) {
 
 	background = al_load_bitmap("BG-0001.png");
 	personagem = al_load_bitmap("Sprite-0001.png");
+	al_install_keyboard();
+	al_install_mouse();
+	al_init_primitives_addon();
 
 	configurarTela();
 
@@ -75,7 +85,7 @@ int main(void) {
 
 	moverPersonagem(posicao_x, posicao_y);
 	al_flip_display();
-	
+	al_clear_to_color(al_map_rgb(0, 0, 0));
 
 	while (rodando)
 	{
@@ -130,6 +140,17 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento, int* posicao_x, int* posi
 			chaves[DIREITA] = true;
 			break;
 		case ALLEGRO_KEY_A:
+
+		case ALLEGRO_KEY_UP:
+			chaves[CIMA] = true;
+			break;
+		case ALLEGRO_KEY_DOWN:
+			chaves[BAIXO] = true;
+			break;
+		case ALLEGRO_KEY_RIGHT:
+			chaves[DIREITA] = true;
+			break;
+		case ALLEGRO_KEY_LEFT:
 			chaves[ESQUERDA] = true;
 			break;
 		}
@@ -151,6 +172,20 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento, int* posicao_x, int* posi
 			chaves[ESQUERDA] = false;
 			break;
 		}
+		case ALLEGRO_KEY_UP:
+			chaves[CIMA] = false;
+			break;
+		case ALLEGRO_KEY_DOWN:
+			chaves[BAIXO] = false;
+			break;
+		case ALLEGRO_KEY_RIGHT:
+			chaves[DIREITA] = false;
+			break;
+		case ALLEGRO_KEY_LEFT:
+			chaves[ESQUERDA] = false;
+			break;
+		}
+		al_clear_to_color(al_map_rgb(0, 0, 0));
 	}
 	else if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
 		rodando = false;
@@ -182,4 +217,9 @@ void cameraUpdate(float* cameraPosition, int posicaoX, int posicaoY, int tamanho
 	if (cameraPosition[1] < 0)
 		cameraPosition[1] = 0;
 
+}
+}
+
+void moverPersonagem(int posicaoX, int posicaoY) {
+	al_draw_filled_rectangle(posicaoX, posicaoY, posicaoX + tamanhoPersonagemX, posicaoY + tamanhoPersonagemY, al_map_rgb(255, 0, 255));
 }
