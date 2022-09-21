@@ -53,3 +53,4 @@ dkms.conf
 /Flute/.vs/Flute
 /Flute/Flute/x64/Debug
 /Flute/packages
+*.log
