@@ -141,18 +141,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="Origem.c" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="BG-0001.png" />
     <Image Include="Serena_Player.png" />
     <Image Include="Sprite-0001.png" />
+    <Image Include="Sprite-0002.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="arial_narrow_7.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

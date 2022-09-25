@@ -15,6 +15,10 @@ typedef struct {
 	int tamanhoX;
 	int tamanhoY;
 
+	int imagemX;
+	int imagemY;
+	int dir;
+
 	int velocidadeX;
 	int velocidadeY;
 } Posicao;
@@ -24,6 +28,7 @@ typedef struct {
 	bool baixo;
 	bool direita;
 	bool esquerda;
+	bool ativo;
 
 	Posicao posicao;
 } Movimento;
@@ -42,6 +47,7 @@ typedef struct {
 bool rodando;
 int larguraTela;
 int alturaTela;
+enum { DOWN, LEFT, RIGHT, UP };
 
 PersonagemPrincipal personagemPrincipal;
 Posicao posicoes[1];
@@ -51,6 +57,7 @@ ALLEGRO_EVENT_QUEUE* eventos = NULL;
 ALLEGRO_BITMAP* background = NULL;
 ALLEGRO_TRANSFORM camera;
 ALLEGRO_FONT * fonte = NULL;
+ALLEGRO_KEYBOARD_STATE keyState;
 
 float cameraPosition[2] = { 0 , 0 };
 
@@ -108,7 +115,7 @@ void configurarPersonagemPrincipal(void) {
 	personagemPrincipal.movimento.posicao.posicaoX = 20;
 	personagemPrincipal.movimento.posicao.posicaoY = 20;
 
-	personagemPrincipal.imagem = al_load_bitmap("Sprite-0001.png");
+	personagemPrincipal.imagem = al_load_bitmap("Sprite-0002.png");
 }
 
 void configuracaoInicial(void) {
@@ -161,38 +168,104 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento, Movimento* movimento) {
 	{
 		switch (event.keyboard.keycode)
 		{
-			case ALLEGRO_KEY_UP:
-				movimento->cima = true;
-				break;
-			case ALLEGRO_KEY_DOWN:
-				movimento->baixo = true;
-				break;
-			case ALLEGRO_KEY_RIGHT:
-				movimento->direita = true;
-				break;
-			case ALLEGRO_KEY_LEFT:
-				movimento->esquerda = true;
-				break;
+		case ALLEGRO_KEY_UP:
+			movimento->cima = true;
+			movimento->ativo = true;
+			movimento->posicao.dir = UP;
+			break;
+		case ALLEGRO_KEY_DOWN:
+			movimento->baixo = true;
+			movimento->ativo = true;
+			movimento->posicao.dir = DOWN;
+			break;
+		case ALLEGRO_KEY_RIGHT:
+			movimento->direita = true;
+			movimento->ativo = true;
+			movimento->posicao.dir = RIGHT;
+			break;
+		case ALLEGRO_KEY_LEFT:
+			movimento->esquerda = true;
+			movimento->ativo = true;
+			movimento->posicao.dir = LEFT;
+			break;
+		case ALLEGRO_KEY_W:
+			movimento->cima = true;
+			movimento->ativo = true;
+			movimento->posicao.dir = UP;
+			break;
+		case ALLEGRO_KEY_S:
+			movimento->baixo = true;
+			movimento->ativo = true;
+			movimento->posicao.dir = DOWN;
+			break;
+		case ALLEGRO_KEY_D:
+			movimento->direita = true;
+			movimento->ativo = true;
+			movimento->posicao.dir = RIGHT;
+			break;
+		case ALLEGRO_KEY_A:
+			movimento->esquerda = true;
+			movimento->ativo = true;
+			movimento->posicao.dir = LEFT;
+			break;
 		}
 	}
 	else if (event.type == ALLEGRO_EVENT_KEY_UP) //Sai da tecla
 	{
 		switch (event.keyboard.keycode)
 		{
-			case ALLEGRO_KEY_UP:
-				movimento->cima = false;
-				break;
-			case ALLEGRO_KEY_DOWN:
-				movimento->baixo = false;
-				break;
-			case ALLEGRO_KEY_RIGHT:
-				movimento->direita = false;
-				break;
-			case ALLEGRO_KEY_LEFT:
-				movimento->esquerda = false;
-				break;
+		case ALLEGRO_KEY_UP:
+			movimento->cima = false;
+			movimento->ativo = false;
+			/*movimento->posicao.dir = UP;*/
+			break;
+		case ALLEGRO_KEY_DOWN:
+			movimento->baixo = false;
+			movimento->ativo = false;
+			/*movimento->posicao.dir = DOWN;*/
+			break;
+		case ALLEGRO_KEY_RIGHT:
+			movimento->direita = false;
+			movimento->ativo = false;
+			/*movimento->posicao.dir = RIGHT;*/
+			break;
+		case ALLEGRO_KEY_LEFT:
+			movimento->esquerda = false;
+			movimento->ativo = false;
+			/*movimento->posicao.dir = LEFT;*/
+			break;
+		case ALLEGRO_KEY_W:
+			movimento->cima = false;
+			movimento->ativo = false;
+			/*movimento->posicao.dir = UP;*/
+			break;
+		case ALLEGRO_KEY_S:
+			movimento->baixo = false;
+			movimento->ativo = false;
+			/*movimento->posicao.dir = DOWN;*/
+			break;
+		case ALLEGRO_KEY_D:
+			movimento->direita = false;
+			movimento->ativo = false;
+			/*movimento->posicao.dir = RIGHT;*/
+			break;
+		case ALLEGRO_KEY_A:
+			movimento->esquerda = false;
+			movimento->ativo = false;
+			/*movimento->posicao.dir = LEFT;*/
+			break;
 		}
 	}
+	if (movimento->ativo) {
+		movimento->posicao.imagemX += al_get_bitmap_width(personagemPrincipal.imagem) / 4;
+	}
+	else {
+		movimento->posicao.imagemX = 0;
+	}
+	if (movimento->posicao.imagemX >= al_get_bitmap_width(personagemPrincipal.imagem)) {
+		movimento->posicao.imagemX = 0;
+	}
+
 	else if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
 		rodando = false;
 
@@ -212,13 +285,13 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento, Movimento* movimento) {
 	al_translate_transform(&camera, -cameraPosition[0], -cameraPosition[1]);
 	al_use_transform(&camera);
 	moverPersonagem(movimento->posicao);
-	
+
 	if (!colisaoPersonagem())
 		desenhaQuadrado(posicaoItem);
 }
 
 void moverPersonagem(Posicao posicao) {
-	al_draw_bitmap(personagemPrincipal.imagem, posicao.posicaoX, posicao.posicaoY, NULL);
+	al_draw_bitmap_region(personagemPrincipal.imagem, posicao.imagemX, posicao.dir * al_get_bitmap_height(personagemPrincipal.imagem) / 4, al_get_bitmap_width(personagemPrincipal.imagem) / 4, al_get_bitmap_height(personagemPrincipal.imagem) / 4, posicao.posicaoX, posicao.posicaoY, NULL);
 	//al_draw_text(fonte, al_map_rgb(255, 255, 255), posicao.posicaoX - (15 + (posicao.tamanhoX / 2)), posicao.posicaoY - 15, ALLEGRO_ALIGN_LEFT, "Nome personagem");
 }
 
