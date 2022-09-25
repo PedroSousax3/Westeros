@@ -50,7 +50,7 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-/Flute/.vs/Flute
-/Flute/Flute/x64/Debug
-/Flute/packages
+*.vs/*
+*/Flute/Flute/x64/Debug
+*/Flute/packages
 *.log
