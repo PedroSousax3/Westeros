@@ -141,7 +141,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Origem.c" />
+    <ClCompile Include="Fonte\Movimento.cpp" />
+    <ClCompile Include="Fonte\Personagem.cpp" />
+    <ClCompile Include="Fonte\Posicao.cpp" />
+    <ClCompile Include="Origem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="BG-0001.png" />
@@ -154,6 +157,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Cabecalho\Movimento.h" />
+    <ClInclude Include="Cabecalho\Personagem.h" />
+    <ClInclude Include="Cabecalho\Posicao.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
