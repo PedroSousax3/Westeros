@@ -15,35 +15,35 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Origem.cpp">
+    <ClCompile Include="Origem.c">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Fonte\Posicao.cpp">
+    <ClCompile Include="Fonte\Posicao.c">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Fonte\Movimento.cpp">
+    <ClCompile Include="Fonte\Movimento.c">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Fonte\Personagem.cpp">
+    <ClCompile Include="Fonte\Personagem.c">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="BG-0001.png">
+    <Image Include="Assets\Imagens\BG-0001.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
-    <Image Include="Serena_Player.png">
+    <Image Include="Assets\Imagens\Serena_Player.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
-    <Image Include="Sprite-0001.png">
+    <Image Include="Assets\Imagens\Sprite-0001.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
-    <Image Include="Sprite-0002.png">
+    <Image Include="Assets\Imagens\Sprite-0002.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Font Include="arial_narrow_7.ttf" />
+    <Font Include="Assets\Fontes\arial_narrow_7.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
