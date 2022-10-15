@@ -1,6 +1,6 @@
 #include "../Cabecalho/Posicao.h"
 
-Posicao * iniciarPosicao() {
+Posicao iniciarPosicao() {
 	Posicao posicao = {
 		.posicaoX = 0,
 		.posicaoY = 0,
@@ -10,7 +10,7 @@ Posicao * iniciarPosicao() {
 		.velocidadeY = 0
 	};
 
-	return &posicao;
+	return posicao;
 }
 
 void setPosicao(Posicao * posicao, int posicaoX, int posicaoY, int tamanhoX, int tamanhoY, int velocidadeX, int velocidadeY) {
@@ -22,11 +22,11 @@ void setPosicao(Posicao * posicao, int posicaoX, int posicaoY, int tamanhoX, int
 	posicao->velocidadeY = velocidadeY;
 }
 
-bool colidiu(Posicao * posicao, Posicao intens[], int tamanhoVetor) {
-	int x = posicao->posicaoX;
-	int y = posicao->posicaoY;
-	int xM = posicao->posicaoX + posicao->tamanhoX;
-	int yM = posicao->posicaoY + posicao->tamanhoY;
+bool colidiu(Posicao posicao, Posicao intens[], int tamanhoVetor) {
+	int x = posicao.posicaoX;
+	int y = posicao.posicaoY;
+	int xM = posicao.posicaoX + posicao.tamanhoX;
+	int yM = posicao.posicaoY + posicao.tamanhoY;
 
 	for (int i = 0; i < tamanhoVetor; i++)
 		if (

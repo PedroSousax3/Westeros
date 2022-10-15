@@ -13,10 +13,10 @@ typedef struct Personagem {
 	int imagemY;
 
 	ALLEGRO_BITMAP * imagem;
-	Movimento * movimento;
+	Movimento movimento;
 } Personagem;
 
-Personagem * iniciarPersonagem();
-void desenharPersonagem(Personagem * personagem);
+Personagem iniciarPersonagem();
+void desenharPersonagem(Personagem personagem);
 
 #endif // !Cabecalho_Personagem

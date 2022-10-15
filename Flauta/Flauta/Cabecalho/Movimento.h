@@ -22,11 +22,11 @@ typedef struct Movimento {
 
 	int direcao;
 
-	Posicao * posicao;
+	Posicao posicao;
 } Movimento;
 
-Movimento * iniciarMovimento();
+Movimento iniciarMovimento();
 void setMovimento(Movimento * novoMovimento, DirecaoY direcaoY, DirecaoX direcaoX, Posicao * posicao);
-bool emMovimento(Movimento * novoMovimento);
+bool emMovimento(Movimento novoMovimento);
 
 #endif // !Cabecalho_Movimento

@@ -18,9 +18,9 @@
 bool rodando;
 int larguraTela;
 int alturaTela;
-const int fps = 60;
+const int fps = 120;
 
-Personagem * personagemPrincipal;
+Personagem personagemPrincipal;
 Posicao posicoes[1];
 
 ALLEGRO_DISPLAY* display = NULL;
@@ -33,12 +33,12 @@ ALLEGRO_TIMER * tempoRenderizacao = NULL;
 //
 float cameraPosition[2] = { 0 , 0 };
 //
-void configurarPersonagemPrincipal(void);
+Personagem configurarPersonagemPrincipal(void);
 void configuracaoInicial(void);
 void registrarEventos(void);
 void desenhaQuadrado(Posicao posicao);
-void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento, Movimento* movimento);
-void cameraUpdate(float* cameraPosition, Posicao posicaoBase);
+void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento);
+void cameraUpdate(float* cameraPosition, Posicao * posicaoBase);
 
 int main(void) {
 	if (!al_init())
@@ -53,50 +53,68 @@ int main(void) {
 	al_init_ttf_addon();
 
 	configuracaoInicial();
+	personagemPrincipal = configurarPersonagemPrincipal();
+
 	if (!display)
 		return -1;
 
 	desenharPersonagem(personagemPrincipal);
-	al_start_timer(tempoRenderizacao);
-	background = al_load_bitmap("Assets/Imagens/BG-0001.png");
-	al_flip_display(); 
+	background = al_load_bitmap("BG-0001.png");
 	
+	al_start_timer(tempoRenderizacao);
 	while (rodando) {
 		ALLEGRO_EVENT evento;
 		al_wait_for_event(eventos, &evento);
 
 		al_flip_display();
 		al_draw_bitmap(background, 0, 0, 0);
-		gerenciarPosicaoPersonagem(&evento, personagemPrincipal->movimento);
+		gerenciarPosicaoPersonagem(&evento);
 	}
 
 	al_destroy_font(fonte);
 	al_destroy_display(display);
 	al_destroy_event_queue(eventos);
-	al_destroy_bitmap(personagemPrincipal->imagem);
+	al_destroy_bitmap(personagemPrincipal.imagem);
 	al_destroy_bitmap(background);
 	return 0;
 }
 
-void configurarPersonagemPrincipal(void) {
+Personagem configurarPersonagemPrincipal(void) {
 	//Posicao Inicial do personagem
+	Personagem personagem = {
+		.nome = NULL,
+		.sobreNome = NULL,
+		.idade = 0,
+		.imagemX = 0,
+		.imagemY = 0
+	};
+	personagem.idade = 14;
+	personagem.imagem = al_load_bitmap("Sprite-0002.png");
 
-	Personagem * personagem = iniciarPersonagem();
-	Movimento * movimentoPersonagem = iniciarMovimento();
-	Posicao * posicaoPersonagem = iniciarPosicao();
+	Movimento movimento = {
+		.direcaoX = DIRECAOXNENHUM,
+		.direcaoY = DIRECAOYNENHUM,
+		.direcao = 0
+	};
+	Posicao posicao = {
+		.posicaoX = 0,
+		.posicaoY = 0,
+		.tamanhoX = 0,
+		.tamanhoY = 0,
+		.velocidadeX = 0,
+		.velocidadeY = 0
+	};
+	posicao.velocidadeX = 3;
+	posicao.velocidadeY = 3;
+	posicao.posicaoX = 20;
+	posicao.posicaoY = 20;
+	posicao.tamanhoX = al_get_bitmap_width(personagem.imagem) / 4;
+	posicao.tamanhoY = al_get_bitmap_height(personagem.imagem) / 4;
 
-	personagem->idade = 14;
-	personagem->imagem = al_load_bitmap("Assets/Imagens/Sprite-0002.png");
+	movimento.posicao = posicao;
+	personagem.movimento = movimento;
 
-	posicaoPersonagem->velocidadeX = 3;
-	posicaoPersonagem->velocidadeY = 3;
-	posicaoPersonagem->posicaoX = 20;
-	posicaoPersonagem->posicaoY = 20;
-	posicaoPersonagem->tamanhoX = al_get_bitmap_width(personagem->imagem) / 4;
-	posicaoPersonagem->tamanhoY = al_get_bitmap_height(personagem->imagem) / 4;
-	movimentoPersonagem->posicao = posicaoPersonagem;
-	personagem->movimento = movimentoPersonagem;
-	personagemPrincipal = personagem;
+	return personagem;
 }
 
 void configuracaoInicial(void) {
@@ -109,7 +127,6 @@ void configuracaoInicial(void) {
 	fonte = al_load_font("arial_narrow_7.ttf", 12, 0);
 
 	registrarEventos();
-	configurarPersonagemPrincipal();
 }
 
 void registrarEventos(void) {
@@ -117,116 +134,111 @@ void registrarEventos(void) {
 	eventos = al_create_event_queue();//Cria uma lista de eventos
 
 	al_register_event_source(eventos, al_get_keyboard_event_source());
-	al_register_event_source(eventos, al_get_timer_event_source(tempoRenderizacao));
 	al_register_event_source(eventos, al_get_display_event_source(display));
+	al_register_event_source(eventos, al_get_timer_event_source(tempoRenderizacao));
 }
 
-void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento, Movimento * movimento) {
+void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 	ALLEGRO_EVENT event = *evento;
 
 	if (event.type == ALLEGRO_EVENT_KEY_DOWN) //Entra na tecla
-	{
 		switch (event.keyboard.keycode)
 		{
 			case ALLEGRO_KEY_DOWN:
-				movimento->direcaoY = DIRECAOYBAIXO;
-				personagemPrincipal->imagemX = 0;
-				personagemPrincipal->imagemY = 0 * al_get_bitmap_height(personagemPrincipal->imagem) / 4;
+				personagemPrincipal.movimento.direcaoY = DIRECAOYBAIXO;
+				personagemPrincipal.imagemX = 0;
+				personagemPrincipal.imagemY = 0 * al_get_bitmap_height(personagemPrincipal.imagem) / 4;
 				break;
 			case ALLEGRO_KEY_LEFT:
-				movimento->direcaoX = DIRECAOXESQUERDA;
-				personagemPrincipal->imagemX = 0;
-				personagemPrincipal->imagemY = 1 * al_get_bitmap_height(personagemPrincipal->imagem) / 4;
+				personagemPrincipal.movimento.direcaoX = DIRECAOXESQUERDA;
+				personagemPrincipal.imagemX = 0;
+				personagemPrincipal.imagemY = 1 * al_get_bitmap_height(personagemPrincipal.imagem) / 4;
 				break;
 			case ALLEGRO_KEY_RIGHT:
-				movimento->direcaoX = DIRECAOXDIREITA;
-				personagemPrincipal->imagemX = 0;
-				personagemPrincipal->imagemY = 2 * al_get_bitmap_height(personagemPrincipal->imagem) / 4;
+				personagemPrincipal.movimento.direcaoX = DIRECAOXDIREITA;
+				personagemPrincipal.imagemX = 0;
+				personagemPrincipal.imagemY = 2 * al_get_bitmap_height(personagemPrincipal.imagem) / 4;
 				break;
 			case ALLEGRO_KEY_UP:
-				movimento->direcaoY = DIRECAOYCIMA;
-				personagemPrincipal->imagemX = 0;
-				personagemPrincipal->imagemY = 3 * al_get_bitmap_height(personagemPrincipal->imagem) / 4;
+				personagemPrincipal.movimento.direcaoY = DIRECAOYCIMA;
+				personagemPrincipal.imagemX = 0;
+				personagemPrincipal.imagemY = 3 * al_get_bitmap_height(personagemPrincipal.imagem) / 4;
 				break;
 		}
+	else if (event.type == ALLEGRO_EVENT_KEY_UP) //Entra na tecla
+		switch (event.keyboard.keycode)
+		{
+			case ALLEGRO_KEY_UP:
+				personagemPrincipal.movimento.direcaoY = DIRECAOYNENHUM;
+				break;
+			case ALLEGRO_KEY_DOWN:
+				personagemPrincipal.movimento.direcaoY = DIRECAOYNENHUM;
+				break;
+			case ALLEGRO_KEY_RIGHT:
+				personagemPrincipal.movimento.direcaoX = DIRECAOXNENHUM;
+				break;
+			case ALLEGRO_KEY_LEFT:
+				personagemPrincipal.movimento.direcaoX = DIRECAOXNENHUM;
+				break;
+		}
+	else if (event.type == ALLEGRO_EVENT_TIMER && al_is_event_queue_empty(eventos))
+	{
+		switch (personagemPrincipal.movimento.direcaoY)
+		{
+			case DIRECAOYCIMA:
+				personagemPrincipal.movimento.posicao.posicaoY -= personagemPrincipal.movimento.posicao.velocidadeX;
+				break;
+			case DIRECAOYBAIXO:
+				personagemPrincipal.movimento.posicao.posicaoY += personagemPrincipal.movimento.posicao.velocidadeX;
+				break;
+			default :
+				personagemPrincipal.movimento.direcaoY = DIRECAOYNENHUM;
+				break;
+		}
+		switch (personagemPrincipal.movimento.direcaoX)
+		{
+			case DIRECAOXESQUERDA:
+				personagemPrincipal.movimento.posicao.posicaoX -= personagemPrincipal.movimento.posicao.velocidadeX;
+				break;
+			case DIRECAOXDIREITA:
+				personagemPrincipal.movimento.posicao.posicaoX += personagemPrincipal.movimento.posicao.velocidadeX;
+				break;
+			default:
+				personagemPrincipal.movimento.direcaoX = DIRECAOXNENHUM;
+				break;
+		}
+
+		if (emMovimento(personagemPrincipal.movimento))
+			if (personagemPrincipal.imagemX >= al_get_bitmap_width(personagemPrincipal.imagem))
+				personagemPrincipal.imagemX = 0;
+			else
+				personagemPrincipal.imagemX += al_get_bitmap_width(personagemPrincipal.imagem) / 4;
+		else
+			personagemPrincipal.imagemX = 0;
+
+		Posicao posicaoItem;
+		posicaoItem.posicaoX = 100;
+		posicaoItem.posicaoY = 100;
+		posicaoItem.tamanhoX = posicaoItem.tamanhoY = 300;
+		posicoes[0] = posicaoItem;
+
+		cameraUpdate(cameraPosition, &personagemPrincipal.movimento.posicao);
+		al_identity_transform(&camera);
+		al_translate_transform(&camera, -cameraPosition[0], -cameraPosition[1]);
+		al_use_transform(&camera);
+		desenhaQuadrado(personagemPrincipal.movimento.posicao);
+
+		if (!colidiu(personagemPrincipal.movimento.posicao, posicoes, sizeof(posicoes) / sizeof(Posicao)))
+			desenhaQuadrado(posicaoItem);
 	}
-	//else if (event.type == ALLEGRO_EVENT_KEY_UP) //Entra na tecla
-	//{
-	//	switch (event.keyboard.keycode)
-	//	{
-	//		case ALLEGRO_KEY_UP:
-	//			movimento->direcaoY = DIRECAOYNENHUM;
-	//			break;
-	//		case ALLEGRO_KEY_DOWN:
-	//			movimento->direcaoY = DIRECAOYNENHUM;
-	//			break;
-	//		case ALLEGRO_KEY_RIGHT:
-	//			movimento->direcaoX = DIRECAOXNENHUM;
-	//			break;
-	//		case ALLEGRO_KEY_LEFT:
-	//			movimento->direcaoX = DIRECAOXNENHUM;
-	//			break;
-	//	}
-	//}
-	//else if (event.type == ALLEGRO_EVENT_TIMER)
-	//{
-	//	switch (movimento->direcaoY)
-	//	{
-	//		case DIRECAOYCIMA:
-	//			movimento->posicao.posicaoY -= movimento->posicao.velocidadeX;
-	//			break;
-	//		case DIRECAOYBAIXO:
-	//			movimento->posicao.posicaoY += movimento->posicao.velocidadeX;
-	//			break;
-	//		default :
-	//			movimento->direcaoY = DIRECAOYNENHUM;
-	//			break;
-	//	}
-	//	switch (movimento->direcaoX)
-	//	{
-	//		case DIRECAOXESQUERDA:
-	//			movimento->posicao.posicaoX -= movimento->posicao.velocidadeX;
-	//			break;
-	//		case DIRECAOXDIREITA:
-	//			movimento->posicao.posicaoX += movimento->posicao.velocidadeX;
-	//			break;
-	//		default:
-	//			movimento->direcaoX = DIRECAOXNENHUM;
-	//			break;
-	//	}
-	//}
-	//else if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
-	//	rodando = false;
-
-
-	//if (emMovimento(&personagemPrincipal.movimento))
-	//	if (personagemPrincipal.imagemX >= al_get_bitmap_width(personagemPrincipal.imagem))
-	//		personagemPrincipal.imagemX = 0;
-	//	else
-	//		personagemPrincipal.imagemX += al_get_bitmap_width(personagemPrincipal.imagem) / 4;
-	//else
-	//	personagemPrincipal.imagemX = 0;
-
-	//Posicao posicaoItem;
-	//posicaoItem.posicaoX = 100;
-	//posicaoItem.posicaoY = 100;
-	//posicaoItem.tamanhoX = posicaoItem.tamanhoY = 300;
-	//posicoes[0] = posicaoItem;
-
-	//cameraUpdate(cameraPosition, personagemPrincipal.movimento.posicao);
-	//al_identity_transform(&camera);
-	//al_translate_transform(&camera, -cameraPosition[0], -cameraPosition[1]);
-	//al_use_transform(&camera);
-	//desenharPersonagem(personagemPrincipal);
-
-	//if (!colidiu(personagemPrincipal.movimento.posicao, posicoes, sizeof(posicoes) / sizeof(Posicao)))
-	//	desenhaQuadrado(posicaoItem);
+	else if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
+		rodando = false;
 }
 
-void cameraUpdate(float * cameraPosition, Posicao posicaoBase)
+void cameraUpdate(float * cameraPosition, Posicao * posicaoBase)
 {
-	cameraPosition[0] = -(larguraTela / 2) + (posicaoBase.posicaoX + posicaoBase.tamanhoX / 2);
-	cameraPosition[1] = -(alturaTela / 2) + (posicaoBase.posicaoY + posicaoBase.tamanhoY / 2);
+	cameraPosition[0] = -(larguraTela / 2) + (posicaoBase->posicaoX + posicaoBase->tamanhoX / 2.0);
+	cameraPosition[1] = -(alturaTela / 2) + (posicaoBase->posicaoY + posicaoBase->tamanhoY / 2.0);
 
 	if (cameraPosition[0] < 0)
 		cameraPosition[0] = 0;

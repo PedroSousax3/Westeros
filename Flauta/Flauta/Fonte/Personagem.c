@@ -3,7 +3,7 @@
 
 #include "../Cabecalho/Personagem.h"
 
-Personagem * iniciarPersonagem() {
+Personagem iniciarPersonagem() {
 	Personagem personagem = {
 		.nome = NULL,
 		.sobreNome = NULL,
@@ -12,18 +12,18 @@ Personagem * iniciarPersonagem() {
 		.imagemY = 0
 	};
 
-	return &personagem;
+	return personagem;
 }
 
-void desenharPersonagem(Personagem * personagem) {
+void desenharPersonagem(Personagem personagem) {
 	al_draw_bitmap_region(
-		personagem->imagem,
-		personagem->imagemX,
-		personagem->imagemY,
-		personagem->movimento->posicao->tamanhoX,
-		personagem->movimento->posicao->tamanhoY,
-		personagem->movimento->posicao->posicaoX,
-		personagem->movimento->posicao->posicaoY,
-		NULL
+		personagem.imagem,
+		personagem.imagemX,
+		personagem.imagemY,
+		personagem.movimento.posicao.tamanhoX,
+		personagem.movimento.posicao.tamanhoY,
+		personagem.movimento.posicao.posicaoX,
+		personagem.movimento.posicao.posicaoY,
+		0
 	);
 }
