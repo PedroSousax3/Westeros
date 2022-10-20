@@ -11,6 +11,7 @@
 #include <stdbool.h>
 
 //Importações
+//#include "Cabecalho/Pagina.h"
 #include "Cabecalho/Posicao.h"
 #include "Cabecalho/Movimento.h"
 #include "Cabecalho/Personagem.h"
@@ -18,7 +19,8 @@
 bool rodando;
 int larguraTela;
 int alturaTela;
-const int fps = 120;
+const int fps = 60;
+int fpsAnimacao = 0;
 
 Personagem personagemPrincipal;
 Posicao posicoes[1];
@@ -43,7 +45,6 @@ void cameraUpdate(float* cameraPosition, Posicao * posicaoBase);
 int main(void) {
 	if (!al_init())
 		return -1;
-
 	
 	al_install_keyboard();
 	al_install_mouse();
@@ -65,9 +66,7 @@ int main(void) {
 	while (rodando) {
 		ALLEGRO_EVENT evento;
 		al_wait_for_event(eventos, &evento);
-
-		al_flip_display();
-		al_draw_bitmap(background, 0, 0, 0);
+		
 		gerenciarPosicaoPersonagem(&evento);
 	}
 
@@ -76,6 +75,8 @@ int main(void) {
 	al_destroy_event_queue(eventos);
 	al_destroy_bitmap(personagemPrincipal.imagem);
 	al_destroy_bitmap(background);
+	al_destroy_timer(tempoRenderizacao);
+
 	return 0;
 }
 
@@ -125,7 +126,7 @@ void configuracaoInicial(void) {
 
 	display = al_create_display(larguraTela, alturaTela); //Cria a tela do programa
 	fonte = al_load_font("arial_narrow_7.ttf", 12, 0);
-
+	
 	registrarEventos();
 }
 
@@ -208,28 +209,40 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 				break;
 		}
 
-		if (emMovimento(personagemPrincipal.movimento))
+		if (emMovimento(personagemPrincipal.movimento)) {
+			if (fpsAnimacao == 10) {
+				personagemPrincipal.imagemX += al_get_bitmap_width(personagemPrincipal.imagem) / 4;
+				fpsAnimacao = 0;
+			}
+
 			if (personagemPrincipal.imagemX >= al_get_bitmap_width(personagemPrincipal.imagem))
 				personagemPrincipal.imagemX = 0;
-			else
-				personagemPrincipal.imagemX += al_get_bitmap_width(personagemPrincipal.imagem) / 4;
+
+			fpsAnimacao++;
+		}
 		else
 			personagemPrincipal.imagemX = 0;
+		
+		if (personagemPrincipal.imagemX != 0)
+			printf("X: %i\n Y: %i\n", personagemPrincipal.imagemX, personagemPrincipal.imagemY);
+
+		al_flip_display();
+		al_clear_to_color(al_map_rgb(0, 0, 0));
+		al_draw_bitmap(background, 0, 0, 0);
+		desenharPersonagem(personagemPrincipal);
 
 		Posicao posicaoItem;
 		posicaoItem.posicaoX = 100;
 		posicaoItem.posicaoY = 100;
 		posicaoItem.tamanhoX = posicaoItem.tamanhoY = 300;
 		posicoes[0] = posicaoItem;
+		if (!colidiu(personagemPrincipal.movimento.posicao, posicoes, sizeof(posicoes) / sizeof(Posicao)))
+			desenhaQuadrado(posicaoItem);
 
 		cameraUpdate(cameraPosition, &personagemPrincipal.movimento.posicao);
 		al_identity_transform(&camera);
 		al_translate_transform(&camera, -cameraPosition[0], -cameraPosition[1]);
 		al_use_transform(&camera);
-		desenhaQuadrado(personagemPrincipal.movimento.posicao);
-
-		if (!colidiu(personagemPrincipal.movimento.posicao, posicoes, sizeof(posicoes) / sizeof(Posicao)))
-			desenhaQuadrado(posicaoItem);
 	}
 	else if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
 		rodando = false;

@@ -145,6 +145,7 @@
     <ClCompile Include="Fonte\Personagem.c" />
     <ClCompile Include="Fonte\Posicao.c" />
     <ClCompile Include="Origem.c" />
+    <ClCompile Include="Fonte\Pagina.c" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="BG-0001.png" />
@@ -162,6 +163,7 @@
     <ClInclude Include="Cabecalho\Movimento.h" />
     <ClInclude Include="Cabecalho\Personagem.h" />
     <ClInclude Include="Cabecalho\Posicao.h" />
+    <ClInclude Include="Cabecalho\Pagina.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
