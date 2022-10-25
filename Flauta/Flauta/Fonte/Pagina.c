@@ -12,7 +12,13 @@ Pagina iniciarPagina(void) {
 }
 
 void exibirPagina(Pagina* pagina) {
+	al_set_new_display_flags(ALLEGRO_NOFRAME);
+	pagina->display = al_create_display(
+		pagina->posicao.tamanhoX,
+		pagina->posicao.tamanhoY
+	); //Cria a tela do programa
 	al_set_target_backbuffer(pagina->display);
+	al_set_window_title(pagina->display, "Misturas");
 	al_clear_to_color(al_map_rgb(0, 0, 0));
 	al_flip_display();
 

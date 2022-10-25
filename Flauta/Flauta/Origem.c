@@ -9,6 +9,8 @@
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_font.h>
 #include <stdbool.h>
+#include <string.h>
+#include <stdio.h>
 
 //Importações
 //#include "Cabecalho/Pagina.h"
@@ -172,10 +174,8 @@ void abrirPaginaComposicao() {
 	paginaCombinacao.posicao.posicaoY = 0;
 	paginaCombinacao.posicao.tamanhoX = 500;
 	paginaCombinacao.posicao.tamanhoY = 500;
-	paginaCombinacao.display = al_create_display(
-		paginaCombinacao.posicao.tamanhoX,
-		paginaCombinacao.posicao.tamanhoY
-	); //Cria a tela do programa
+	/*const char * nomePagina[50] = "Misturar elementos";
+	strcpy(&paginaCombinacao.nome, nomePagina);*/
 	exibirPagina(&paginaCombinacao);
 }
 
