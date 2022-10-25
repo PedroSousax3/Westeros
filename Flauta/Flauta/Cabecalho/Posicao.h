@@ -16,6 +16,6 @@ typedef struct Posicao {
 
 Posicao iniciarPosicao();
 void setPosicao(Posicao * posicao, int posicaoX, int posicaoY, int tamanhoX, int tamanhoY, int velocidadeX, int velocidadeY);
-bool colidiu(Posicao posicao, Posicao intens[], int tamanhoVetor);
+bool posicaoColidiu(Posicao posicao, Posicao intens[], int tamanhoVetor);
 
 #endif // !Cabecalho_Posicao

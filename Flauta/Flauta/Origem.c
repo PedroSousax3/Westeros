@@ -12,33 +12,34 @@
 
 //Importações
 //#include "Cabecalho/Pagina.h"
+#include "Utilitario.h"
 #include "Cabecalho/Posicao.h"
 #include "Cabecalho/Movimento.h"
 #include "Cabecalho/Personagem.h"
+#include "Cabecalho/Pagina.h"
+#include "PaginaCombinacao.h"
 
-bool rodando;
-int larguraTela;
-int alturaTela;
 const int fps = 60;
 int fpsAnimacao = 0;
 
+Pagina paginaPrincipal;
+Pagina paginaCombinacao;
 Personagem personagemPrincipal;
 Posicao posicoes[1];
 
-ALLEGRO_DISPLAY* display = NULL;
 ALLEGRO_EVENT_QUEUE* eventos = NULL;
 ALLEGRO_BITMAP* background = NULL;
 ALLEGRO_TRANSFORM camera;
-ALLEGRO_FONT * fonte = NULL;
+ALLEGRO_FONT *  fonte = NULL;
 ALLEGRO_KEYBOARD_STATE keyState;
 ALLEGRO_TIMER * tempoRenderizacao = NULL;
-//
+
 float cameraPosition[2] = { 0 , 0 };
-//
+
 Personagem configurarPersonagemPrincipal(void);
+void abrirPaginaComposicao();
 void configuracaoInicial(void);
 void registrarEventos(void);
-void desenhaQuadrado(Posicao posicao);
 void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento);
 void cameraUpdate(float* cameraPosition, Posicao * posicaoBase);
 
@@ -56,22 +57,39 @@ int main(void) {
 	configuracaoInicial();
 	personagemPrincipal = configurarPersonagemPrincipal();
 
-	if (!display)
+	paginaPrincipal.personagemPrincipal = &personagemPrincipal;
+	paginaCombinacao.personagemPrincipal = &personagemPrincipal;
+
+	if (!paginaPrincipal.display)
 		return -1;
 
 	desenharPersonagem(personagemPrincipal);
 	background = al_load_bitmap("BG-0001.png");
 	
 	al_start_timer(tempoRenderizacao);
-	while (rodando) {
+	while (paginaPrincipal.aberta) {
 		ALLEGRO_EVENT evento;
 		al_wait_for_event(eventos, &evento);
-		
-		gerenciarPosicaoPersonagem(&evento);
+
+		//Gerenciador de display
+		if (evento.type == ALLEGRO_EVENT_KEY_DOWN) {
+			if (evento.keyboard.keycode == ALLEGRO_KEY_F1) {
+				if (paginaCombinacao.aberta)
+					ocultarPagina(&paginaCombinacao, &paginaPrincipal);
+				else
+					abrirPaginaComposicao();
+			}
+		}
+
+		//Execucao de dislay
+		if (paginaCombinacao.aberta)
+			executarPaginaCombinacao(&paginaCombinacao, personagemPrincipal.equipamentos, sizeof(personagemPrincipal.equipamentos) / sizeof(Equipamento));
+		else if (paginaPrincipal.aberta)
+			gerenciarPosicaoPersonagem(&evento);
 	}
 
 	al_destroy_font(fonte);
-	al_destroy_display(display);
+	al_destroy_display(paginaPrincipal.display);
 	al_destroy_event_queue(eventos);
 	al_destroy_bitmap(personagemPrincipal.imagem);
 	al_destroy_bitmap(background);
@@ -85,12 +103,11 @@ Personagem configurarPersonagemPrincipal(void) {
 	Personagem personagem = {
 		.nome = NULL,
 		.sobreNome = NULL,
-		.idade = 0,
+		.idade = 14,
 		.imagemX = 0,
-		.imagemY = 0
+		.imagemY = 0,
+		.imagem = al_load_bitmap("Sprite-0002.png")
 	};
-	personagem.idade = 14;
-	personagem.imagem = al_load_bitmap("Sprite-0002.png");
 
 	Movimento movimento = {
 		.direcaoX = DIRECAOXNENHUM,
@@ -115,18 +132,29 @@ Personagem configurarPersonagemPrincipal(void) {
 	movimento.posicao = posicao;
 	personagem.movimento = movimento;
 
+	//Careaga inventario teste
+	for (int i = 0; i < 10; i++) {
+		Equipamento equipamento = gerarEquipamento(1);
+		personagemPrincipal.equipamentos[i] = equipamento;
+	}
+
 	return personagem;
 }
 
 void configuracaoInicial(void) {
-	rodando = true;
-	larguraTela = 600;
-	alturaTela = 600;
+	paginaPrincipal = iniciarPagina();
+	paginaPrincipal.aberta = true;
+	paginaPrincipal.posicao.tamanhoX = 1200;
+	paginaPrincipal.posicao.tamanhoY = 650;
+	paginaPrincipal.display = al_create_display(
+		paginaPrincipal.posicao.tamanhoX ,
+		paginaPrincipal.posicao.tamanhoY
+	); //Cria a tela do programa
 	
 
-	display = al_create_display(larguraTela, alturaTela); //Cria a tela do programa
+	paginaCombinacao = iniciarPagina();
 	fonte = al_load_font("arial_narrow_7.ttf", 12, 0);
-	
+		
 	registrarEventos();
 }
 
@@ -135,8 +163,20 @@ void registrarEventos(void) {
 	eventos = al_create_event_queue();//Cria uma lista de eventos
 
 	al_register_event_source(eventos, al_get_keyboard_event_source());
-	al_register_event_source(eventos, al_get_display_event_source(display));
+	al_register_event_source(eventos, al_get_display_event_source(paginaPrincipal.display));
 	al_register_event_source(eventos, al_get_timer_event_source(tempoRenderizacao));
+}
+
+void abrirPaginaComposicao() {
+	paginaCombinacao.posicao.posicaoX = 0;
+	paginaCombinacao.posicao.posicaoY = 0;
+	paginaCombinacao.posicao.tamanhoX = 500;
+	paginaCombinacao.posicao.tamanhoY = 500;
+	paginaCombinacao.display = al_create_display(
+		paginaCombinacao.posicao.tamanhoX,
+		paginaCombinacao.posicao.tamanhoY
+	); //Cria a tela do programa
+	exibirPagina(&paginaCombinacao);
 }
 
 void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
@@ -224,20 +264,23 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 			personagemPrincipal.imagemX = 0;
 		
 		if (personagemPrincipal.imagemX != 0)
-			printf("X: %i\n Y: %i\n", personagemPrincipal.imagemX, personagemPrincipal.imagemY);
+			printf("X: %i\nY: %i\n", personagemPrincipal.movimento.posicao.posicaoX, personagemPrincipal.movimento.posicao.posicaoY);
 
 		al_flip_display();
 		al_clear_to_color(al_map_rgb(0, 0, 0));
 		al_draw_bitmap(background, 0, 0, 0);
 		desenharPersonagem(personagemPrincipal);
 
-		Posicao posicaoItem;
-		posicaoItem.posicaoX = 100;
-		posicaoItem.posicaoY = 100;
-		posicaoItem.tamanhoX = posicaoItem.tamanhoY = 300;
-		posicoes[0] = posicaoItem;
-		if (!colidiu(personagemPrincipal.movimento.posicao, posicoes, sizeof(posicoes) / sizeof(Posicao)))
-			desenhaQuadrado(posicaoItem);
+
+		if (!posicaoColidiu(personagemPrincipal.movimento.posicao, posicoes, sizeof(posicoes) / sizeof(Posicao))) {
+			Posicao posicaoItem;
+			posicaoItem.posicaoX = 100;
+			posicaoItem.posicaoY = 100;
+			posicaoItem.tamanhoX = posicaoItem.tamanhoY = 300;
+			posicoes[0] = posicaoItem;
+
+			desenhaQuadrado(posicaoItem, al_map_rgb(255, 255, 255));
+		}
 
 		cameraUpdate(cameraPosition, &personagemPrincipal.movimento.posicao);
 		al_identity_transform(&camera);
@@ -245,26 +288,16 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 		al_use_transform(&camera);
 	}
 	else if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
-		rodando = false;
+		paginaPrincipal.aberta = false;
 }
 
 void cameraUpdate(float * cameraPosition, Posicao * posicaoBase)
 {
-	cameraPosition[0] = -(larguraTela / 2) + (posicaoBase->posicaoX + posicaoBase->tamanhoX / 2.0);
-	cameraPosition[1] = -(alturaTela / 2) + (posicaoBase->posicaoY + posicaoBase->tamanhoY / 2.0);
+	cameraPosition[0] = -(paginaPrincipal.posicao.tamanhoX / 2.0) + (posicaoBase->posicaoX + posicaoBase->tamanhoX / 2.0);
+	cameraPosition[1] = -(paginaPrincipal.posicao.tamanhoY / 2.0) + (posicaoBase->posicaoY + posicaoBase->tamanhoY / 2.0);
 
 	if (cameraPosition[0] < 0)
 		cameraPosition[0] = 0;
 	if (cameraPosition[1] < 0)
 		cameraPosition[1] = 0;
-}
-
-void desenhaQuadrado(Posicao posicao) {
-	al_draw_filled_rectangle(
-		posicao.posicaoX,
-		posicao.posicaoY,
-		posicao.posicaoX + posicao.tamanhoX,
-		posicao.posicaoY + posicao.tamanhoY,
-		al_map_rgb(255, 255, 255)
-	);
 }

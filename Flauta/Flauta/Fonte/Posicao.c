@@ -22,7 +22,7 @@ void setPosicao(Posicao * posicao, int posicaoX, int posicaoY, int tamanhoX, int
 	posicao->velocidadeY = velocidadeY;
 }
 
-bool colidiu(Posicao posicao, Posicao intens[], int tamanhoVetor) {
+bool posicaoColidiu(Posicao posicao, Posicao intens[], int tamanhoVetor) {
 	int x = posicao.posicaoX;
 	int y = posicao.posicaoY;
 	int xM = posicao.posicaoX + posicao.tamanhoX;

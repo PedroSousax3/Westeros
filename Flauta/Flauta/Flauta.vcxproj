@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -141,11 +141,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Fonte\Equipamento.c" />
     <ClCompile Include="Fonte\Movimento.c" />
     <ClCompile Include="Fonte\Personagem.c" />
     <ClCompile Include="Fonte\Posicao.c" />
     <ClCompile Include="Origem.c" />
     <ClCompile Include="Fonte\Pagina.c" />
+    <ClCompile Include="PaginaCombinacao.c" />
+    <ClCompile Include="Utilitario.c" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="BG-0001.png" />
@@ -160,10 +163,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cabecalho\Equipamento.h" />
+    <ClInclude Include="Cabecalho\Mistura.h" />
     <ClInclude Include="Cabecalho\Movimento.h" />
     <ClInclude Include="Cabecalho\Personagem.h" />
     <ClInclude Include="Cabecalho\Posicao.h" />
     <ClInclude Include="Cabecalho\Pagina.h" />
+    <ClInclude Include="PaginaCombinacao.h" />
+    <ClInclude Include="Utilitario.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
