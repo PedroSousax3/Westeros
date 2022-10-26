@@ -1,30 +1,32 @@
-#pragma once
+#ifndef Cabecalho_Movimento
+#define Cabecalho_Movimento
 
+#include <stdbool.h>
 #include "Posicao.h"
 
-enum class DirecaoX {
-	NENHUM,
-	ESQUERDA, 
-	DIREITA
-};
+typedef enum DirecaoX {
+	DIRECAOXNENHUM,
+	DIRECAOXESQUERDA,
+	DIRECAOXDIREITA
+} DirecaoX;
 
-enum class DirecaoY {
-	NENHUM,
-	CIMA = 1,
-	BAIXO
-};
+typedef enum DirecaoY {
+	DIRECAOYNENHUM,
+	DIRECAOYCIMA = 1,
+	DIRECAOYBAIXO
+} DirecaoY;
 
-class Movimento {
+typedef struct Movimento {
+	int direcaoY;
+	int direcaoX;
 
-	public:
-		DirecaoY direcaoY;
-		DirecaoX direcaoX;
+	int direcao;
 
-		int direcao;
+	Posicao posicao;
+} Movimento;
 
-		Posicao posicao;
+Movimento iniciarMovimento();
+void setMovimento(Movimento * novoMovimento, DirecaoY direcaoY, DirecaoX direcaoX, Posicao * posicao);
+bool emMovimento(Movimento novoMovimento);
 
-		Movimento();
-		Movimento(DirecaoY direcaoY, DirecaoX direcaoX, Posicao posicao);
-		bool emMovimento();
-};
+#endif // !Cabecalho_Movimento

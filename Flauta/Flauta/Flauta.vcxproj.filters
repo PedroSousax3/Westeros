@@ -15,16 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Origem.cpp">
+    <ClCompile Include="Origem.c">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Fonte\Posicao.cpp">
+    <ClCompile Include="Fonte\Posicao.c">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Fonte\Movimento.cpp">
+    <ClCompile Include="Fonte\Movimento.c">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Fonte\Personagem.cpp">
+    <ClCompile Include="Fonte\Personagem.c">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,7 +1,9 @@
-#pragma once
+#ifndef Cabecalho_Posicao
+#define Cabecalho_Posicao
 
-class Posicao {
-public:
+#include <stdbool.h>
+
+typedef struct Posicao {
 	int posicaoX;
 	int posicaoY;
 
@@ -10,8 +12,10 @@ public:
 
 	int velocidadeX;
 	int velocidadeY;
+} Posicao;
 
-	Posicao();
-	Posicao(int posicaoX, int posicaoY, int tamanhoX, int tamanhoY, int velocidadeX, int velocidadeY);
-	bool colidiu(Posicao intens[], int tamanho);
-};
+Posicao iniciarPosicao();
+void setPosicao(Posicao * posicao, int posicaoX, int posicaoY, int tamanhoX, int tamanhoY, int velocidadeX, int velocidadeY);
+bool posicaoColidiu(Posicao posicao, Posicao intens[], int tamanhoVetor);
+
+#endif // !Cabecalho_Posicao
