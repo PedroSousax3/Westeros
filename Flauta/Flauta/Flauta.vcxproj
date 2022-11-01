@@ -116,7 +116,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -141,10 +141,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Cabecalho\Cenario.h" />
+    <ClCompile Include="Fonte\Cenario.c" />
     <ClCompile Include="Fonte\Equipamento.c" />
+    <ClCompile Include="Fonte\Mistura.c" />
     <ClCompile Include="Fonte\Movimento.c" />
     <ClCompile Include="Fonte\Personagem.c" />
     <ClCompile Include="Fonte\Posicao.c" />
+    <ClCompile Include="libs\cJSON\cJSON.c" />
     <ClCompile Include="Origem.c" />
     <ClCompile Include="Fonte\Pagina.c" />
     <ClCompile Include="PaginaCombinacao.c" />
@@ -160,15 +164,20 @@
     <Font Include="arial_narrow_7.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Fonte\teste.json" />
+    <None Include="libs\cJSON\LICENSE" />
     <None Include="packages.config" />
+    <None Include="Utils\ItensCenario.json" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cabecalho\CenarioItem.h" />
     <ClInclude Include="Cabecalho\Equipamento.h" />
     <ClInclude Include="Cabecalho\Mistura.h" />
     <ClInclude Include="Cabecalho\Movimento.h" />
     <ClInclude Include="Cabecalho\Personagem.h" />
     <ClInclude Include="Cabecalho\Posicao.h" />
     <ClInclude Include="Cabecalho\Pagina.h" />
+    <ClInclude Include="libs\cJSON\cJSON.h" />
     <ClInclude Include="PaginaCombinacao.h" />
     <ClInclude Include="Utilitario.h" />
   </ItemGroup>

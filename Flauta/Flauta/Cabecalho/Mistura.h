@@ -8,8 +8,8 @@ typedef struct Mistura {
 	Equipamento ingredientes[5];
 } Mistura;
 
-bool possuiTodos(Mistura* mistura, Equipamento* estoqueEquipamentos[]);
-void separarIngredientes(Mistura * mistura, Equipamento * estoqueEquipamentos[]);
+bool misturaPossuiTodosIngredientes(Mistura* mistura, Equipamento estoqueEquipamentos[]);
+void misturaSepararIngredientes(Mistura * mistura, Equipamento estoqueEquipamentos[]);
 Equipamento misturaCriarEquipamento(Mistura * mistura, Equipamento estoqueEquipamentos []);
 
 #endif // !Cabecalho_Mistura

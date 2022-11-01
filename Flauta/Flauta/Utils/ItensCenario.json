@@ -1,0 +1,46 @@
+{
+  "itens": [
+    {
+      "nome": "Teste 1",
+      "descricao": "Teste 1 é um iten de item.",
+      "imagem": "",
+      "posicao": {
+        "posicaoX": 10,
+        "posicaoY": 10,
+
+        "tamanhoX": 20,
+        "tamanhoY": 20
+      },
+      "coletavelPeloJogador": "true",
+      "codigoItemInventario": null
+    },
+    {
+      "nome": "Teste 2",
+      "descricao": "Teste 2 é um iten de item.",
+      "imagem": "",
+      "posicao": {
+        "posicaoX": 50,
+        "posicaoY": 50,
+
+        "tamanhoX": 20,
+        "tamanhoY": 20
+      },
+      "coletavelPeloJogador": "true",
+      "codigoItemInventario": null
+    },
+    {
+      "nome": "Teste 3",
+      "descricao": "Teste 3 é um iten de item.",
+      "imagem": "",
+      "posicao": {
+        "posicaoX": 100,
+        "posicaoY": 100,
+
+        "tamanhoX": 50,
+        "tamanhoY": 50
+      },
+      "coletavelPeloJogador": "true",
+      "codigoItemInventario": null
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Jack (\"Bee\") Ágil",
+    "formato": {
+        "tipo": "correto",
+        "largura": 1920,
+        "altura": 1080,
+        "entrelaçar": false,
+        "taxa de quadros": 24
+    }
+}

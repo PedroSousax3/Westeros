@@ -18,6 +18,7 @@
 #include "Cabecalho/Personagem.h"
 #include "Cabecalho/Pagina.h"
 #include "PaginaCombinacao.h"
+#include "Cabecalho/Cenario.h"
 
 const int fps = 60;
 int fpsAnimacao = 0;
@@ -43,6 +44,13 @@ void registrarEventos(void);
 void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento);
 void cameraUpdate(float* cameraPosition, Posicao * posicaoBase);
 
+
+void desenharItensCenario(CenarioItem* cenarioInicial) {
+	if (cenarioInicial != NULL) {
+		desenhaQuadrado((*cenarioInicial->posicao), al_map_rgb(255, 255, 255));
+		desenharItensCenario(cenarioInicial->proximo);
+	}
+}
 int main(void) {
 	if (!al_init())
 		return -1;
@@ -65,7 +73,10 @@ int main(void) {
 
 	desenharPersonagem(personagemPrincipal);
 	background = al_load_bitmap("BG-0001.png");
-	
+	cJSON * jsonCenarioItem = obterDados();
+	cJSON* itens = buscarItemObject(jsonCenarioItem->child, "itens");
+	CenarioItem * cenarioItemInicial = mapearCenario(itens->child);
+
 	al_start_timer(tempoRenderizacao);
 	while (paginaPrincipal.aberta) {
 		ALLEGRO_EVENT evento;
@@ -84,10 +95,15 @@ int main(void) {
 		//Execucao de dislay
 		if (paginaCombinacao.aberta)
 			executarPaginaCombinacao(&paginaCombinacao, personagemPrincipal.equipamentos, sizeof(personagemPrincipal.equipamentos) / sizeof(Equipamento));
-		else if (paginaPrincipal.aberta)
+		else if (paginaPrincipal.aberta) {
 			gerenciarPosicaoPersonagem(&evento);
+			desenharItensCenario(cenarioItemInicial);
+		}
 	}
 
+	free(itens);
+	free(jsonCenarioItem);
+	destruirCenarioItem(cenarioItemInicial);
 	al_destroy_font(fonte);
 	al_destroy_display(paginaPrincipal.display);
 	al_destroy_event_queue(eventos);
