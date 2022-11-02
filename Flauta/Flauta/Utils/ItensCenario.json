@@ -2,43 +2,52 @@
   "itens": [
     {
       "nome": "Teste 1",
-      "descricao": "Teste 1 é um iten de item.",
-      "imagem": "",
-      "posicao": {
-        "posicaoX": 10,
-        "posicaoY": 10,
+      "descricao": "Arvore de laranjas.",
+      "imagem": "Utils/Imagens/orangetrees.png",
 
-        "tamanhoX": 20,
-        "tamanhoY": 20
+      "imagemX": 200,
+      "imagemY": 200,
+
+      "imagemTamanhoX": 88,
+      "imagemTamanhoY": 127,
+
+      "posicao": {
+        "posicaoX": 240,
+        "posicaoY": 300,
+
+        "tamanhoX": 15,
+        "tamanhoY": 12
       },
       "coletavelPeloJogador": "true",
       "codigoItemInventario": null
     },
     {
-      "nome": "Teste 2",
-      "descricao": "Teste 2 é um iten de item.",
-      "imagem": "",
-      "posicao": {
-        "posicaoX": 50,
-        "posicaoY": 50,
+      "nome": "Teste 1",
+      "descricao": "Arvore de laranjas.",
+      "imagem": "Utils/Imagens/orangetrees.png",
 
-        "tamanhoX": 20,
-        "tamanhoY": 20
+      "imagemX": 289,
+      "imagemY": 200,
+
+      "imagemTamanhoX": 88,
+      "imagemTamanhoY": 127,
+
+      "posicao": {
+        "posicaoX": 329,
+        "posicaoY": 300,
+
+        "tamanhoX": 15,
+        "tamanhoY": 12
       },
       "coletavelPeloJogador": "true",
       "codigoItemInventario": null
-    },
+    }
+  ],
+  "elementos": [
     {
-      "nome": "Teste 3",
-      "descricao": "Teste 3 é um iten de item.",
-      "imagem": "",
-      "posicao": {
-        "posicaoX": 100,
-        "posicaoY": 100,
-
-        "tamanhoX": 50,
-        "tamanhoY": 50
-      },
+      "nome": "Teste 1",
+      "descricao": "Arvore de laranjas.",
+      "imagem": "Utils/Imagens/orangetrees.png",
       "coletavelPeloJogador": "true",
       "codigoItemInventario": null
     }

@@ -155,10 +155,13 @@
     <ClCompile Include="Utilitario.c" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\..\Users\Pedro Oliveira Sousa\Desktop\orangetrees.png" />
     <Image Include="BG-0001.png" />
     <Image Include="Serena_Player.png" />
     <Image Include="Sprite-0001.png" />
     <Image Include="Sprite-0002.png" />
+    <Image Include="Utils\Imagens\orangetrees.png" />
+    <Image Include="Utils\Imagens\treeorange.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="arial_narrow_7.ttf" />

@@ -1,5 +1,5 @@
 #include "../Cabecalho/Cenario.h"
-
+#include <allegro5/bitmap_io.h>
 
 cJSON * lerJson(char * json) {
 	cJSON * cJson = NULL;
@@ -23,15 +23,15 @@ cJSON * buscarItemObject(cJSON * baseBusca, char * item) {
 	return NULL;
 }
 
-CenarioItem* primeiroNo = NULL;
-CenarioItem* ultimoNo = NULL;
+CenarioItem* primeiroNo;
+CenarioItem* ultimoNo;
 
 void obteItemCenarioJson(cJSON * cJson) {
 	CenarioItem * cenarioItem = (CenarioItem*)malloc(sizeof(CenarioItem));
 
 	if (primeiroNo == NULL) {
 		cenarioItem->count = (int*)malloc(sizeof(int));
-		(* cenarioItem->count) = 0;
+		(*cenarioItem->count) = 0;
 		primeiroNo = cenarioItem;
 	}
 	else {
@@ -43,8 +43,15 @@ void obteItemCenarioJson(cJSON * cJson) {
 	cenarioItem->descricao = buscarItemObject(cJson, "descricao")->valuestring;
 	cenarioItem->enderecoImagem = buscarItemObject(cJson, "imagem")->valuestring;
 
+	cenarioItem->imagem = al_load_bitmap(cenarioItem->enderecoImagem);
+
 	cenarioItem->posicao = (Posicao*)malloc(sizeof(Posicao));
 	cJSON * cJsonPosicao = buscarItemObject(cJson, "posicao");
+
+	cenarioItem->imagemX = buscarItemObject(cJson, "imagemX")->valueint;
+	cenarioItem->imagemY = buscarItemObject(cJson, "imagemY")->valueint;
+	cenarioItem->imagemTamanhoX = buscarItemObject(cJson, "imagemTamanhoX")->valueint;
+	cenarioItem->imagemTamanhoY = buscarItemObject(cJson, "imagemTamanhoY")->valueint;
 
 	cenarioItem->posicao->posicaoX = buscarItemObject(cJsonPosicao->child, "posicaoX")->valueint;
 	cenarioItem->posicao->posicaoY = buscarItemObject(cJsonPosicao->child, "posicaoY")->valueint;
