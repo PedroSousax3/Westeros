@@ -43,15 +43,15 @@ void obteItemCenarioJson(cJSON * cJson) {
 	cenarioItem->descricao = buscarItemObject(cJson, "descricao")->valuestring;
 	cenarioItem->enderecoImagem = buscarItemObject(cJson, "imagem")->valuestring;
 
-	cenarioItem->imagem = al_load_bitmap(cenarioItem->enderecoImagem);
+	cenarioItem->Imagem.imagem = al_load_bitmap(cenarioItem->enderecoImagem);
 
 	cenarioItem->posicao = (Posicao*)malloc(sizeof(Posicao));
 	cJSON * cJsonPosicao = buscarItemObject(cJson, "posicao");
 
-	cenarioItem->imagemX = buscarItemObject(cJson, "imagemX")->valueint;
-	cenarioItem->imagemY = buscarItemObject(cJson, "imagemY")->valueint;
-	cenarioItem->imagemTamanhoX = buscarItemObject(cJson, "imagemTamanhoX")->valueint;
-	cenarioItem->imagemTamanhoY = buscarItemObject(cJson, "imagemTamanhoY")->valueint;
+	cenarioItem->Imagem.posicao.posicaoX = buscarItemObject(cJson, "imagemX")->valueint;
+	cenarioItem->Imagem.posicao.posicaoY = buscarItemObject(cJson, "imagemY")->valueint;
+	cenarioItem->Imagem.posicao.tamanhoX = buscarItemObject(cJson, "imagemTamanhoX")->valueint;
+	cenarioItem->Imagem.posicao.tamanhoY = buscarItemObject(cJson, "imagemTamanhoY")->valueint;
 
 	cenarioItem->posicao->posicaoX = buscarItemObject(cJsonPosicao->child, "posicaoX")->valueint;
 	cenarioItem->posicao->posicaoY = buscarItemObject(cJsonPosicao->child, "posicaoY")->valueint;

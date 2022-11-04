@@ -19,6 +19,7 @@
 #include "Cabecalho/Pagina.h"
 #include "PaginaCombinacao.h"
 #include "Cabecalho/Cenario.h"
+#include "Cabecalho/Utils/Imagem.h"
 
 const int fps = 60;
 int fpsAnimacao = 0;
@@ -92,7 +93,6 @@ int main(void) {
 		if (paginaCombinacao.aberta)
 			executarPaginaCombinacao(&paginaCombinacao, personagemPrincipal.equipamentos, sizeof(personagemPrincipal.equipamentos) / sizeof(Equipamento));
 		else if (paginaPrincipal.aberta) {
-			desenharItensCenario(cenarioItem);
 			gerenciarPosicaoPersonagem(&evento);
 		}
 	}
@@ -297,6 +297,7 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 			personagemPrincipal.movimento.posicao.posicaoY = posicaoYPersonagem;
 		}
 
+		desenharItensCenario(cenarioItem);
 		desenharPersonagem(personagemPrincipal);
 
 		cameraUpdate(cameraPosition, &personagemPrincipal.movimento.posicao);
@@ -320,20 +321,11 @@ void cameraUpdate(float * cameraPosition, Posicao * posicaoBase)
 }
 
 void desenharItemCenario(CenarioItem * cenario) {
-	al_draw_bitmap_region(
-		cenario->imagem, 
-		0, 
-		0, 
-		cenario->imagemTamanhoX, 
-		cenario->imagemTamanhoY,
-		cenario->imagemX,
-		cenario->imagemY,
-		ALLEGRO_FLIP_HORIZONTAL
-	);
+	desenharImagem(cenario->imagem);
 }
 void desenharItensCenario(CenarioItem* cenarioItenInicial) {
 	if (cenarioItenInicial != NULL) {
-		if (cenarioItenInicial->imagem != NULL)
+		if (cenarioItenInicial->imagem.imagem != NULL)
 			desenharItemCenario(cenarioItenInicial);
 		if (cenarioItenInicial->proximo != NULL)
 			desenharItensCenario(cenarioItenInicial->proximo);

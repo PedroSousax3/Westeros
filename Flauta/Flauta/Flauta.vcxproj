@@ -142,12 +142,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Cabecalho\Cenario.h" />
+    <ClCompile Include="Cabecalho\Utils\Imagem.h" />
     <ClCompile Include="Fonte\Cenario.c" />
     <ClCompile Include="Fonte\Equipamento.c" />
     <ClCompile Include="Fonte\Mistura.c" />
     <ClCompile Include="Fonte\Movimento.c" />
     <ClCompile Include="Fonte\Personagem.c" />
     <ClCompile Include="Fonte\Posicao.c" />
+    <ClCompile Include="Fonte\Utils\Imagem.c" />
     <ClCompile Include="libs\cJSON\cJSON.c" />
     <ClCompile Include="Origem.c" />
     <ClCompile Include="Fonte\Pagina.c" />

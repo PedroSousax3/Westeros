@@ -1,6 +1,8 @@
 #ifndef Cabelhado_CenarioItem
 #define Cabelhado_CenarioItem
 #include "Posicao.h"
+#include "Utils/Imagem.h"
+
 #include <allegro5/bitmap.h>
 typedef  struct CenarioItem {
 	int codigo;
@@ -11,11 +13,12 @@ typedef  struct CenarioItem {
 	char * descricao;
 	char * enderecoImagem;
 
-	ALLEGRO_BITMAP * imagem;
-	int imagemX;
-	int imagemY;
-	int imagemTamanhoX;
-	int imagemTamanhoY;
+	//ALLEGRO_BITMAP * imagem;
+	//int imagemX;
+	//int imagemY;
+	//int imagemTamanhoX;
+	//int imagemTamanhoY;
+	Imagem imagem;
 
 	Posicao * posicao;
 
