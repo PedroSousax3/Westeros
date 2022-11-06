@@ -1,55 +1,100 @@
 {
-  "itens": [
+  "canarioItem": [
     {
+      "codigo": 1,
       "nome": "Teste 1",
       "descricao": "Arvore de laranjas.",
-      "imagem": "Utils/Imagens/orangetrees.png",
-
-      "imagemX": 200,
-      "imagemY": 200,
-
-      "imagemTamanhoX": 88,
-      "imagemTamanhoY": 127,
-
-      "posicao": {
-        "posicaoX": 240,
-        "posicaoY": 300,
-
-        "tamanhoX": 15,
-        "tamanhoY": 12
+      "imagem": {
+        "endereco": "Utils/Imagens/orangetrees.png",
+        "orientacao": 1
       },
-      "coletavelPeloJogador": "true",
-      "codigoItemInventario": null
+      "coletavelPeloJogador": true,
+      "codigoItemInventario": null,
+
+      "elementos": [
+        {
+          "canarioItem": 1,
+          "posicaoAbsoluta": {
+            "posicaoX": 200,
+            "posicaoY": 200,
+
+            "tamanhoX": 88,
+            "tamanhoY": 127
+          },
+          "posicaoRelativa": {
+            "posicaoX": 240,
+            "posicaoY": 300,
+
+            "tamanhoX": 15,
+            "tamanhoY": 12
+          }
+        },
+        {
+          "canarioItem": 1,
+          "posicaoAbsoluta": {
+            "posicaoX": 288,
+            "posicaoY": 200,
+
+            "tamanhoX": 88,
+            "tamanhoY": 127
+          },
+          "posicaoRelativa": {
+            "posicaoX": 328,
+            "posicaoY": 300,
+
+            "tamanhoX": 15,
+            "tamanhoY": 12
+          }
+        },
+        {
+          "canarioItem": 1,
+          "posicaoAbsoluta": {
+            "posicaoX": 376,
+            "posicaoY": 200,
+
+            "tamanhoX": 88,
+            "tamanhoY": 127
+          },
+          "posicaoRelativa": {
+            "posicaoX": 416,
+            "posicaoY": 300,
+
+            "tamanhoX": 15,
+            "tamanhoY": 12
+          }
+        }
+      ]
     },
     {
-      "nome": "Teste 1",
-      "descricao": "Arvore de laranjas.",
-      "imagem": "Utils/Imagens/orangetrees.png",
-
-      "imagemX": 289,
-      "imagemY": 200,
-
-      "imagemTamanhoX": 88,
-      "imagemTamanhoY": 127,
-
-      "posicao": {
-        "posicaoX": 329,
-        "posicaoY": 300,
-
-        "tamanhoX": 15,
-        "tamanhoY": 12
+      "codigo": 2,
+      "nome": "Chimarrão",
+      "descricao": "Planta erva-mate.",
+      "imagem": {
+        "endereco": "Utils/Imagens/planta.png",
+        "orientacao": 1
       },
-      "coletavelPeloJogador": "true",
-      "codigoItemInventario": null
-    }
-  ],
-  "elementos": [
-    {
-      "nome": "Teste 1",
-      "descricao": "Arvore de laranjas.",
-      "imagem": "Utils/Imagens/orangetrees.png",
-      "coletavelPeloJogador": "true",
-      "codigoItemInventario": null
+      "coletavelPeloJogador": true,
+      "codigoItemInventario": null,
+
+      "elementos": [
+        {
+          "canarioItem": 1,
+          "posicaoAbsoluta": {
+            "posicaoX": 600,
+            "posicaoY": 200,
+
+            "tamanhoX": 255,
+            "tamanhoY": 255
+          },
+          "posicaoRelativa": {
+            "posicaoX": 600,
+            "posicaoY": 200,
+
+            "tamanhoX": 255,
+            "tamanhoY": 255
+          }
+        }
+      ]
     }
   ]
 }

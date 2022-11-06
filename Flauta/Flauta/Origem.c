@@ -28,7 +28,7 @@ Pagina paginaPrincipal;
 Pagina paginaCombinacao;
 Personagem personagemPrincipal;
 Posicao posicoes[1];
-CenarioItem * cenarioItem;
+CenarioItem * cenarioItemInicial;
 
 ALLEGRO_EVENT_QUEUE* eventos = NULL;
 ALLEGRO_BITMAP* background = NULL;
@@ -45,8 +45,9 @@ void configuracaoInicial(void);
 void registrarEventos(void);
 void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento);
 void cameraUpdate(float* cameraPosition, Posicao * posicaoBase);
-void desenharItemCenario(CenarioItem* cenario);
-void desenharItensCenario(CenarioItem* cenarioItenInicial);
+void carregarInformacaoesCenario(void);
+//void desenharItemCenario(CenarioItem* cenario);
+//void desenharItensCenario(CenarioItem* cenarioItenInicial);
 
 int main(void) {
 	if (!al_init())
@@ -70,9 +71,7 @@ int main(void) {
 
 	desenharPersonagem(personagemPrincipal);
 	background = al_load_bitmap("BG-0001.png");
-	cJSON * jsonCenarioItem = obterDados();
-	cJSON* itens = buscarItemObject(jsonCenarioItem->child, "itens");
-	cenarioItem = mapearCenario(itens->child);
+	carregarInformacaoesCenario();
 
 	al_start_timer(tempoRenderizacao);
 	while (paginaPrincipal.aberta) {
@@ -94,12 +93,12 @@ int main(void) {
 			executarPaginaCombinacao(&paginaCombinacao, personagemPrincipal.equipamentos, sizeof(personagemPrincipal.equipamentos) / sizeof(Equipamento));
 		else if (paginaPrincipal.aberta) {
 			gerenciarPosicaoPersonagem(&evento);
+			desenharCenarioItens(cenarioItemInicial);
+			desenharPersonagem(personagemPrincipal);
 		}
 	}
 
-	free(itens);
-	free(jsonCenarioItem);
-	destruirCenarioItem(cenarioItem);
+	destruirCenarioItens(cenarioItemInicial);
 	al_destroy_font(fonte);
 	al_destroy_display(paginaPrincipal.display);
 	al_destroy_event_queue(eventos);
@@ -108,17 +107,6 @@ int main(void) {
 	al_destroy_timer(tempoRenderizacao);
 
 	return 0;
-}
-
-bool colediuComItemCenario(CenarioItem * cenario, Posicao posicao) {
-	if (cenario != NULL) {
-		if (posicaoColediu((*cenario->posicao), posicao))
-			return true;
-		if (cenario->proximo != NULL)
-			return colediuComItemCenario(cenario->proximo, posicao);
-	}
-
-	return false;
 }
 
 Personagem configurarPersonagemPrincipal(void) {
@@ -292,18 +280,16 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 		al_clear_to_color(al_map_rgb(0, 0, 0));
 		al_draw_bitmap(background, 0, 0, 0);
 
-		if (colediuComItemCenario(cenarioItem, personagemPrincipal.movimento.posicao)) {
+		if (colediuComCenario(cenarioItemInicial, personagemPrincipal.movimento.posicao)) {
 			personagemPrincipal.movimento.posicao.posicaoX = posicaoXPersonagem;
 			personagemPrincipal.movimento.posicao.posicaoY = posicaoYPersonagem;
 		}
-
-		desenharItensCenario(cenarioItem);
-		desenharPersonagem(personagemPrincipal);
 
 		cameraUpdate(cameraPosition, &personagemPrincipal.movimento.posicao);
 		al_identity_transform(&camera);
 		al_translate_transform(&camera, -cameraPosition[0], -cameraPosition[1]);
 		al_use_transform(&camera);
+		//desenharItensCenario(cenarioItem);
 	}
 	else if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
 		paginaPrincipal.aberta = false;
@@ -320,14 +306,9 @@ void cameraUpdate(float * cameraPosition, Posicao * posicaoBase)
 		cameraPosition[1] = 0;
 }
 
-void desenharItemCenario(CenarioItem * cenario) {
-	desenharImagem(cenario->imagem);
-}
-void desenharItensCenario(CenarioItem* cenarioItenInicial) {
-	if (cenarioItenInicial != NULL) {
-		if (cenarioItenInicial->imagem.imagem != NULL)
-			desenharItemCenario(cenarioItenInicial);
-		if (cenarioItenInicial->proximo != NULL)
-			desenharItensCenario(cenarioItenInicial->proximo);
-	}
+void carregarInformacaoesCenario(void) {
+	cJSON* jsonCenario = obterCJsonCenario();
+	cJSON * elementosJson = bucarItemCJson(jsonCenario->child, "canarioItem");
+	cenarioItemInicial = mapearCenariosItemCJson(NULL, elementosJson->child);
+	cJSON_Delete(jsonCenario);
 }

@@ -7,13 +7,11 @@
 #include "../Posicao.h"
 
 typedef struct Imagem {
-	char endereco[255];
-	ALLEGRO_BITMAP* imagem;
-
+	char * endereco;
+	ALLEGRO_BITMAP * imagem;
 	int orientacao;
-	Posicao posicao;
 } Imagem;
 
-void desenharImagem(Imagem imagem);
+void desenharImagem(Imagem imagem, Posicao posicao);
 
 #endif //!Cabecalho_Utils_Imagem

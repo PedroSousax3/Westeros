@@ -150,6 +150,7 @@
     <ClCompile Include="Fonte\Personagem.c" />
     <ClCompile Include="Fonte\Posicao.c" />
     <ClCompile Include="Fonte\Utils\Imagem.c" />
+    <ClCompile Include="Fonte\Utils\ManipularJson.c" />
     <ClCompile Include="libs\cJSON\cJSON.c" />
     <ClCompile Include="Origem.c" />
     <ClCompile Include="Fonte\Pagina.c" />
@@ -163,6 +164,7 @@
     <Image Include="Sprite-0001.png" />
     <Image Include="Sprite-0002.png" />
     <Image Include="Utils\Imagens\orangetrees.png" />
+    <Image Include="Utils\Imagens\planta.png" />
     <Image Include="Utils\Imagens\treeorange.png" />
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +184,7 @@
     <ClInclude Include="Cabecalho\Personagem.h" />
     <ClInclude Include="Cabecalho\Posicao.h" />
     <ClInclude Include="Cabecalho\Pagina.h" />
+    <ClInclude Include="Cabecalho\Utils\ManipularJson.h" />
     <ClInclude Include="libs\cJSON\cJSON.h" />
     <ClInclude Include="PaginaCombinacao.h" />
     <ClInclude Include="Utilitario.h" />
