@@ -18,6 +18,8 @@
 #include "Cabecalho/Personagem.h"
 #include "Cabecalho/Pagina.h"
 #include "PaginaCombinacao.h"
+#include "Cabecalho/Cenario.h"
+#include "Cabecalho/Utils/Imagem.h"
 
 const int fps = 60;
 int fpsAnimacao = 0;
@@ -26,6 +28,7 @@ Pagina paginaPrincipal;
 Pagina paginaCombinacao;
 Personagem personagemPrincipal;
 Posicao posicoes[1];
+CenarioItem * cenarioItemInicial;
 
 ALLEGRO_EVENT_QUEUE* eventos = NULL;
 ALLEGRO_BITMAP* background = NULL;
@@ -42,6 +45,9 @@ void configuracaoInicial(void);
 void registrarEventos(void);
 void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento);
 void cameraUpdate(float* cameraPosition, Posicao * posicaoBase);
+void carregarInformacaoesCenario(void);
+//void desenharItemCenario(CenarioItem* cenario);
+//void desenharItensCenario(CenarioItem* cenarioItenInicial);
 
 int main(void) {
 	if (!al_init())
@@ -65,7 +71,8 @@ int main(void) {
 
 	desenharPersonagem(personagemPrincipal);
 	background = al_load_bitmap("BG-0001.png");
-	
+	carregarInformacaoesCenario();
+
 	al_start_timer(tempoRenderizacao);
 	while (paginaPrincipal.aberta) {
 		ALLEGRO_EVENT evento;
@@ -84,10 +91,14 @@ int main(void) {
 		//Execucao de dislay
 		if (paginaCombinacao.aberta)
 			executarPaginaCombinacao(&paginaCombinacao, personagemPrincipal.equipamentos, sizeof(personagemPrincipal.equipamentos) / sizeof(Equipamento));
-		else if (paginaPrincipal.aberta)
+		else if (paginaPrincipal.aberta) {
 			gerenciarPosicaoPersonagem(&evento);
+			desenharCenarioItens(cenarioItemInicial);
+			desenharPersonagem(personagemPrincipal);
+		}
 	}
 
+	destruirCenarioItens(cenarioItemInicial);
 	al_destroy_font(fonte);
 	al_destroy_display(paginaPrincipal.display);
 	al_destroy_event_queue(eventos);
@@ -172,12 +183,13 @@ void abrirPaginaComposicao() {
 	paginaCombinacao.posicao.posicaoY = 0;
 	paginaCombinacao.posicao.tamanhoX = 500;
 	paginaCombinacao.posicao.tamanhoY = 500;
-	/*const char * nomePagina[50] = "Misturar elementos";
-	strcpy(&paginaCombinacao.nome, nomePagina);*/
 	exibirPagina(&paginaCombinacao);
 }
 
 void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
+	int posicaoXPersonagem = personagemPrincipal.movimento.posicao.posicaoX;
+	int posicaoYPersonagem = personagemPrincipal.movimento.posicao.posicaoY;
+
 	ALLEGRO_EVENT event = *evento;
 
 	if (event.type == ALLEGRO_EVENT_KEY_DOWN) //Entra na tecla
@@ -267,23 +279,17 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 		al_flip_display();
 		al_clear_to_color(al_map_rgb(0, 0, 0));
 		al_draw_bitmap(background, 0, 0, 0);
-		desenharPersonagem(personagemPrincipal);
 
-
-		if (!posicaoColidiu(personagemPrincipal.movimento.posicao, posicoes, sizeof(posicoes) / sizeof(Posicao))) {
-			Posicao posicaoItem;
-			posicaoItem.posicaoX = 100;
-			posicaoItem.posicaoY = 100;
-			posicaoItem.tamanhoX = posicaoItem.tamanhoY = 300;
-			posicoes[0] = posicaoItem;
-
-			desenhaQuadrado(posicaoItem, al_map_rgb(255, 255, 255));
+		if (colediuComCenario(cenarioItemInicial, personagemPrincipal.movimento.posicao)) {
+			personagemPrincipal.movimento.posicao.posicaoX = posicaoXPersonagem;
+			personagemPrincipal.movimento.posicao.posicaoY = posicaoYPersonagem;
 		}
 
 		cameraUpdate(cameraPosition, &personagemPrincipal.movimento.posicao);
 		al_identity_transform(&camera);
 		al_translate_transform(&camera, -cameraPosition[0], -cameraPosition[1]);
 		al_use_transform(&camera);
+		//desenharItensCenario(cenarioItem);
 	}
 	else if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
 		paginaPrincipal.aberta = false;
@@ -298,4 +304,11 @@ void cameraUpdate(float * cameraPosition, Posicao * posicaoBase)
 		cameraPosition[0] = 0;
 	if (cameraPosition[1] < 0)
 		cameraPosition[1] = 0;
+}
+
+void carregarInformacaoesCenario(void) {
+	cJSON* jsonCenario = obterCJsonCenario();
+	cJSON * elementosJson = bucarItemCJson(jsonCenario->child, "canarioItem");
+	cenarioItemInicial = mapearCenariosItemCJson(NULL, elementosJson->child);
+	cJSON_Delete(jsonCenario);
 }

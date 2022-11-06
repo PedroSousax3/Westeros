@@ -116,7 +116,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -141,34 +141,51 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Cabecalho\Cenario.h" />
+    <ClCompile Include="Cabecalho\Utils\Imagem.h" />
+    <ClCompile Include="Fonte\Cenario.c" />
     <ClCompile Include="Fonte\Equipamento.c" />
+    <ClCompile Include="Fonte\Mistura.c" />
     <ClCompile Include="Fonte\Movimento.c" />
     <ClCompile Include="Fonte\Personagem.c" />
     <ClCompile Include="Fonte\Posicao.c" />
+    <ClCompile Include="Fonte\Utils\Imagem.c" />
+    <ClCompile Include="Fonte\Utils\ManipularJson.c" />
+    <ClCompile Include="libs\cJSON\cJSON.c" />
     <ClCompile Include="Origem.c" />
     <ClCompile Include="Fonte\Pagina.c" />
     <ClCompile Include="PaginaCombinacao.c" />
     <ClCompile Include="Utilitario.c" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\..\Users\Pedro Oliveira Sousa\Desktop\orangetrees.png" />
     <Image Include="BG-0001.png" />
     <Image Include="Serena_Player.png" />
     <Image Include="Sprite-0001.png" />
     <Image Include="Sprite-0002.png" />
+    <Image Include="Utils\Imagens\orangetrees.png" />
+    <Image Include="Utils\Imagens\planta.png" />
+    <Image Include="Utils\Imagens\treeorange.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="arial_narrow_7.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Fonte\teste.json" />
+    <None Include="libs\cJSON\LICENSE" />
     <None Include="packages.config" />
+    <None Include="Utils\ItensCenario.json" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cabecalho\CenarioItem.h" />
     <ClInclude Include="Cabecalho\Equipamento.h" />
     <ClInclude Include="Cabecalho\Mistura.h" />
     <ClInclude Include="Cabecalho\Movimento.h" />
     <ClInclude Include="Cabecalho\Personagem.h" />
     <ClInclude Include="Cabecalho\Posicao.h" />
     <ClInclude Include="Cabecalho\Pagina.h" />
+    <ClInclude Include="Cabecalho\Utils\ManipularJson.h" />
+    <ClInclude Include="libs\cJSON\cJSON.h" />
     <ClInclude Include="PaginaCombinacao.h" />
     <ClInclude Include="Utilitario.h" />
   </ItemGroup>

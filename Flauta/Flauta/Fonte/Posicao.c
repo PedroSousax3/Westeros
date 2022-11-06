@@ -22,7 +22,18 @@ void setPosicao(Posicao * posicao, int posicaoX, int posicaoY, int tamanhoX, int
 	posicao->velocidadeY = velocidadeY;
 }
 
-bool posicaoColidiu(Posicao posicao, Posicao intens[], int tamanhoVetor) {
+bool posicaoColediu(Posicao posicao, Posicao item) {
+	int x = posicao.posicaoX;
+	int y = posicao.posicaoY;
+	int xM = posicao.posicaoX + posicao.tamanhoX;
+	int yM = posicao.posicaoY + posicao.tamanhoY;
+
+	return
+		xM >= item.posicaoX && x <= (item.posicaoX + item.tamanhoX)
+		&& yM >= item.posicaoY && y <= (item.posicaoY + item.tamanhoY);
+}
+
+bool posicaoColidiuItens(Posicao posicao, Posicao intens[], int tamanhoVetor) {
 	int x = posicao.posicaoX;
 	int y = posicao.posicaoY;
 	int xM = posicao.posicaoX + posicao.tamanhoX;
