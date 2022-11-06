@@ -29,6 +29,7 @@ Pagina paginaCombinacao;
 Personagem personagemPrincipal;
 Posicao posicoes[1];
 CenarioItem * cenarioItemInicial;
+ItensRoot ItensCore;
 
 ALLEGRO_EVENT_QUEUE* eventos = NULL;
 ALLEGRO_BITMAP* background = NULL;
@@ -272,9 +273,20 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 		}
 		else
 			personagemPrincipal.imagemX = 0;
+
+		//coletaItens(ItensCore, personagemPrincipal);
+		//popularInv(personagemPrincipal);
 		
-		if (personagemPrincipal.imagemX != 0)
+		if (personagemPrincipal.imagemX != 0) {
 			printf("X: %i\nY: %i\n", personagemPrincipal.movimento.posicao.posicaoX, personagemPrincipal.movimento.posicao.posicaoY);
+			int w = 0;
+			while (w < 8)
+			{
+				printf("In%i: %i\n", w, personagemPrincipal.inventario[w]);
+				//personagemPrincipal.inventario[w] = w;
+				w++;
+			}
+		}
 
 		al_flip_display();
 		al_clear_to_color(al_map_rgb(0, 0, 0));

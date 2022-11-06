@@ -145,6 +145,7 @@
     <ClCompile Include="Cabecalho\Utils\Imagem.h" />
     <ClCompile Include="Fonte\Cenario.c" />
     <ClCompile Include="Fonte\Equipamento.c" />
+    <ClCompile Include="Fonte\Itens.c" />
     <ClCompile Include="Fonte\Mistura.c" />
     <ClCompile Include="Fonte\Movimento.c" />
     <ClCompile Include="Fonte\Personagem.c" />
@@ -179,6 +180,7 @@
   <ItemGroup>
     <ClInclude Include="Cabecalho\CenarioItem.h" />
     <ClInclude Include="Cabecalho\Equipamento.h" />
+    <ClInclude Include="Cabecalho\Itens.h" />
     <ClInclude Include="Cabecalho\Mistura.h" />
     <ClInclude Include="Cabecalho\Movimento.h" />
     <ClInclude Include="Cabecalho\Personagem.h" />
