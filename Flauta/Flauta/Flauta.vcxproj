@@ -171,7 +171,6 @@
     <Font Include="arial_narrow_7.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Fonte\teste.json" />
     <None Include="libs\cJSON\LICENSE" />
     <None Include="packages.config" />
     <None Include="Utils\ItensCenario.json" />

@@ -27,6 +27,39 @@
     <ClCompile Include="Fonte\Personagem.c">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
+    <ClCompile Include="Cabecalho\Cenario.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClCompile>
+    <ClCompile Include="Cabecalho\Utils\Imagem.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClCompile>
+    <ClCompile Include="Fonte\Cenario.c">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="Fonte\Equipamento.c">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="Fonte\Mistura.c">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="Fonte\Utils\Imagem.c">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="Fonte\Utils\ManipularJson.c">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\cJSON\cJSON.c">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="Fonte\Pagina.c">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="PaginaCombinacao.c">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilitario.c">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="BG-0001.png">
@@ -41,12 +74,26 @@
     <Image Include="Sprite-0002.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
+    <Image Include="..\..\..\..\Users\Pedro Oliveira Sousa\Desktop\orangetrees.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\orangetrees.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\planta.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\treeorange.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="arial_narrow_7.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="libs\cJSON\LICENSE" />
+    <None Include="Utils\ItensCenario.json" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cabecalho\Posicao.h">
@@ -56,6 +103,30 @@
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="Cabecalho\Personagem.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Cabecalho\CenarioItem.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Cabecalho\Equipamento.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Cabecalho\Mistura.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Cabecalho\Pagina.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Cabecalho\Utils\ManipularJson.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\cJSON\cJSON.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="PaginaCombinacao.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilitario.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
   </ItemGroup>
