@@ -93,8 +93,8 @@ int main(void) {
 			executarPaginaCombinacao(&paginaCombinacao, personagemPrincipal.equipamentos, sizeof(personagemPrincipal.equipamentos) / sizeof(Equipamento));
 		else if (paginaPrincipal.aberta) {
 			gerenciarPosicaoPersonagem(&evento);
-			desenharCenarioItens(cenarioItemInicial);
 			desenharPersonagem(personagemPrincipal);
+			desenharCenarioItens(cenarioItemInicial);
 		}
 	}
 
