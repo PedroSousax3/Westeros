@@ -71,7 +71,7 @@ int main(void) {
 		return -1;
 
 	desenharPersonagem(personagemPrincipal);
-	background = al_load_bitmap("BG-0001.png");
+	background = al_load_bitmap("Mapa.png");
 	carregarInformacaoesCenario();
 
 	al_start_timer(tempoRenderizacao);
@@ -279,13 +279,13 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 		
 		if (personagemPrincipal.imagemX != 0) {
 			printf("X: %i\nY: %i\n", personagemPrincipal.movimento.posicao.posicaoX, personagemPrincipal.movimento.posicao.posicaoY);
-			int w = 0;
-			while (w < 8)
-			{
-				printf("In%i: %i\n", w, personagemPrincipal.inventario[w]);
-				//personagemPrincipal.inventario[w] = w;
-				w++;
-			}
+			//int w = 0;
+			//while (w < 8)
+			//{
+			//	printf("In%i: %i\n", w, personagemPrincipal.inventario[w]);
+			//	//personagemPrincipal.inventario[w] = w;
+			//	w++;
+			//}
 		}
 
 		al_flip_display();

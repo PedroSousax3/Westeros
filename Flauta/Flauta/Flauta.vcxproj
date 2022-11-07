@@ -161,6 +161,7 @@
   <ItemGroup>
     <Image Include="..\..\..\..\Users\Pedro Oliveira Sousa\Desktop\orangetrees.png" />
     <Image Include="BG-0001.png" />
+    <Image Include="Mapa.png" />
     <Image Include="Serena_Player.png" />
     <Image Include="Sprite-0001.png" />
     <Image Include="Sprite-0002.png" />

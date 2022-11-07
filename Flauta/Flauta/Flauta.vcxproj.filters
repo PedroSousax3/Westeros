@@ -89,6 +89,9 @@
     <Image Include="Utils\Imagens\treeorange.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
+    <Image Include="Mapa.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="arial_narrow_7.ttf" />
