@@ -10,7 +10,7 @@ typedef struct Personagem {
 	char * nome[30];
 	char * sobreNome[70];
 	int idade;
-	//int inventario[8];
+	int inventario[8];
 
 	int imagemX;
 	int imagemY;
@@ -21,8 +21,8 @@ typedef struct Personagem {
 } Personagem;
 
 Personagem iniciarPersonagem();
+void coletaItens(int id);
 void desenharPersonagem(Personagem personagem);
-//void coletaItens(ItensRoot itens, Personagem pesonagem);
-//void popularInv(Personagem personagem);
+void popularInv();
 
 #endif // !Cabecalho_Personagem

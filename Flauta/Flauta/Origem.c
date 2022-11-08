@@ -94,8 +94,8 @@ int main(void) {
 			executarPaginaCombinacao(&paginaCombinacao, personagemPrincipal.equipamentos, sizeof(personagemPrincipal.equipamentos) / sizeof(Equipamento));
 		else if (paginaPrincipal.aberta) {
 			gerenciarPosicaoPersonagem(&evento);
-			desenharCenarioItens(cenarioItemInicial);
 			desenharPersonagem(personagemPrincipal);
+			desenharCenarioItens(cenarioItemInicial);
 		}
 	}
 
@@ -273,19 +273,24 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 		}
 		else
 			personagemPrincipal.imagemX = 0;
-
-		//coletaItens(ItensCore, personagemPrincipal);
-		//popularInv(personagemPrincipal);
+		
+		
+		
 		
 		if (personagemPrincipal.imagemX != 0) {
 			printf("X: %i\nY: %i\n", personagemPrincipal.movimento.posicao.posicaoX, personagemPrincipal.movimento.posicao.posicaoY);
-			//int w = 0;
-			//while (w < 8)
-			//{
-			//	printf("In%i: %i\n", w, personagemPrincipal.inventario[w]);
-			//	//personagemPrincipal.inventario[w] = w;
-			//	w++;
-			//}
+			int w = 0;
+			int z = 1;
+			//popularInv();
+			
+			while (w < 8)
+			{
+				coletaItens(z, &personagemPrincipal);
+				printf("In%i: %i\n", w, personagemPrincipal.inventario[w]);
+				//personagemPrincipal.inventario[w] = w;
+				w++;
+				z++;
+			}
 		}
 
 		al_flip_display();
