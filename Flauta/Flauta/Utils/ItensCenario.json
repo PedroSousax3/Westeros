@@ -95,6 +95,226 @@
           }
         }
       ]
+    },
+    {
+      "codigo": 3,
+      "nome": "Rio",
+      "descricao": "",
+      
+      "imagem": {
+        "endereco": "Utils/Imagens/deepwater.png",
+        "orientacao": 1
+      },
+
+      "coletavelPeloJogador": true,
+      "codigoItemInventario": null,
+
+      "elementos": [
+        {
+          "canarioItem": 3,
+          "posicaoAbsoluta": {
+            "posicaoX": 620,
+            "posicaoY": 624,
+
+            "tamanhoX": 191,
+            "tamanhoY": 127
+          },
+          "posicaoRelativa": {
+            "posicaoX": 620,
+            "posicaoY": 624,
+
+            "tamanhoX": 191,
+            "tamanhoY": 127
+          }
+        },
+        {
+          "canarioItem": 3,
+          "posicaoAbsoluta": {
+            "posicaoX": 620,
+            "posicaoY": 751,
+
+            "tamanhoX": 191,
+            "tamanhoY": 127
+          },
+          "posicaoRelativa": {
+            "posicaoX": 620,
+            "posicaoY": 751,
+
+            "tamanhoX": 191,
+            "tamanhoY": 127
+          }
+        },
+        {
+          "canarioItem": 3,
+          "posicaoAbsoluta": {
+            "posicaoX": 620,
+            "posicaoY": 878,
+
+            "tamanhoX": 191,
+            "tamanhoY": 127
+          },
+          "posicaoRelativa": {
+            "posicaoX": 620,
+            "posicaoY": 878,
+
+            "tamanhoX": 191,
+            "tamanhoY": 127
+          }
+        },
+        {
+          "canarioItem": 3,
+          "posicaoAbsoluta": {
+            "posicaoX": 620,
+            "posicaoY": 1005,
+
+            "tamanhoX": 191,
+            "tamanhoY": 127
+          },
+          "posicaoRelativa": {
+            "posicaoX": 620,
+            "posicaoY": 1005,
+
+            "tamanhoX": 191,
+            "tamanhoY": 127
+          }
+        },
+        {
+          "canarioItem": 3,
+          "posicaoAbsoluta": {
+            "posicaoX": 811,
+            "posicaoY": 624,
+
+            "tamanhoX": 191,
+            "tamanhoY": 127
+          },
+          "posicaoRelativa": {
+            "posicaoX": 811,
+            "posicaoY": 624,
+
+            "tamanhoX": 191,
+            "tamanhoY": 127
+          }
+        },
+        {
+          "canarioItem": 3,
+          "posicaoAbsoluta": {
+            "posicaoX": 811,
+            "posicaoY": 751,
+
+            "tamanhoX": 191,
+            "tamanhoY": 127
+          },
+          "posicaoRelativa": {
+            "posicaoX": 811,
+            "posicaoY": 751,
+
+            "tamanhoX": 191,
+            "tamanhoY": 127
+          }
+        },
+        {
+          "canarioItem": 3,
+          "posicaoAbsoluta": {
+            "posicaoX": 811,
+            "posicaoY": 878,
+
+            "tamanhoX": 191,
+            "tamanhoY": 127
+          },
+          "posicaoRelativa": {
+            "posicaoX": 811,
+            "posicaoY": 878,
+
+            "tamanhoX": 191,
+            "tamanhoY": 127
+          }
+        },
+        {
+          "canarioItem": 3,
+          "posicaoAbsoluta": {
+            "posicaoX": 811,
+            "posicaoY": 1005,
+
+            "tamanhoX": 191,
+            "tamanhoY": 127
+          },
+          "posicaoRelativa": {
+            "posicaoX": 811,
+            "posicaoY": 1005,
+
+            "tamanhoX": 191,
+            "tamanhoY": 127
+          }
+        },
+        {
+          "canarioItem": 3,
+          "posicaoAbsoluta": {
+            "posicaoX": 1002,
+            "posicaoY": 624,
+
+            "tamanhoX": 191,
+            "tamanhoY": 127
+          },
+          "posicaoRelativa": {
+            "posicaoX": 1002,
+            "posicaoY": 624,
+
+            "tamanhoX": 191,
+            "tamanhoY": 127
+          }
+        },
+        {
+          "canarioItem": 3,
+          "posicaoAbsoluta": {
+            "posicaoX": 1002,
+            "posicaoY": 751,
+
+            "tamanhoX": 191,
+            "tamanhoY": 127
+          },
+          "posicaoRelativa": {
+            "posicaoX": 1002,
+            "posicaoY": 751,
+
+            "tamanhoX": 191,
+            "tamanhoY": 127
+          }
+        },
+        {
+          "canarioItem": 3,
+          "posicaoAbsoluta": {
+            "posicaoX": 1002,
+            "posicaoY": 878,
+
+            "tamanhoX": 191,
+            "tamanhoY": 127
+          },
+          "posicaoRelativa": {
+            "posicaoX": 1002,
+            "posicaoY": 878,
+
+            "tamanhoX": 191,
+            "tamanhoY": 127
+          }
+        },
+        {
+          "canarioItem": 3,
+          "posicaoAbsoluta": {
+            "posicaoX": 1002,
+            "posicaoY": 1005,
+
+            "tamanhoX": 191,
+            "tamanhoY": 127
+          },
+          "posicaoRelativa": {
+            "posicaoX": 1002,
+            "posicaoY": 1005,
+
+            "tamanhoX": 191,
+            "tamanhoY": 127
+          }
+        }
+      ]
     }
   ]
 }
