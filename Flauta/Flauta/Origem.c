@@ -31,6 +31,7 @@ Personagem personagemPrincipal;
 Posicao posicoes[1];
 CenarioItem * cenarioItemInicial;
 cJSON* jsonCenario;
+ItensRoot ItensCore;
 
 ALLEGRO_EVENT_QUEUE* eventos = NULL;
 ALLEGRO_BITMAP* background = NULL;
@@ -72,7 +73,7 @@ int main(void) {
 		return -1;
 
 	desenharPersonagem(personagemPrincipal);
-	background = al_load_bitmap("BG-0001.png");
+	background = al_load_bitmap("Mapa.png");
 	carregarInformacaoesCenario();
 
 	al_start_timer(tempoRenderizacao);
@@ -165,8 +166,8 @@ void configuracaoInicial(void) {
 		paginaPrincipal.posicao.tamanhoY
 	); //Cria a tela do programa
 
-	posicaoMouse.tamanhoX = 10;
-	posicaoMouse.tamanhoY = 10;
+	posicaoMouse.tamanhoX = 5;
+	posicaoMouse.tamanhoY = 5;
 
 	paginaCombinacao = iniciarPagina();
 	fonte = al_load_font("arial_narrow_7.ttf", 12, 0);
@@ -279,8 +280,12 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 		else
 			personagemPrincipal.imagemX = 0;
 		
-		if (personagemPrincipal.imagemX != 0)
+		
+		
+		
+		if (personagemPrincipal.imagemX != 0) {
 			printf("X: %i\nY: %i\n", personagemPrincipal.movimento.posicao.posicaoX, personagemPrincipal.movimento.posicao.posicaoY);
+		}
 
 		al_flip_display();
 		al_clear_to_color(al_map_rgb(0, 0, 0));

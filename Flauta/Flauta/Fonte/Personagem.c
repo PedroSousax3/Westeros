@@ -3,6 +3,9 @@
 
 #include "../Cabecalho/Personagem.h"
 
+Personagem persoInv;
+
+
 Personagem iniciarPersonagem() {
 	Personagem personagem = {
 		.nome = NULL,
@@ -26,4 +29,28 @@ void desenharPersonagem(Personagem personagem) {
 		personagem.movimento.posicao.posicaoY,
 		0
 	);
+}
+
+void coletaItens(int id, Personagem * personagem)
+{
+	int n = 0;
+	
+	while (n < 8 && personagem->inventario[n] != 0)
+	{
+		n++;
+	}
+	if (personagem->inventario[n] == 0)
+	{
+		personagem->inventario[n] = id;
+		
+	}
+}
+
+void popularInv()
+{
+	int n = 1;
+	while (n < 8) {
+		persoInv.inventario[n] = n;
+		n++;
+	}
 }
