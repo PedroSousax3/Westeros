@@ -25,10 +25,12 @@ const int fps = 60;
 int fpsAnimacao = 0;
 
 Pagina paginaPrincipal;
+Posicao posicaoMouse;
 Pagina paginaCombinacao;
 Personagem personagemPrincipal;
 Posicao posicoes[1];
 CenarioItem * cenarioItemInicial;
+cJSON* jsonCenario;
 
 ALLEGRO_EVENT_QUEUE* eventos = NULL;
 ALLEGRO_BITMAP* background = NULL;
@@ -99,6 +101,7 @@ int main(void) {
 	}
 
 	destruirCenarioItens(cenarioItemInicial);
+	cJSON_Delete(jsonCenario);
 	al_destroy_font(fonte);
 	al_destroy_display(paginaPrincipal.display);
 	al_destroy_event_queue(eventos);
@@ -161,7 +164,9 @@ void configuracaoInicial(void) {
 		paginaPrincipal.posicao.tamanhoX ,
 		paginaPrincipal.posicao.tamanhoY
 	); //Cria a tela do programa
-	
+
+	posicaoMouse.tamanhoX = 10;
+	posicaoMouse.tamanhoY = 10;
 
 	paginaCombinacao = iniciarPagina();
 	fonte = al_load_font("arial_narrow_7.ttf", 12, 0);
@@ -176,6 +181,7 @@ void registrarEventos(void) {
 	al_register_event_source(eventos, al_get_keyboard_event_source());
 	al_register_event_source(eventos, al_get_display_event_source(paginaPrincipal.display));
 	al_register_event_source(eventos, al_get_timer_event_source(tempoRenderizacao));
+	al_register_event_source(eventos, al_get_mouse_event_source());
 }
 
 void abrirPaginaComposicao() {
@@ -280,7 +286,7 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 		al_clear_to_color(al_map_rgb(0, 0, 0));
 		al_draw_bitmap(background, 0, 0, 0);
 
-		if (colediuComCenario(cenarioItemInicial, personagemPrincipal.movimento.posicao)) {
+		if (colediuComCenario(cenarioItemInicial, personagemPrincipal.movimento.posicao, true)) {
 			personagemPrincipal.movimento.posicao.posicaoX = posicaoXPersonagem;
 			personagemPrincipal.movimento.posicao.posicaoY = posicaoYPersonagem;
 		}
@@ -290,6 +296,21 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 		al_translate_transform(&camera, -cameraPosition[0], -cameraPosition[1]);
 		al_use_transform(&camera);
 		//desenharItensCenario(cenarioItem);
+	}
+	else if (event.type == ALLEGRO_EVENT_MOUSE_AXES) 
+	{
+		printf("\nMouse:\n\tX: %i\n\tY: %i", event.mouse.x, event.mouse.y);
+		posicaoMouse.posicaoX = event.mouse.x + cameraPosition[0],
+		posicaoMouse.posicaoY = event.mouse.y + cameraPosition[1];
+	}
+	else if (event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
+		if (event.mouse.button == 1)
+			if (colediuComCenario(cenarioItemInicial, posicaoMouse, false)) {
+				ElementoCenario * elementoCenario = obterElementoCenarioEmPosicao(cenarioItemInicial, posicaoMouse, false);
+				if (personagemPrincipal.inventario == NULL || personagemPrincipal.inventario->count <= 4) {
+					personagemPrincipal.inventario = inserirItemInventario(personagemPrincipal.inventario, elementoCenario->cenarioItem);
+				}
+			}
 	}
 	else if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
 		paginaPrincipal.aberta = false;
@@ -307,8 +328,7 @@ void cameraUpdate(float * cameraPosition, Posicao * posicaoBase)
 }
 
 void carregarInformacaoesCenario(void) {
-	cJSON* jsonCenario = obterCJsonCenario();
+	jsonCenario = obterCJsonCenario();
 	cJSON * elementosJson = bucarItemCJson(jsonCenario->child, "canarioItem");
 	cenarioItemInicial = mapearCenariosItemCJson(NULL, elementosJson->child);
-	cJSON_Delete(jsonCenario);
 }
