@@ -4,6 +4,7 @@
 #include <allegro5/bitmap.h>
 #include "../Cabecalho/Movimento.h"
 #include "../Cabecalho/Equipamento.h"
+#include "../Cabecalho/Inventario.h"
 
 typedef struct Personagem {
 	char * nome[30];
@@ -15,6 +16,8 @@ typedef struct Personagem {
 
 	ALLEGRO_BITMAP * imagem;
 	Movimento movimento;
+	Inventario * inventario;
+
 	Equipamento equipamentos[10];
 } Personagem;
 

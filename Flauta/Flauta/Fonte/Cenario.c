@@ -151,24 +151,49 @@ void desenharCenarioItens(CenarioItem * cenarioItenInicial) {
 	}
 }
 
-bool colediuComElementoCenario(ElementoCenario * elementoCenario, Posicao posicaoComparacao) {
+bool colediuComElementoCenario(ElementoCenario * elementoCenario, Posicao posicaoComparacao, bool useRelative) {
 	if (elementoCenario != NULL) {
-		if (posicaoColediu(*elementoCenario->posicaoRelativa, posicaoComparacao))
+		if (posicaoColediu(useRelative  ? *elementoCenario->posicaoRelativa : *elementoCenario->posicaoAbsoluta, posicaoComparacao))
 			return true;
 		else if (elementoCenario->proximo != NULL)
-			return colediuComElementoCenario(elementoCenario->proximo, posicaoComparacao);
+			return colediuComElementoCenario(elementoCenario->proximo, posicaoComparacao, useRelative);
 	}
 
 	return false;
 }
 
-bool colediuComCenario(CenarioItem * cenarioItenInicial, Posicao posicaoComparacao) {
+bool colediuComCenario(CenarioItem * cenarioItenInicial, Posicao posicaoComparacao, bool useRelative) {
 	if (cenarioItenInicial != NULL && cenarioItenInicial->elementoInical != NULL) {
-		if (colediuComElementoCenario(cenarioItenInicial->elementoInical, posicaoComparacao))
+		if (colediuComElementoCenario(cenarioItenInicial->elementoInical, posicaoComparacao, useRelative))
 			return true;
 		else if (cenarioItenInicial->proximo != NULL)
-			return colediuComCenario(cenarioItenInicial->proximo, posicaoComparacao);
+			return colediuComCenario(cenarioItenInicial->proximo, posicaoComparacao, useRelative);
 	}
 		
 	return false;
+}
+
+ElementoCenario * buscarElementoCenarioPorPosicao(ElementoCenario * elementoCenario, Posicao posicao, bool useRelative) {
+	if (posicaoColediu(useRelative ? *elementoCenario->posicaoRelativa : *elementoCenario->posicaoAbsoluta, posicao))
+		return elementoCenario;
+	else if (elementoCenario->proximo != NULL)
+		return buscarElementoCenarioPorPosicao(elementoCenario->proximo, posicao, useRelative);
+
+	return NULL;
+}
+
+ElementoCenario * obterElementoCenarioEmPosicao(CenarioItem * cenarioItemInicial, Posicao posicao, bool useRelative) {
+	if (cenarioItemInicial != NULL) {
+		if (cenarioItemInicial->elementoInical != NULL)
+		{
+			ElementoCenario* elementoCenario = buscarElementoCenarioPorPosicao(cenarioItemInicial->elementoInical, posicao, useRelative);
+			if (elementoCenario != NULL)
+				return elementoCenario;
+		}
+		
+		if (cenarioItemInicial->proximo != NULL)
+			return obterElementoCenarioEmPosicao(cenarioItemInicial->proximo, posicao, useRelative);
+	}
+
+	return NULL;
 }
