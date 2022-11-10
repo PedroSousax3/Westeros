@@ -13,7 +13,7 @@ struct Inventario {
 
 	int indice;
 	int * count;
-	Inventario* proximo;
+	Inventario * proximo;
 };
 
 Inventario* inserirItemInventario(Inventario* inventarioAnterior, CenarioItem* cenarioItem);

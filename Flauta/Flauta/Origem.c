@@ -312,7 +312,7 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 		if (event.mouse.button == 1)
 			if (colediuComCenario(cenarioItemInicial, posicaoMouse, false)) {
 				ElementoCenario * elementoCenario = obterElementoCenarioEmPosicao(cenarioItemInicial, posicaoMouse, false);
-				if (personagemPrincipal.inventario == NULL || personagemPrincipal.inventario->count <= 4) {
+				if (personagemPrincipal.inventario == NULL || (*personagemPrincipal.inventario->count) <= 4) {
 					personagemPrincipal.inventario = inserirItemInventario(personagemPrincipal.inventario, elementoCenario->cenarioItem);
 				}
 			}

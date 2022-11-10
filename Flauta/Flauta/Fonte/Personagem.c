@@ -35,22 +35,13 @@ void coletaItens(int id, Personagem * personagem)
 {
 	int n = 0;
 	
-	while (n < 8 && personagem->inventario[n] != 0)
+	while (n < 8 && personagem->inv[n] != 0)
 	{
 		n++;
 	}
-	if (personagem->inventario[n] == 0)
+	if (personagem->inv[n] == 0)
 	{
-		personagem->inventario[n] = id;
+		personagem->inv[n] = id;
 		
-	}
-}
-
-void popularInv()
-{
-	int n = 1;
-	while (n < 8) {
-		persoInv.inventario[n] = n;
-		n++;
 	}
 }
