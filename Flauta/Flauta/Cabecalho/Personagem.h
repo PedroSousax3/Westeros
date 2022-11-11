@@ -2,10 +2,10 @@
 #define Cabecalho_Personagem
 
 #include <allegro5/bitmap.h>
-#include "../Cabecalho/Movimento.h"
-#include "../Cabecalho/Equipamento.h"
-#include "../Cabecalho/Itens.h"
-#include "Inventario.h"
+#include "./Movimento.h"
+#include "./Equipamento.h"
+#include "./Itens.h"
+#include "./Inventario.h"
 
 typedef struct Personagem {
 	char * nome[30];

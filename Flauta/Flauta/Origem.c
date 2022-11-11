@@ -31,7 +31,6 @@ Personagem personagemPrincipal;
 Posicao posicoes[1];
 CenarioItem * cenarioItemInicial;
 cJSON* jsonCenario;
-ItensRoot ItensCore;
 
 ALLEGRO_EVENT_QUEUE* eventos = NULL;
 ALLEGRO_BITMAP* background = NULL;
