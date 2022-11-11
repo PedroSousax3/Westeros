@@ -1,19 +1,18 @@
 {
   "missoes": [
     {
-      "codigo" :  1,
-      "nome": "Missão 1",
-      "ProdutoFinal": 1,
-      "MensagemInicial": "Você precisa fazer o remedio 1.",
-      "MensagemFinal": "Você conclui a missão 1.",
-      "EventosMissao": [
+      "codigo": 1,
+      "nome": "MissÃ£oo 1",
+      "mensagemInicial": "VocÃª precisa fazer o remedio 1.",
+      "mensagemFinal": "VocÃª conclui a missÃ£o 1.",
+      "misturaFinal": 1,
+      "passos": [
         {
-          "evento": "exibirMensagem",
-          "Mensagem": "Mensagem 1",
-          "quando": "click",
-          //Dados do elemento que inicia o evento
-          "cenarioItem" : 1,
-          "elementoItem" : 1 //Posição do elemento dentro do cenario item
+          "executar": 1,
+          "mensagemInicial": "O passo iniciou.",
+          "mensagemFinal": "O passo finalizou.",
+          "quando": 1,
+          "cenarioItem": 1
         }
       ]
     }

@@ -184,6 +184,7 @@
     <ClInclude Include="Cabecalho\Equipamento.h" />
     <ClInclude Include="Cabecalho\Inventario.h" />
     <ClInclude Include="Cabecalho\Itens.h" />
+    <ClInclude Include="Cabecalho\Missao.h" />
     <ClInclude Include="Cabecalho\Mistura.h" />
     <ClInclude Include="Cabecalho\Movimento.h" />
     <ClInclude Include="Cabecalho\Personagem.h" />
