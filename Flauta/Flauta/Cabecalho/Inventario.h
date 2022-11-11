@@ -20,4 +20,5 @@ Inventario* inserirItemInventario(Inventario* inventarioAnterior, CenarioItem* c
 void alterarPosicaoChildren(Inventario* inicio, int diferenca);
 void removerItemInventario(Inventario* inventario);
 void desenharItensInventarios(Inventario inventarioInicial);
+CenarioItem* ultimoItemInventario(Inventario* inventarioInicial);
 #endif // !Cabecalho_Inventario
