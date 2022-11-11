@@ -13,11 +13,12 @@ struct Inventario {
 
 	int indice;
 	int * count;
-	Inventario* proximo;
+	Inventario * proximo;
 };
 
 Inventario* inserirItemInventario(Inventario* inventarioAnterior, CenarioItem* cenarioItem);
 void alterarPosicaoChildren(Inventario* inicio, int diferenca);
 void removerItemInventario(Inventario* inventario);
 void desenharItensInventarios(Inventario inventarioInicial);
+CenarioItem* ultimoItemInventario(Inventario* inventarioInicial);
 #endif // !Cabecalho_Inventario

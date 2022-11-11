@@ -48,3 +48,11 @@ void alterarPosicaoChildren(Inventario* inicio, int diferenca) {
 void desenharItensInventarios(Inventario inventarioInicial) {
 	desenharImagem(*inventarioInicial.cenarioItem->imagem, *inventarioInicial.posicaoAbsoluta);
 }
+
+CenarioItem* ultimoItemInventario(Inventario* inventarioInicial) {
+	if (inventarioInicial == NULL)
+		return NULL;
+	if (inventarioInicial->proximo == NULL)
+		return inventarioInicial;
+	return ultimoItemInventario(inventarioInicial->proximo);
+}

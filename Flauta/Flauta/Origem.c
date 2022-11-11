@@ -304,13 +304,19 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 		posicaoMouse.posicaoY = event.mouse.y + cameraPosition[1];
 	}
 	else if (event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
-		if (event.mouse.button == 1)
-			if (colediuComCenario(cenarioItemInicial, posicaoMouse, false)) {
-				ElementoCenario * elementoCenario = obterElementoCenarioEmPosicao(cenarioItemInicial, posicaoMouse, false);
-				if (personagemPrincipal.inventario == NULL || personagemPrincipal.inventario->count <= 4) {
-					personagemPrincipal.inventario = inserirItemInventario(personagemPrincipal.inventario, elementoCenario->cenarioItem);
-				}
+	if (event.mouse.button == 1)
+		if (colediuComCenario(cenarioItemInicial, posicaoMouse, false)) {
+			ElementoCenario* elementoCenario = obterElementoCenarioEmPosicao(cenarioItemInicial, posicaoMouse, false);
+			if (personagemPrincipal.inventario == NULL) {
+				personagemPrincipal.inventario = inserirItemInventario(personagemPrincipal.inventario, elementoCenario->cenarioItem);
 			}
+			else if ((*personagemPrincipal.inventario->count) <= 4) {
+				Inventario* ultimoInventario = ultimoItemInventario(personagemPrincipal.inventario);
+				if (ultimoInventario != NULL)
+					inserirItemInventario(ultimoInventario, elementoCenario->cenarioItem);
+				printf("Ultimo item não foi encontrado.");
+			}
+		}
 	}
 	else if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
 		paginaPrincipal.aberta = false;

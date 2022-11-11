@@ -2,10 +2,12 @@
 #define Cabecalho_Mistura
 
 #include "Equipamento.h"
+#include "CenarioItem.h"
 
 typedef struct Mistura {
-	Equipamento novoEquipamento;
-	Equipamento ingredientes[5];
+	CenarioItem novoItem;
+
+	CenarioItem itens[3];
 } Mistura;
 
 bool misturaPossuiTodosIngredientes(Mistura* mistura, Equipamento estoqueEquipamentos[]);
