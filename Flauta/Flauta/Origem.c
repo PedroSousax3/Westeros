@@ -20,6 +20,7 @@
 #include "PaginaCombinacao.h"
 #include "Cabecalho/Cenario.h"
 #include "Cabecalho/Utils/Imagem.h"
+#include "Cabecalho/Missao.h"
 
 const int fps = 60;
 int fpsAnimacao = 0;
@@ -30,7 +31,9 @@ Pagina paginaCombinacao;
 Personagem personagemPrincipal;
 Posicao posicoes[1];
 CenarioItem * cenarioItemInicial;
+Missao* missaoInicial;
 cJSON* jsonCenario;
+cJSON* jsonMissoes;
 
 ALLEGRO_EVENT_QUEUE* eventos = NULL;
 ALLEGRO_BITMAP* background = NULL;
@@ -48,6 +51,7 @@ void registrarEventos(void);
 void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento);
 void cameraUpdate(float* cameraPosition, Posicao * posicaoBase);
 void carregarInformacaoesCenario(void);
+void carregarInformacoesMissoes(void);
 //void desenharItemCenario(CenarioItem* cenario);
 //void desenharItensCenario(CenarioItem* cenarioItenInicial);
 
@@ -74,6 +78,7 @@ int main(void) {
 	desenharPersonagem(personagemPrincipal);
 	background = al_load_bitmap("Mapa.png");
 	carregarInformacaoesCenario();
+	carregarInformacoesMissoes();
 
 	al_start_timer(tempoRenderizacao);
 	while (paginaPrincipal.aberta) {
@@ -102,6 +107,8 @@ int main(void) {
 
 	destruirCenarioItens(cenarioItemInicial);
 	cJSON_Delete(jsonCenario);
+	destruirMissoes(missaoInicial);
+	cJSON_Delete(jsonMissoes);
 	al_destroy_font(fonte);
 	al_destroy_display(paginaPrincipal.display);
 	al_destroy_event_queue(eventos);
@@ -341,4 +348,10 @@ void carregarInformacaoesCenario(void) {
 	jsonCenario = obterCJsonCenario();
 	cJSON * elementosJson = bucarItemCJson(jsonCenario->child, "canarioItem");
 	cenarioItemInicial = mapearCenariosItemCJson(NULL, elementosJson->child);
+}
+
+void carregarInformacoesMissoes(void) {
+	jsonMissoes = obterMissoesJson();
+	cJSON * missoesCJSON = bucarItemCJson(jsonMissoes->child, "missoes");
+	missaoInicial = mapearMissoesDeJson(NULL, missoesCJSON->child, cenarioItemInicial);
 }

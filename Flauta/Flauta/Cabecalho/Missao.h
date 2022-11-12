@@ -2,12 +2,15 @@
 #define Cabecalho_Missao
 
 #include "CenarioItem.h"
+#include "Cenario.h"
 #include "Mistura.h"
+#include "Utils/ManipularJson.h"
+#include "../libs/cJSON/cJSON.h"
 
 typedef enum EnumPassoAcao;
 typedef enum EnumPassoQuandoExecutar;
-typedef struct MissaoDef Missao;
-typedef struct PassoMissaoDef PassoMissao;
+typedef struct Missao Missao;
+typedef struct PassoMissao PassoMissao;
 
 /// <summary>
 /// Eventos que devem ser acionados na conclusão de cada passo.
@@ -61,6 +64,7 @@ struct Missao {
 	/// Quantidade de missoões disponiveis no vetor dinamico
 	/// </summary>
 	int* count;
+	Missao* proxima;
 };
 /// <summary>
 /// Passos que devem ser executados para a finalização da missão
@@ -85,7 +89,63 @@ struct PassoMissao {
 	/// <summary>
 	/// Elemento em que o evento deve ocorrer para finalizar a tarefa
 	/// </summary>
-	CenarioItem* cenarioItem;
+	CenarioItem * cenarioItem;
+	/// <summary>
+	/// Posicao do passo
+	/// </summary>
+	int indice;
+	/// <summary>
+	/// Quantidade de missoões disponiveis no vetor dinamico
+	/// </summary>
+	int* count;
+	PassoMissao * proxima;
 };
 
+/// <summary>
+/// Obtem o objeto cJSON com as informções das missões do jogo
+/// </summary>
+/// <returns>Struct cJSON com as informações do jogo</returns>
+cJSON * obterMissoesJson();
+/// <summary>
+/// Gera uma struct de Missão populado com os dados obtido no parametro jsonMissao
+/// </summary>
+/// <param name="missaoAnterior">A missão que foi gerada antes da atual. Caso não tenha informa NULL</param>
+/// <param name="jsonMissao">Struct cJSON com as informações da missão que deseja</param>
+/// <param name="cenarioInicial">Objeto de cenarioInicial para consultar cenarioItem do passo.</param>
+/// <returns>Objeto de missão mapedo apartir do parametro cJSON</returns>
+Missao* montarMissaoDeJson(Missao* missaoAnterior, cJSON* jsonMissao, CenarioItem* cenarioInicial);
+/// <summary>
+/// Função recursiva que utiliza o metodo montarMissaoDeJson para popular todas as missoes de um cJSON
+/// </summary>
+/// <param name="missaoAnterior">A missão que foi gerada antes da atual. Caso não tenha informa NULL</param>
+/// <param name="missoaJson">cJSON de onde começará a buscar as missoes</param>
+/// <param name="cenarioInicial">Objeto de cenarioInicial para consultar cenarioItem do passo.</param>
+/// <returns>Retorna o primerio struct mapeada de Missao</returns>
+Missao* mapearMissoesDeJson(Missao* missaoAnterior, cJSON* missoaJson, CenarioItem* cenarioInicial);
+/// <summary>
+/// Destri a missão e seus nós filhos
+/// </summary>
+/// <param name="missao">Inicio da destruição</param>
+void destruirMissoes(Missao* missao);
+/// <summary>
+/// Gera uma struct de PassoMissao populado com os dados obtido no parametro jsonPassoMissao
+/// </summary>
+/// <param name="passoaMissoaAnterior">O passoMissao que foi gerada antes da atual. Caso não tenha informa NULL</param>
+/// <param name="jsonPassoMissao">Struct cJSON com as informações passo que deseja.</param>
+/// <param name="cenarioInicial">Objeto de cenarioInicial para consultar cenarioItem do passo.</param>
+/// <returns>Objeto de passo mapedo apartir do parametro cJSON</returns>
+PassoMissao* montarPassoMissaoDeCJson(PassoMissao* passoaMissoaAnterior, cJSON* jsonPassoMissao, CenarioItem* cenarioInicial);
+/// <summary>
+/// Função recursiva que utiliza o metodo montarPassoMissaoDeCJson para popular todos os passos de uma missão de um cJSON
+/// </summary>
+/// <param name="noAnterior">O passo que foi gerado antes da atual. Caso não tenha informo NULL</param>
+/// <param name="passoJson">cJSON de onde começará a buscar os passos</param>
+/// <param name="cenarioInicial">Objeto de cenarioInicial para consultar cenarioItem do passo.</param>
+/// <returns>Retorna o primerio struct mapeada de PassoMissao</returns>
+PassoMissao* mapearPassosMissaoDeJson(PassoMissao* noAnterior, cJSON* passoJson, CenarioItem* cenarioInicial);
+/// <summary>
+/// Destroi um passo e seus nós filhos
+/// </summary>
+/// <param name="passoMissao">Inicio da destruição</param>
+void destruirPassosMissao(PassoMissao * passoMissao);
 #endif // !Cabecalho_Missao

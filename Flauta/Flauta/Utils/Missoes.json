@@ -2,7 +2,7 @@
   "missoes": [
     {
       "codigo": 1,
-      "nome": "Missãoo 1",
+      "nome": "Missão 1",
       "mensagemInicial": "Você precisa fazer o remedio 1.",
       "mensagemFinal": "Você conclui a missão 1.",
       "misturaFinal": 1,

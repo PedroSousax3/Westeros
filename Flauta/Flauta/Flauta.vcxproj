@@ -147,6 +147,7 @@
     <ClCompile Include="Fonte\Equipamento.c" />
     <ClCompile Include="Fonte\Inventario.c" />
     <ClCompile Include="Fonte\Itens.c" />
+    <ClCompile Include="Fonte\Missao.c" />
     <ClCompile Include="Fonte\Mistura.c" />
     <ClCompile Include="Fonte\Movimento.c" />
     <ClCompile Include="Fonte\Personagem.c" />
