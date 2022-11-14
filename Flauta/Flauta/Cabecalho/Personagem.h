@@ -6,6 +6,7 @@
 #include "./Equipamento.h"
 #include "./Itens.h"
 #include "./Inventario.h"
+#include "./Missao.h"
 
 typedef struct Personagem {
 	char * nome[30];
@@ -21,6 +22,7 @@ typedef struct Personagem {
 	Inventario * inventario;
 
 	Equipamento equipamentos[10];
+	Missao* missaoAtual;
 } Personagem;
 
 Personagem iniciarPersonagem();

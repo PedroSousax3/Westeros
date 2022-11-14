@@ -178,7 +178,9 @@
   <ItemGroup>
     <None Include="libs\cJSON\LICENSE" />
     <None Include="packages.config" />
+    <None Include="Utils\configuracao.cfg" />
     <None Include="Utils\ItensCenario.json" />
+    <None Include="Utils\Missoes.json" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cabecalho\CenarioItem.h" />

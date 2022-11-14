@@ -1,6 +1,7 @@
 ﻿//Libs externas
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_primitives.h>
@@ -21,6 +22,7 @@
 #include "Cabecalho/Cenario.h"
 #include "Cabecalho/Utils/Imagem.h"
 #include "Cabecalho/Missao.h"
+#include <locale.h>
 
 const int fps = 60;
 int fpsAnimacao = 0;
@@ -41,6 +43,7 @@ ALLEGRO_TRANSFORM camera;
 ALLEGRO_FONT *  fonte = NULL;
 ALLEGRO_KEYBOARD_STATE keyState;
 ALLEGRO_TIMER * tempoRenderizacao = NULL;
+ALLEGRO_FONT* fontePasso;
 
 float cameraPosition[2] = { 0 , 0 };
 
@@ -52,19 +55,27 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento);
 void cameraUpdate(float* cameraPosition, Posicao * posicaoBase);
 void carregarInformacaoesCenario(void);
 void carregarInformacoesMissoes(void);
+char* concatenarTexto(char* mensagem, char* conteudo, char* separador);
+void desenharPassoMissao(PassoMissao* passoMissao);
+
 //void desenharItemCenario(CenarioItem* cenario);
 //void desenharItensCenario(CenarioItem* cenarioItenInicial);
 
 int main(void) {
 	if (!al_init())
 		return -1;
-	
+
 	al_install_keyboard();
 	al_install_mouse();
 	al_init_primitives_addon();
 	al_init_image_addon();
 	al_init_font_addon();
 	al_init_ttf_addon();
+
+	//setlocale(LC_ALL, "");
+	//ALLEGRO_CONFIG * config = al_load_config_file("Utils/configuracao.cfg");
+	//const char* lang = get_config_string("system", "language", "EN");
+	//al_set_config_value(config, "system", "language", "PT-BR");
 
 	configuracaoInicial();
 	personagemPrincipal = configurarPersonagemPrincipal();
@@ -79,6 +90,8 @@ int main(void) {
 	background = al_load_bitmap("Mapa.png");
 	carregarInformacaoesCenario();
 	carregarInformacoesMissoes();
+
+	personagemPrincipal.missaoAtual = missaoInicial;
 
 	al_start_timer(tempoRenderizacao);
 	while (paginaPrincipal.aberta) {
@@ -102,6 +115,32 @@ int main(void) {
 			gerenciarPosicaoPersonagem(&evento);
 			desenharPersonagem(personagemPrincipal);
 			desenharCenarioItens(cenarioItemInicial);
+			desenharPassoMissao(personagemPrincipal.missaoAtual->passosMissao);
+			Posicao posicao = {
+				.posicaoX = cameraPosition[0] + paginaPrincipal.posicao.tamanhoX - 300, //X inicial
+				.posicaoY = cameraPosition[1] + 5, //Y inicial
+				.tamanhoX = cameraPosition[0] + paginaPrincipal.posicao.tamanhoX - 5, //X Maximo
+				.tamanhoY = cameraPosition[1] + paginaPrincipal.posicao.tamanhoY - 5 //Y Maximo
+			};
+			//al_do_multiline_text(fontePasso, 300, "", )
+			//char* nome = "Meu teste 1, Meu teste 2, Meu teste 3, Meu teste 4, Meu teste 5";
+
+			//al_get_text_dimensions(fontePasso, nome, 0, 0, 300, 300);
+			//al_draw_multiline_textf(
+			//	fontePasso,
+			//	al_map_rgb(0, 0, 0),
+			//	0,
+			//	0,
+			//	300,
+			//	al_get_font_line_height(fontePasso),
+			//	0,
+			//	"Meu teste 1, Meu teste 2, Meu teste 3, Meu teste 4, Meu teste 5"
+			//	/*passoMissao->mensagemInicial/*,
+			//	al_get_display_width(display),
+			//	 al_get_display_height(display),
+			//	 al_get_display_flags(display) & ALLEGRO_MAXIMIZED ? "yes" :
+			//	 "no"*/
+			//);
 		}
 	}
 
@@ -177,7 +216,8 @@ void configuracaoInicial(void) {
 
 	paginaCombinacao = iniciarPagina();
 	fonte = al_load_font("arial_narrow_7.ttf", 12, 0);
-		
+	fontePasso = al_load_font("arial_narrow_7.ttf", 22, 0);
+
 	registrarEventos();
 }
 
@@ -349,9 +389,66 @@ void carregarInformacaoesCenario(void) {
 	cJSON * elementosJson = bucarItemCJson(jsonCenario->child, "canarioItem");
 	cenarioItemInicial = mapearCenariosItemCJson(NULL, elementosJson->child);
 }
-
+ 
 void carregarInformacoesMissoes(void) {
 	jsonMissoes = obterMissoesJson();
 	cJSON * missoesCJSON = bucarItemCJson(jsonMissoes->child, "missoes");
 	missaoInicial = mapearMissoesDeJson(NULL, missoesCJSON->child, cenarioItemInicial);
+}
+
+char* concatenarTexto(char* mensagem, char* conteudo, char * separador) {
+	if (mensagem != NULL) {
+		//Mensagem Atual
+		int countMensagem = strlen(mensagem);
+		//Separador
+		int countSeparador = strlen(separador);
+		//Nova Mensagem
+		int count = strlen(conteudo);
+		char* mensagemFinal = (char*)malloc((count + countMensagem + countSeparador) * sizeof(char) + 1);
+
+		strcpy(mensagemFinal, mensagem);
+		strcat(mensagemFinal, separador);
+		strcat(mensagemFinal, conteudo);
+
+		return mensagemFinal;
+	}
+
+	return conteudo;
+}
+
+void desenharPassoMissao(PassoMissao * passoMissao) {
+	PassoMissao * atual = passoMissao;
+	char* mensagem = concatenarTexto("Informacoes da missao: \n-------------------------", "", "");
+
+	while (atual != NULL) {
+		if (atual->obrigatorio)
+			mensagem = concatenarTexto(mensagem, atual->mensagemInicial, "\n\n");
+		atual = atual->proxima;
+	}
+
+	Posicao posicao = {
+		.posicaoX = cameraPosition[0] + paginaPrincipal.posicao.tamanhoX - 300, //X inicial
+		.posicaoY = cameraPosition[1] + 5, //Y inicial
+		.tamanhoX = cameraPosition[0] + paginaPrincipal.posicao.tamanhoX - 5, //X Maximo
+		.tamanhoY = cameraPosition[1] + paginaPrincipal.posicao.tamanhoY - 5 //Y Maximo
+	};
+
+	al_draw_filled_rectangle(
+		posicao.posicaoX,
+		posicao.posicaoY,
+		posicao.tamanhoX,
+		posicao.tamanhoY,
+		al_map_rgb(255, 255, 255)
+	);
+
+	al_draw_multiline_textf(
+		fontePasso,
+		al_map_rgb(0, 0, 0),
+		posicao.posicaoX + 10,
+		posicao.posicaoY + 10,
+		275,
+		-1,
+		0,
+		mensagem
+	);
 }

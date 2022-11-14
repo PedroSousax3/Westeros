@@ -16,15 +16,15 @@ typedef struct PassoMissao PassoMissao;
 /// Eventos que devem ser acionados na conclusão de cada passo.
 /// </summary>
 enum EnumPassoAcao {
-	mostrarMensagem = 1,
-	verificarHaTodosOsItemMistura
+	MostrarMensagem = 1,
+	VerificarItensInventario
 };
 /// <summary>
 /// Enum com os possivel eventos para a conclusão de um passo
 /// </summary>
 enum EnumPassoQuandoExecutar {
 	/// <summary>
-	/// Evento de click
+	/// Evento ocorre com click no botão esquerdo do mouses
 	/// </summary>
 	Click = 1
 };
@@ -82,6 +82,10 @@ struct PassoMissao {
 	/// Mensagem que será mostrada ao usuario ao final da tarefa
 	/// </summary>
 	char* mensagemFinal;
+	/// <summary>
+	/// Informa se o passo é nescessario para a conclusao da missão
+	/// </summary>
+	bool obrigatorio;
 	/// <summary>
 	/// Quando uma tarefa deve ser fizalinada.
 	/// </summary>

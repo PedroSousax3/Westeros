@@ -21,7 +21,6 @@ Missao * montarMissaoDeJson(Missao* missaoAnterior, cJSON* jsonMissao, CenarioIt
 	missao->nome = bucarItemCJson(jsonMissao, "nome")->valuestring;
 	missao->mensagemInicial = bucarItemCJson(jsonMissao, "mensagemInicial")->valuestring;
 	missao->mensagemFinal = bucarItemCJson(jsonMissao, "mensagemFinal")->valuestring;
-
 	cJSON* jsonPassos = bucarItemCJson(jsonMissao, "passos")->child;
 	missao->passosMissao = mapearPassosMissaoDeJson(NULL, jsonPassos, cenarioItem);
 
@@ -69,6 +68,7 @@ PassoMissao* montarPassoMissaoDeCJson(PassoMissao* passoaMissoaAnterior, cJSON* 
 		passoMissao->count = passoaMissoaAnterior->count;
 	}
 
+	passoMissao->obrigatorio = bucarItemCJson(jsonPassoMissao, "obrigatorio")->valueint;
 	passoMissao->executar = bucarItemCJson(jsonPassoMissao, "executar")->valueint;
 	passoMissao->mensagemInicial = bucarItemCJson(jsonPassoMissao, "mensagemInicial")->valuestring;
 	passoMissao->mensagemFinal = bucarItemCJson(jsonPassoMissao, "mensagemFinal")->valuestring;
@@ -77,6 +77,7 @@ PassoMissao* montarPassoMissaoDeCJson(PassoMissao* passoaMissoaAnterior, cJSON* 
 
 	passoMissao->proxima = NULL;
 	(*passoMissao->count)++;
+	passoMissao->indice = (*passoMissao->count) - 1;
 
 	return passoMissao;
 }
