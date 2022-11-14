@@ -2,316 +2,173 @@
   "canarioItem": [
     {
       "codigo": 1,
-      "nome": "Teste 1",
-      "descricao": "Arvore de laranjas.",
+      "nome": "Casa",
+      "descricao": "Casa Serena",
       "imagem": {
-        "endereco": "Utils/Imagens/orangetrees.png",
+        "endereco": "Utils/Imagens/Casa.png",
         "orientacao": 1
       },
-      "coletavelPeloJogador": true,
+      "coletavelPeloJogador": false,
       "codigoItemInventario": null,
 
       "elementos": [
         {
           "canarioItem": 1,
           "posicaoAbsoluta": {
-            "posicaoX": 200,
-            "posicaoY": 200,
+            "posicaoX": 317,
+            "posicaoY": 314,
 
-            "tamanhoX": 88,
-            "tamanhoY": 127
+            "tamanhoX": 431,
+            "tamanhoY": 412
           },
           "posicaoRelativa": {
-            "posicaoX": 240,
-            "posicaoY": 300,
+            "posicaoX": 0,
+            "posicaoY": 0,
 
-            "tamanhoX": 15,
-            "tamanhoY": 12
-          }
-        },
-        {
-          "canarioItem": 1,
-          "posicaoAbsoluta": {
-            "posicaoX": 288,
-            "posicaoY": 200,
-
-            "tamanhoX": 88,
-            "tamanhoY": 127
-          },
-          "posicaoRelativa": {
-            "posicaoX": 328,
-            "posicaoY": 300,
-
-            "tamanhoX": 15,
-            "tamanhoY": 12
-          }
-        },
-        {
-          "canarioItem": 1,
-          "posicaoAbsoluta": {
-            "posicaoX": 376,
-            "posicaoY": 200,
-
-            "tamanhoX": 88,
-            "tamanhoY": 127
-          },
-          "posicaoRelativa": {
-            "posicaoX": 416,
-            "posicaoY": 300,
-
-            "tamanhoX": 15,
-            "tamanhoY": 12
+            "tamanhoX": 0,
+            "tamanhoY": 0
           }
         }
       ]
     },
     {
       "codigo": 2,
-      "nome": "Chimarrão",
-      "descricao": "Planta erva-mate.",
+      "nome": "Vazio",
+      "descricao": "Parede Invisivel",
       "imagem": {
-        "endereco": "Utils/Imagens/planta.png",
+        "endereco": "Utils/Imagens/Fundo_branco.png",
         "orientacao": 1
       },
-      "coletavelPeloJogador": true,
+      "coletavelPeloJogador": false,
       "codigoItemInventario": null,
 
       "elementos": [
         {
-          "canarioItem": 1,
           "posicaoAbsoluta": {
-            "posicaoX": 600,
-            "posicaoY": 200,
+            "posicaoX": 340,
+            "posicaoY": 455,
 
-            "tamanhoX": 255,
-            "tamanhoY": 255
+            "tamanhoX": 365,
+            "tamanhoY": 190
           },
           "posicaoRelativa": {
-            "posicaoX": 600,
-            "posicaoY": 200,
+            "posicaoX": 340,
+            "posicaoY": 455,
 
-            "tamanhoX": 255,
-            "tamanhoY": 255
-          }
-        }
-      ]
-    },
-    {
-      "codigo": 3,
-      "nome": "Rio",
-      "descricao": "",
-      
-      "imagem": {
-        "endereco": "Utils/Imagens/deepwater.png",
-        "orientacao": 1
-      },
-
-      "coletavelPeloJogador": true,
-      "codigoItemInventario": null,
-
-      "elementos": [
-        {
-          "canarioItem": 3,
-          "posicaoAbsoluta": {
-            "posicaoX": 620,
-            "posicaoY": 624,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          },
-          "posicaoRelativa": {
-            "posicaoX": 620,
-            "posicaoY": 624,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
+            "tamanhoX": 365,
+            "tamanhoY": 190
           }
         },
         {
-          "canarioItem": 3,
           "posicaoAbsoluta": {
-            "posicaoX": 620,
-            "posicaoY": 751,
+            "posicaoX": 465,
+            "posicaoY": 645,
 
-            "tamanhoX": 191,
-            "tamanhoY": 127
+            "tamanhoX": 40,
+            "tamanhoY": 20
           },
           "posicaoRelativa": {
-            "posicaoX": 620,
-            "posicaoY": 751,
+            "posicaoX": 465,
+            "posicaoY": 645,
 
-            "tamanhoX": 191,
-            "tamanhoY": 127
+            "tamanhoX": 40,
+            "tamanhoY": 20
           }
         },
         {
-          "canarioItem": 3,
           "posicaoAbsoluta": {
-            "posicaoX": 620,
-            "posicaoY": 878,
+            "posicaoX": 505,
+            "posicaoY": 645,
 
-            "tamanhoX": 191,
-            "tamanhoY": 127
+            "tamanhoX": 25,
+            "tamanhoY": 45
           },
           "posicaoRelativa": {
-            "posicaoX": 620,
-            "posicaoY": 878,
+            "posicaoX": 505,
+            "posicaoY": 645,
 
-            "tamanhoX": 191,
-            "tamanhoY": 127
+            "tamanhoX": 25,
+            "tamanhoY": 45
           }
         },
         {
-          "canarioItem": 3,
           "posicaoAbsoluta": {
-            "posicaoX": 620,
-            "posicaoY": 1005,
+            "posicaoX": 570,
+            "posicaoY": 645,
 
-            "tamanhoX": 191,
-            "tamanhoY": 127
+            "tamanhoX": 135,
+            "tamanhoY": 45
           },
           "posicaoRelativa": {
-            "posicaoX": 620,
-            "posicaoY": 1005,
+            "posicaoX": 570,
+            "posicaoY": 645,
 
-            "tamanhoX": 191,
-            "tamanhoY": 127
+            "tamanhoX": 135,
+            "tamanhoY": 45
           }
         },
         {
-          "canarioItem": 3,
           "posicaoAbsoluta": {
-            "posicaoX": 811,
-            "posicaoY": 624,
+            "posicaoX": 0,
+            "posicaoY": 0,
 
-            "tamanhoX": 191,
-            "tamanhoY": 127
+            "tamanhoX": 3840,
+            "tamanhoY": 20
           },
           "posicaoRelativa": {
-            "posicaoX": 811,
-            "posicaoY": 624,
+            "posicaoX": 0,
+            "posicaoY": 0,
 
-            "tamanhoX": 191,
-            "tamanhoY": 127
+            "tamanhoX": 3840,
+            "tamanhoY": 20
           }
         },
         {
-          "canarioItem": 3,
           "posicaoAbsoluta": {
-            "posicaoX": 811,
-            "posicaoY": 751,
+            "posicaoX": 0,
+            "posicaoY": 0,
 
-            "tamanhoX": 191,
-            "tamanhoY": 127
+            "tamanhoX": 20,
+            "tamanhoY": 2160
           },
           "posicaoRelativa": {
-            "posicaoX": 811,
-            "posicaoY": 751,
+            "posicaoX": 0,
+            "posicaoY": 0,
 
-            "tamanhoX": 191,
-            "tamanhoY": 127
+            "tamanhoX": 20,
+            "tamanhoY": 2160
           }
         },
         {
-          "canarioItem": 3,
           "posicaoAbsoluta": {
-            "posicaoX": 811,
-            "posicaoY": 878,
+            "posicaoX": 0,
+            "posicaoY": 2140,
 
-            "tamanhoX": 191,
-            "tamanhoY": 127
+            "tamanhoX": 3840,
+            "tamanhoY": 20
           },
           "posicaoRelativa": {
-            "posicaoX": 811,
-            "posicaoY": 878,
+            "posicaoX": 0,
+            "posicaoY": 2140,
 
-            "tamanhoX": 191,
-            "tamanhoY": 127
+            "tamanhoX": 3840,
+            "tamanhoY": 20
           }
         },
         {
-          "canarioItem": 3,
           "posicaoAbsoluta": {
-            "posicaoX": 811,
-            "posicaoY": 1005,
+            "posicaoX": 3820,
+            "posicaoY": 0,
 
-            "tamanhoX": 191,
-            "tamanhoY": 127
+            "tamanhoX": 20,
+            "tamanhoY": 2160
           },
           "posicaoRelativa": {
-            "posicaoX": 811,
-            "posicaoY": 1005,
+            "posicaoX": 3820,
+            "posicaoY": 0,
 
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          }
-        },
-        {
-          "canarioItem": 3,
-          "posicaoAbsoluta": {
-            "posicaoX": 1002,
-            "posicaoY": 624,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          },
-          "posicaoRelativa": {
-            "posicaoX": 1002,
-            "posicaoY": 624,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          }
-        },
-        {
-          "canarioItem": 3,
-          "posicaoAbsoluta": {
-            "posicaoX": 1002,
-            "posicaoY": 751,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          },
-          "posicaoRelativa": {
-            "posicaoX": 1002,
-            "posicaoY": 751,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          }
-        },
-        {
-          "canarioItem": 3,
-          "posicaoAbsoluta": {
-            "posicaoX": 1002,
-            "posicaoY": 878,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          },
-          "posicaoRelativa": {
-            "posicaoX": 1002,
-            "posicaoY": 878,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          }
-        },
-        {
-          "canarioItem": 3,
-          "posicaoAbsoluta": {
-            "posicaoX": 1002,
-            "posicaoY": 1005,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          },
-          "posicaoRelativa": {
-            "posicaoX": 1002,
-            "posicaoY": 1005,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
+            "tamanhoX": 20,
+            "tamanhoY": 2160
           }
         }
       ]

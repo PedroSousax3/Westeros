@@ -60,6 +60,12 @@
     <ClCompile Include="Utilitario.c">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
+    <ClCompile Include="Fonte\Inventario.c">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="Fonte\Itens.c">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="BG-0001.png">
@@ -84,6 +90,39 @@
       <Filter>Arquivos de Recurso</Filter>
     </Image>
     <Image Include="Utils\Imagens\treeorange.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Mapa.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\deepwater.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Arvore_1.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Arvore_2.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Arvore_Balanço.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Arvore_Roxa.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Árvore_Cortada.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Casa.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Mapa.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Fundo_branco.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Fundo_vazio.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
   </ItemGroup>
@@ -127,6 +166,12 @@
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="Utilitario.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Cabecalho\Inventario.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Cabecalho\Itens.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
   </ItemGroup>

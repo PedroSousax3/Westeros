@@ -72,7 +72,7 @@ int main(void) {
 		return -1;
 
 	desenharPersonagem(personagemPrincipal);
-	background = al_load_bitmap("Mapa.png");
+	background = al_load_bitmap("Utils/Imagens/Mapa.png");
 	carregarInformacaoesCenario();
 
 	al_start_timer(tempoRenderizacao);
