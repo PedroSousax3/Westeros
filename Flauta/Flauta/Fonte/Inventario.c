@@ -8,15 +8,14 @@ Inventario * inserirItemInventario(Inventario * inventarioAnterior, CenarioItem*
 
 		novoInventario->proximo = NULL;
 		novoInventario->count = (int*)malloc(sizeof(int));
-		(*novoInventario->count) = 1;
+		(*novoInventario->count) = 0;
 	}
 	else {
 		inventarioAnterior->proximo = novoInventario;
-
 		novoInventario->count = inventarioAnterior->count;
-		(*novoInventario->count)++;
 	}
 
+	(*novoInventario->count)++;
 	novoInventario->cenarioItem = cenarioItem;
 	novoInventario->indice = (*novoInventario->count) - 1;
 	novoInventario->proximo = NULL;
@@ -34,6 +33,15 @@ void removerItemInventario(Inventario * inventario) {
 	free(inventario);
 
 	inventario = proximo;
+}
+
+Inventario* buscarItemInventario(Inventario * inventario, int codCenarioItem) {
+	if (inventario->cenarioItem->codigo == codCenarioItem)
+		return inventario;
+	else if (inventario->proximo != NULL)
+		return buscarItemInventario(inventario->proximo, codCenarioItem);
+
+	return NULL;
 }
 
 void alterarPosicaoChildren(Inventario* inicio, int diferenca) {

@@ -3,16 +3,16 @@
 
 #include "Equipamento.h"
 #include "CenarioItem.h"
+#include "Cenario.h"
+#include "Inventario.h"
 
 typedef struct Mistura {
-	CenarioItem novoItem;
+	CenarioItem * novoItem;
 
 	CenarioItem itens[3];
 } Mistura;
 
-bool misturaPossuiTodosIngredientes(Mistura* mistura, Equipamento estoqueEquipamentos[]);
-void misturaSepararIngredientes(Mistura * mistura, Equipamento estoqueEquipamentos[]);
-Equipamento misturaCriarEquipamento(Mistura * mistura, Equipamento estoqueEquipamentos []);
-
+bool misturaPossuiTodosIngredientes(Mistura mistura, Inventario* inventario);
+Mistura* iniciarMisturas(CenarioItem* cenarioItemIncial);
 #endif // !Cabecalho_Mistura
 

@@ -5,15 +5,40 @@
 #include "Cabecalho/Equipamento.h"
 #include "Utilitario.h"
 
-void executarPaginaCombinacao(Pagina * pagina, Equipamento equipamentos [], int qtdEquipamentos) {
+void desenharItemInventarioTelaConbinacao(Inventario* inventario, Posicao posicaoDoItemAnterior, Pagina * pagina) {
+	Posicao posicao = {
+		.posicaoY = posicaoDoItemAnterior.posicaoY,
+		.tamanhoX = 100,
+		.tamanhoY = 100
+	};
+	posicao.posicaoX = posicaoDoItemAnterior.posicaoX + posicao.tamanhoX;
+
+	if (posicao.posicaoX + posicao.tamanhoX > pagina->posicao.tamanhoX) {
+		posicao.posicaoX = 0;
+		posicao.posicaoY += posicao.tamanhoY;
+	}
+
+	desenharImagem(*inventario->cenarioItem->imagem, posicao);
+	
+	if (inventario->proximo != NULL)
+		desenharItemInventarioTelaConbinacao(inventario->proximo, posicao, pagina);
+
+}
+void executarPaginaCombinacao(Pagina * pagina, Inventario * inventario) {
 	if (pagina->aberta)
 	{	
 		desenhaQuadrado(pagina->posicao, al_map_rgb(255, 255, 255));
-		
-		int posicaoX = 1.5;
 		int posicaoY = pagina->posicao.tamanhoY - 206;
+		Posicao posicaoBase = {
+			.posicaoY = 0,
+			.posicaoX = -100,
+			.posicaoY = posicaoY
+		};
+		desenharItemInventarioTelaConbinacao(inventario, posicaoBase, pagina);
+		/*int posicaoX = 1.5;
+		int posicaoY = pagina->posicao.tamanhoY - 206;*/
 
-		for (int i = 0; i < qtdEquipamentos; i++)
+		/*for (int i = 0; i < qtdEquipamentos; i++)
 		{
 
 			Posicao posicao = {
@@ -30,7 +55,7 @@ void executarPaginaCombinacao(Pagina * pagina, Equipamento equipamentos [], int 
 				posicaoX = 1.5;
 				posicaoY += 103;
 			}
-		}
+		}*/
 		al_flip_display();
 	}
 }

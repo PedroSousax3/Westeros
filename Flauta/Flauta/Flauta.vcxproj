@@ -167,6 +167,7 @@
     <Image Include="Serena_Player.png" />
     <Image Include="Sprite-0001.png" />
     <Image Include="Sprite-0002.png" />
+    <Image Include="Utils\Imagens\Casa_Int.png" />
     <Image Include="Utils\Imagens\deepwater.png" />
     <Image Include="Utils\Imagens\orangetrees.png" />
     <Image Include="Utils\Imagens\planta.png" />

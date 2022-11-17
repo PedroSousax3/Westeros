@@ -19,6 +19,7 @@ struct Inventario {
 Inventario* inserirItemInventario(Inventario* inventarioAnterior, CenarioItem* cenarioItem);
 void alterarPosicaoChildren(Inventario* inicio, int diferenca);
 void removerItemInventario(Inventario* inventario);
+Inventario* buscarItemInventario(Inventario* inventario, int codCenarioItem);
 void desenharItensInventarios(Inventario inventarioInicial);
 CenarioItem* ultimoItemInventario(Inventario* inventarioInicial);
 #endif // !Cabecalho_Inventario

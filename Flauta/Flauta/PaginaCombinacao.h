@@ -6,7 +6,7 @@
 //typedef struct PaginaCombicacao {
 //
 //} PaginaCombinacao;
-
-void executarPaginaCombinacao(Pagina* pagina, Equipamento equipamentos[], int qtdEquipamentos);
+void desenharItemInventarioTelaConbinacao(Inventario* inventario, Posicao posicaoDoItemAnterior, Pagina* pagina);
+void executarPaginaCombinacao(Pagina* pagina, Inventario * inventario);
 #endif // !Cabecalho_PaginaCombincao
 

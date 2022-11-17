@@ -32,6 +32,7 @@ Posicao posicaoMouse;
 Pagina paginaCombinacao;
 Personagem personagemPrincipal;
 Posicao posicoes[1];
+Mistura * misturas;
 CenarioItem * cenarioItemInicial;
 Missao* missaoInicial;
 cJSON* jsonCenario;
@@ -39,6 +40,7 @@ cJSON* jsonMissoes;
 
 ALLEGRO_EVENT_QUEUE* eventos = NULL;
 ALLEGRO_BITMAP* background = NULL;
+ALLEGRO_BITMAP* bgCasa = NULL;
 ALLEGRO_TRANSFORM camera;
 ALLEGRO_FONT *  fonte = NULL;
 ALLEGRO_KEYBOARD_STATE keyState;
@@ -88,11 +90,12 @@ int main(void) {
 
 	desenharPersonagem(personagemPrincipal);
 	background = al_load_bitmap("Mapa.png");
+	bgCasa = al_load_bitmap("Utils/Imagens/Casa_Int.png");
 	carregarInformacaoesCenario();
 	carregarInformacoesMissoes();
 
 	personagemPrincipal.missaoAtual = missaoInicial;
-
+	misturas = iniciarMisturas(cenarioItemInicial);
 	al_start_timer(tempoRenderizacao);
 	while (paginaPrincipal.aberta) {
 		ALLEGRO_EVENT evento;
@@ -110,7 +113,7 @@ int main(void) {
 
 		//Execucao de dislay
 		if (paginaCombinacao.aberta)
-			executarPaginaCombinacao(&paginaCombinacao, personagemPrincipal.equipamentos, sizeof(personagemPrincipal.equipamentos) / sizeof(Equipamento));
+			executarPaginaCombinacao(&paginaCombinacao, personagemPrincipal.inventario);
 		else if (paginaPrincipal.aberta) {
 			gerenciarPosicaoPersonagem(&evento);
 			desenharPersonagem(personagemPrincipal);
@@ -141,7 +144,12 @@ int main(void) {
 			//	 al_get_display_flags(display) & ALLEGRO_MAXIMIZED ? "yes" :
 			//	 "no"*/
 			//);
+			if(personagemPrincipal.movimento.posicao.posicaoX == 200) {
+			personagemPrincipal.movimento.posicao.posicaoX = 5000;
+			personagemPrincipal.movimento.posicao.posicaoY = 5000;
 		}
+		}
+		 
 	}
 
 	destruirCenarioItens(cenarioItemInicial);
@@ -153,6 +161,7 @@ int main(void) {
 	al_destroy_event_queue(eventos);
 	al_destroy_bitmap(personagemPrincipal.imagem);
 	al_destroy_bitmap(background);
+	al_destroy_bitmap(bgCasa);
 	al_destroy_timer(tempoRenderizacao);
 
 	return 0;
@@ -336,6 +345,7 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 		al_flip_display();
 		al_clear_to_color(al_map_rgb(0, 0, 0));
 		al_draw_bitmap(background, 0, 0, 0);
+		al_draw_bitmap(bgCasa, 4500, 4500, 0);
 
 		if (colediuComCenario(cenarioItemInicial, personagemPrincipal.movimento.posicao, true)) {
 			personagemPrincipal.movimento.posicao.posicaoX = posicaoXPersonagem;
@@ -355,19 +365,19 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 		posicaoMouse.posicaoY = event.mouse.y + cameraPosition[1];
 	}
 	else if (event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
-	if (event.mouse.button == 1)
-		if (colediuComCenario(cenarioItemInicial, posicaoMouse, false)) {
-			ElementoCenario* elementoCenario = obterElementoCenarioEmPosicao(cenarioItemInicial, posicaoMouse, false);
-			if (personagemPrincipal.inventario == NULL) {
-				personagemPrincipal.inventario = inserirItemInventario(personagemPrincipal.inventario, elementoCenario->cenarioItem);
+		if (event.mouse.button == 1)
+			if (colediuComCenario(cenarioItemInicial, posicaoMouse, false)) {
+				ElementoCenario* elementoCenario = obterElementoCenarioEmPosicao(cenarioItemInicial, posicaoMouse, false);
+				if (personagemPrincipal.inventario == NULL) {
+					personagemPrincipal.inventario = inserirItemInventario(personagemPrincipal.inventario, elementoCenario->cenarioItem);
+				}
+				//else if ((*personagemPrincipal.inventario->count) <= 4) {
+					Inventario* ultimoInventario = ultimoItemInventario(personagemPrincipal.inventario);
+					if (ultimoInventario != NULL)
+						inserirItemInventario(ultimoInventario, elementoCenario->cenarioItem);
+					printf("Ultimo item não foi encontrado.");
+				//}
 			}
-			else if ((*personagemPrincipal.inventario->count) <= 4) {
-				Inventario* ultimoInventario = ultimoItemInventario(personagemPrincipal.inventario);
-				if (ultimoInventario != NULL)
-					inserirItemInventario(ultimoInventario, elementoCenario->cenarioItem);
-				printf("Ultimo item não foi encontrado.");
-			}
-		}
 	}
 	else if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
 		paginaPrincipal.aberta = false;
