@@ -24,3 +24,16 @@ Mistura * iniciarMisturas(CenarioItem * cenarioItemIncial) {
 	
 	return misturas;
 }
+
+Mistura* realizarMistura(Mistura mistura, Inventario* inventario)
+{
+
+	if (misturaPossuiTodosIngredientes) {
+		removerItemInventario(inventario);
+		inserirItemInventario(inventario, mistura.novoItem);
+	}
+	else {
+		removerItemInventario(inventario);
+	}
+}
+

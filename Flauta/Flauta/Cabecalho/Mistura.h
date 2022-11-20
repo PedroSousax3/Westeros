@@ -14,5 +14,6 @@ typedef struct Mistura {
 
 bool misturaPossuiTodosIngredientes(Mistura mistura, Inventario* inventario);
 Mistura* iniciarMisturas(CenarioItem* cenarioItemIncial);
+Mistura* realizarMistura(CenarioItem* itemMistura, Inventario* inventario);
 #endif // !Cabecalho_Mistura
 

@@ -377,6 +377,7 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 						inserirItemInventario(ultimoInventario, elementoCenario->cenarioItem);
 					printf("Ultimo item não foi encontrado.");
 				//}
+	
 			}
 	}
 	else if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
