@@ -167,11 +167,26 @@
     <Image Include="Serena_Player.png" />
     <Image Include="Sprite-0001.png" />
     <Image Include="Sprite-0002.png" />
+    <Image Include="Utils\Imagens\Agua.png" />
+    <Image Include="Utils\Imagens\Alecrim.png" />
+    <Image Include="Utils\Imagens\Arvore_1.png" />
+    <Image Include="Utils\Imagens\Arvore_2.png" />
+    <Image Include="Utils\Imagens\Arvore_Balanço.png" />
+    <Image Include="Utils\Imagens\Arvore_Roxa.png" />
+    <Image Include="Utils\Imagens\Camomila.png" />
+    <Image Include="Utils\Imagens\Casa.png" />
     <Image Include="Utils\Imagens\Casa_Int.png" />
-    <Image Include="Utils\Imagens\deepwater.png" />
-    <Image Include="Utils\Imagens\orangetrees.png" />
-    <Image Include="Utils\Imagens\planta.png" />
+    <Image Include="Utils\Imagens\Casa_Int2.png" />
+    <Image Include="Utils\Imagens\Eucalipto.png" />
+    <Image Include="Utils\Imagens\Fundo_branco.png" />
+    <Image Include="Utils\Imagens\Fundo_vazio.png" />
+    <Image Include="Utils\Imagens\Gengibre.png" />
+    <Image Include="Utils\Imagens\Hortela.png" />
+    <Image Include="Utils\Imagens\Mapa.png" />
+    <Image Include="Utils\Imagens\Mel.png" />
+    <Image Include="Utils\Imagens\Pomada.png" />
     <Image Include="Utils\Imagens\treeorange.png" />
+    <Image Include="Utils\Imagens\Árvore_Cortada.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="arial_narrow_7.ttf" />

@@ -90,7 +90,7 @@ int main(void) {
 
 	desenharPersonagem(personagemPrincipal);
 	background = al_load_bitmap("Mapa.png");
-	bgCasa = al_load_bitmap("Utils/Imagens/Casa_Int.png");
+	bgCasa = al_load_bitmap("Utils/Imagens/Casa_Int2.png");
 	carregarInformacaoesCenario();
 	carregarInformacoesMissoes();
 
@@ -144,10 +144,14 @@ int main(void) {
 			//	 al_get_display_flags(display) & ALLEGRO_MAXIMIZED ? "yes" :
 			//	 "no"*/
 			//);
-			if(personagemPrincipal.movimento.posicao.posicaoX == 200) {
-			personagemPrincipal.movimento.posicao.posicaoX = 5000;
-			personagemPrincipal.movimento.posicao.posicaoY = 5000;
+			if(personagemPrincipal.movimento.posicao.posicaoX <= 5140 && personagemPrincipal.movimento.posicao.posicaoX >= 5050 && personagemPrincipal.movimento.posicao.posicaoY >= 5240) {
+			personagemPrincipal.movimento.posicao.posicaoX = 533;
+			personagemPrincipal.movimento.posicao.posicaoY = 680;
 		}
+			if (personagemPrincipal.movimento.posicao.posicaoX >= 530 && personagemPrincipal.movimento.posicao.posicaoX <= 540 && personagemPrincipal.movimento.posicao.posicaoY <= 660) {
+				personagemPrincipal.movimento.posicao.posicaoX = 5105;
+				personagemPrincipal.movimento.posicao.posicaoY = 5220;
+			}
 		}
 		 
 	}
@@ -193,8 +197,8 @@ Personagem configurarPersonagemPrincipal(void) {
 	};
 	posicao.velocidadeX = 3;
 	posicao.velocidadeY = 3;
-	posicao.posicaoX = 20;
-	posicao.posicaoY = 20;
+	posicao.posicaoX = 5485;
+	posicao.posicaoY = 4770;
 	posicao.tamanhoX = al_get_bitmap_width(personagem.imagem) / 4;
 	posicao.tamanhoY = al_get_bitmap_height(personagem.imagem) / 4;
 
@@ -358,12 +362,12 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 		al_use_transform(&camera);
 		//desenharItensCenario(cenarioItem);
 	}
-	else if (event.type == ALLEGRO_EVENT_MOUSE_AXES) 
+	/*else if (event.type == ALLEGRO_EVENT_MOUSE_AXES) 
 	{
 		printf("\nMouse:\n\tX: %i\n\tY: %i", event.mouse.x, event.mouse.y);
 		posicaoMouse.posicaoX = event.mouse.x + cameraPosition[0],
 		posicaoMouse.posicaoY = event.mouse.y + cameraPosition[1];
-	}
+	}*/
 	else if (event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
 		if (event.mouse.button == 1)
 			if (colediuComCenario(cenarioItemInicial, posicaoMouse, false)) {
