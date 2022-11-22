@@ -141,7 +141,7 @@
             "tamanhoY": 2160
           }
         },
-        
+
         {
           "posicaoAbsoluta": {
             "posicaoX": 0,
@@ -614,126 +614,236 @@
             "posicaoY": 4970,
 
             "tamanhoX": 250,
-            "tamanhoY": 50
+            "tamanhoY": 30
           },
           "posicaoRelativa": {
             "posicaoX": 4960,
             "posicaoY": 4970,
 
             "tamanhoX": 250,
+            "tamanhoY": 30
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 5055,
+            "posicaoY": 4970,
+
+            "tamanhoX": 130,
+            "tamanhoY": 55
+          },
+          "posicaoRelativa": {
+            "posicaoX": 5055,
+            "posicaoY": 4970,
+
+            "tamanhoX": 130,
+            "tamanhoY": 55
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 4620,
+            "posicaoY": 5030,
+
+            "tamanhoX": 20,
+            "tamanhoY": 60
+          },
+          "posicaoRelativa": {
+            "posicaoX": 4620,
+            "posicaoY": 5030,
+
+            "tamanhoX": 20,
+            "tamanhoY": 60
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 5250,
+            "posicaoY": 4985,
+
+            "tamanhoX": 55,
+            "tamanhoY": 20
+          },
+          "posicaoRelativa": {
+            "posicaoX": 5250,
+            "posicaoY": 4985,
+
+            "tamanhoX": 55,
+            "tamanhoY": 20
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 4750,
+            "posicaoY": 5045,
+
+            "tamanhoX": 150,
+            "tamanhoY": 100
+          },
+          "posicaoRelativa": {
+            "posicaoX": 4750,
+            "posicaoY": 5045,
+
+            "tamanhoX": 150,
+            "tamanhoY": 100
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 5420,
+            "posicaoY": 5030,
+
+            "tamanhoX": 155,
+            "tamanhoY": 110
+          },
+          "posicaoRelativa": {
+            "posicaoX": 5420,
+            "posicaoY": 5030,
+
+            "tamanhoX": 155,
+            "tamanhoY": 110
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 5400,
+            "posicaoY": 5050,
+
+            "tamanhoX": 20,
+            "tamanhoY": 60
+          },
+          "posicaoRelativa": {
+            "posicaoX": 5400,
+            "posicaoY": 5050,
+
+            "tamanhoX": 20,
+            "tamanhoY": 60
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 5575,
+            "posicaoY": 5050,
+
+            "tamanhoX": 15,
+            "tamanhoY": 60
+          },
+          "posicaoRelativa": {
+            "posicaoX": 5575,
+            "posicaoY": 5050,
+
+            "tamanhoX": 15,
+            "tamanhoY": 60
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 5445,
+            "posicaoY": 5000,
+
+            "tamanhoX": 35,
+            "tamanhoY": 30
+          },
+          "posicaoRelativa": {
+            "posicaoX": 5445,
+            "posicaoY": 5000,
+
+            "tamanhoX": 35,
+            "tamanhoY": 30
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 5515,
+            "posicaoY": 5000,
+
+            "tamanhoX": 35,
+            "tamanhoY": 30
+          },
+          "posicaoRelativa": {
+            "posicaoX": 5515,
+            "posicaoY": 5000,
+
+            "tamanhoX": 35,
+            "tamanhoY": 30
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 950,
+            "posicaoY": 450,
+
+            "tamanhoX": 30,
+            "tamanhoY": 15
+          },
+          "posicaoRelativa": {
+            "posicaoX": 950,
+            "posicaoY": 450,
+
+            "tamanhoX": 30,
+            "tamanhoY": 15
+          }
+        }
+      ]
+    },
+    {
+      "codigo": 3,
+      "nome": "Arvore Balanço",
+      "descricao": "Arvore com um balanço feito pela avó de Serena",
+      "imagem": {
+        "endereco": "Utils/Imagens/Arvore_Balanço.png",
+        "orientacao": 1
+      },
+      "coletavelPeloJogador": false,
+      "codigoItemInventario": null,
+
+      "elementos": [
+        {
+          "canarioItem": 3,
+          "posicaoAbsoluta": {
+            "posicaoX": 800,
+            "posicaoY": 150,
+
+            "tamanhoX": 238,
+            "tamanhoY": 334
+          },
+          "posicaoRelativa": {
+            "posicaoX": 880,
+            "posicaoY": 450,
+
+            "tamanhoX": 70,
+            "tamanhoY": 30
+          }
+        }
+      ]
+    },
+    {
+      "codigo": 4,
+      "nome": "Hortela",
+      "descricao": "Hortela",
+      "imagem": {
+        "endereco": "Utils/Imagens/Hortela.png",
+        "orientacao": 1
+      },
+      "coletavelPeloJogador": true,
+      "codigoItemInventario": null,
+
+      "elementos": [
+        {
+          "canarioItem": 4,
+          "posicaoAbsoluta": {
+            "posicaoX": 900,
+            "posicaoY": 500,
+
+            "tamanhoX": 50,
             "tamanhoY": 50
-          }
-        },
-        {
-          "posicaoAbsoluta": {
-            "posicaoX": 5250,
-            "posicaoY": 4985,
-
-            "tamanhoX": 55,
-            "tamanhoY": 20
           },
           "posicaoRelativa": {
-            "posicaoX": 5250,
-            "posicaoY": 4985,
+            "posicaoX": 900,
+            "posicaoY": 500,
 
-            "tamanhoX": 55,
-            "tamanhoY": 20
-          }
-        },
-        {
-          "posicaoAbsoluta": {
-            "posicaoX": 4750,
-            "posicaoY": 5045,
-
-            "tamanhoX": 150,
-            "tamanhoY": 100
-          },
-          "posicaoRelativa": {
-            "posicaoX": 4750,
-            "posicaoY": 5045,
-
-            "tamanhoX": 150,
-            "tamanhoY": 100
-          }
-        },
-        {
-          "posicaoAbsoluta": {
-            "posicaoX": 5420,
-            "posicaoY": 5030,
-
-            "tamanhoX": 155,
-            "tamanhoY": 110
-          },
-          "posicaoRelativa": {
-            "posicaoX": 5420,
-            "posicaoY": 5030,
-
-            "tamanhoX": 155,
-            "tamanhoY": 110
-          }
-        },
-        {
-          "posicaoAbsoluta": {
-            "posicaoX": 5400,
-            "posicaoY": 5050,
-
-            "tamanhoX": 20,
-            "tamanhoY": 60
-          },
-          "posicaoRelativa": {
-            "posicaoX": 5400,
-            "posicaoY": 5050,
-
-            "tamanhoX": 20,
-            "tamanhoY": 60
-          }
-        },
-        {
-          "posicaoAbsoluta": {
-            "posicaoX": 5575,
-            "posicaoY": 5050,
-
-            "tamanhoX": 15,
-            "tamanhoY": 60
-          },
-          "posicaoRelativa": {
-            "posicaoX": 5575,
-            "posicaoY": 5050,
-
-            "tamanhoX": 15,
-            "tamanhoY": 60
-          }
-        },
-        {
-          "posicaoAbsoluta": {
-            "posicaoX": 5445,
-            "posicaoY": 5000,
-
-            "tamanhoX": 35,
-            "tamanhoY": 30
-          },
-          "posicaoRelativa": {
-            "posicaoX": 5445,
-            "posicaoY": 5000,
-
-            "tamanhoX": 35,
-            "tamanhoY": 30
-          }
-        },
-        {
-          "posicaoAbsoluta": {
-            "posicaoX": 5515,
-            "posicaoY": 5000,
-
-            "tamanhoX": 35,
-            "tamanhoY": 30
-          },
-          "posicaoRelativa": {
-            "posicaoX": 5515,
-            "posicaoY": 5000,
-
-            "tamanhoX": 35,
-            "tamanhoY": 30
+            "tamanhoX": 50,
+            "tamanhoY": 50
           }
         }
       ]

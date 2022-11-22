@@ -89,8 +89,8 @@ int main(void) {
 		return -1;
 
 	desenharPersonagem(personagemPrincipal);
-	background = al_load_bitmap("Mapa.png");
-	bgCasa = al_load_bitmap("Utils/Imagens/Casa_Int2.png");
+	background = al_load_bitmap("Utils/Imagens/Mapa.png");
+	bgCasa = al_load_bitmap("Utils/Imagens/Casa_Int.png");
 	carregarInformacaoesCenario();
 	carregarInformacoesMissoes();
 
@@ -148,7 +148,7 @@ int main(void) {
 			personagemPrincipal.movimento.posicao.posicaoX = 533;
 			personagemPrincipal.movimento.posicao.posicaoY = 680;
 		}
-			if (personagemPrincipal.movimento.posicao.posicaoX >= 530 && personagemPrincipal.movimento.posicao.posicaoX <= 540 && personagemPrincipal.movimento.posicao.posicaoY <= 660) {
+			if (personagemPrincipal.movimento.posicao.posicaoX >= 530 && personagemPrincipal.movimento.posicao.posicaoX <= 540 && personagemPrincipal.movimento.posicao.posicaoY >= 644 && personagemPrincipal.movimento.posicao.posicaoY <= 660) {
 				personagemPrincipal.movimento.posicao.posicaoX = 5105;
 				personagemPrincipal.movimento.posicao.posicaoY = 5220;
 			}
@@ -179,7 +179,7 @@ Personagem configurarPersonagemPrincipal(void) {
 		.idade = 14,
 		.imagemX = 0,
 		.imagemY = 0,
-		.imagem = al_load_bitmap("Sprite-0002.png")
+		.imagem = al_load_bitmap("Serena.png")
 	};
 
 	Movimento movimento = {
@@ -217,8 +217,8 @@ Personagem configurarPersonagemPrincipal(void) {
 void configuracaoInicial(void) {
 	paginaPrincipal = iniciarPagina();
 	paginaPrincipal.aberta = true;
-	paginaPrincipal.posicao.tamanhoX = 1200;
-	paginaPrincipal.posicao.tamanhoY = 650;
+	paginaPrincipal.posicao.tamanhoX = 1280;
+	paginaPrincipal.posicao.tamanhoY = 720;
 	paginaPrincipal.display = al_create_display(
 		paginaPrincipal.posicao.tamanhoX ,
 		paginaPrincipal.posicao.tamanhoY

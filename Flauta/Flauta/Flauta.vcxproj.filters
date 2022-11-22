@@ -60,30 +60,78 @@
     <ClCompile Include="Utilitario.c">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
+    <ClCompile Include="Fonte\Inventario.c">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="Fonte\Itens.c">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="Fonte\Missao.c">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="BG-0001.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
-    <Image Include="Serena_Player.png">
-      <Filter>Arquivos de Recurso</Filter>
-    </Image>
-    <Image Include="Sprite-0001.png">
-      <Filter>Arquivos de Recurso</Filter>
-    </Image>
-    <Image Include="Sprite-0002.png">
-      <Filter>Arquivos de Recurso</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Users\Pedro Oliveira Sousa\Desktop\orangetrees.png">
-      <Filter>Arquivos de Recurso</Filter>
-    </Image>
-    <Image Include="Utils\Imagens\orangetrees.png">
-      <Filter>Arquivos de Recurso</Filter>
-    </Image>
-    <Image Include="Utils\Imagens\planta.png">
+    <Image Include="Serena.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
     <Image Include="Utils\Imagens\treeorange.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Agua.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Alecrim.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Arvore_1.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Arvore_2.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Arvore_Balanço.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Arvore_Roxa.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Camomila.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Casa.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Casa_Int.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Eucalipto.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Fundo_branco.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Fundo_vazio.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Gengibre.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Hortela.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Mapa.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Mel.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Pomada.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Árvore_Cortada.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
   </ItemGroup>
@@ -94,6 +142,8 @@
     <None Include="packages.config" />
     <None Include="libs\cJSON\LICENSE" />
     <None Include="Utils\ItensCenario.json" />
+    <None Include="Utils\configuracao.cfg" />
+    <None Include="Utils\Missoes.json" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cabecalho\Posicao.h">
@@ -127,6 +177,15 @@
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="Utilitario.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Cabecalho\Inventario.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Cabecalho\Itens.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Cabecalho\Missao.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
   </ItemGroup>

@@ -161,12 +161,8 @@
     <ClCompile Include="Utilitario.c" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\Users\Pedro Oliveira Sousa\Desktop\orangetrees.png" />
     <Image Include="BG-0001.png" />
-    <Image Include="Mapa.png" />
-    <Image Include="Serena_Player.png" />
-    <Image Include="Sprite-0001.png" />
-    <Image Include="Sprite-0002.png" />
+    <Image Include="Serena.png" />
     <Image Include="Utils\Imagens\Agua.png" />
     <Image Include="Utils\Imagens\Alecrim.png" />
     <Image Include="Utils\Imagens\Arvore_1.png" />
@@ -176,7 +172,6 @@
     <Image Include="Utils\Imagens\Camomila.png" />
     <Image Include="Utils\Imagens\Casa.png" />
     <Image Include="Utils\Imagens\Casa_Int.png" />
-    <Image Include="Utils\Imagens\Casa_Int2.png" />
     <Image Include="Utils\Imagens\Eucalipto.png" />
     <Image Include="Utils\Imagens\Fundo_branco.png" />
     <Image Include="Utils\Imagens\Fundo_vazio.png" />
