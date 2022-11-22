@@ -14,11 +14,11 @@
         {
           "qtdItens": 30,
           "posicaoGeracao": {
-            "posicaoX": 200,
-            "posicaoY": 200,
+            "posicaoX": 100,
+            "posicaoY": 100,
 
-            "tamanhoX": 3000,
-            "tamanhoY": 3000
+            "tamanhoX": 1000,
+            "tamanhoY": 600
           },
           "tamanhoX": 117,
           "tamanhoY": 67
@@ -39,11 +39,11 @@
         {
           "qtdItens": 30,
           "posicaoGeracao": {
-            "posicaoX": 200,
-            "posicaoY": 200,
+            "posicaoX": 100,
+            "posicaoY": 100,
 
-            "tamanhoX": 3000,
-            "tamanhoY": 3000
+            "tamanhoX": 1000,
+            "tamanhoY": 600
           },
           "tamanhoX": 74,
           "tamanhoY": 81
@@ -64,11 +64,11 @@
         {
           "qtdItens": 5,
           "posicaoGeracao": {
-            "posicaoX": 200,
-            "posicaoY": 200,
+            "posicaoX": 100,
+            "posicaoY": 100,
 
-            "tamanhoX": 3000,
-            "tamanhoY": 3000
+            "tamanhoX": 1000,
+            "tamanhoY": 600
           },
           "tamanhoX": 254,
           "tamanhoY": 157
