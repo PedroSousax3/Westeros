@@ -1,9 +1,10 @@
-#include <time.h>
-
-#include "Utilitario.h"
+#include "../../Cabecalho/Utils/Utilitario.h"
+#include <stdlib.h>  /* rand(), srand() */
+#include <time.h>    /* time() */
 
 int gerarNumeroAleatorioInt(int inicio, int fim) {
-	srand(time(NULL));
+	//srand(time(NULL));
+	float randd = rand();
 	int numero = rand() % fim + 1;
 	if (numero < inicio)
 		numero = gerarNumeroAleatorioInt(inicio, fim);

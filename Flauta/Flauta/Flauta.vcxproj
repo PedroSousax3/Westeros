@@ -158,9 +158,14 @@
     <ClCompile Include="Origem.c" />
     <ClCompile Include="Fonte\Pagina.c" />
     <ClCompile Include="PaginaCombinacao.c" />
-    <ClCompile Include="Utilitario.c" />
+    <ClCompile Include="Fonte\Utils\Utilitario.c" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Mapa.png" />
+    <Image Include="Serena_Player.png" />
+    <Image Include="Sprite-0002.png" />
+    <Image Include="Utils\Imagens\arvore_de_hortelan.png" />
+    <Image Include="Utils\Imagens\camomila.png" />
     <Image Include="BG-0001.png" />
     <Image Include="Serena.png" />
     <Image Include="Utils\Imagens\Agua.png" />
@@ -168,10 +173,10 @@
     <Image Include="Utils\Imagens\Arvore_1.png" />
     <Image Include="Utils\Imagens\Arvore_2.png" />
     <Image Include="Utils\Imagens\Arvore_Balanço.png" />
-    <Image Include="Utils\Imagens\Arvore_Roxa.png" />
-    <Image Include="Utils\Imagens\Camomila.png" />
-    <Image Include="Utils\Imagens\Casa.png" />
-    <Image Include="Utils\Imagens\Casa_Int.png" />
+    <Image Include="Utils\Imagens\deepwater.png" />
+    <Image Include="Utils\Imagens\lago.png" />
+    <Image Include="Utils\Imagens\orangetrees.png" />
+    <Image Include="Utils\Imagens\planta.png" />
     <Image Include="Utils\Imagens\Eucalipto.png" />
     <Image Include="Utils\Imagens\Fundo_branco.png" />
     <Image Include="Utils\Imagens\Fundo_vazio.png" />
@@ -180,6 +185,10 @@
     <Image Include="Utils\Imagens\Mapa.png" />
     <Image Include="Utils\Imagens\Mel.png" />
     <Image Include="Utils\Imagens\Pomada.png" />
+    <Image Include="Utils\Imagens\Casa_Int.png" />
+    <Image Include="Utils\Imagens\deepwater.png" />
+    <Image Include="Utils\Imagens\orangetrees.png" />
+    <Image Include="Utils\Imagens\planta.png" />
     <Image Include="Utils\Imagens\treeorange.png" />
     <Image Include="Utils\Imagens\Árvore_Cortada.png" />
   </ItemGroup>
@@ -207,7 +216,7 @@
     <ClInclude Include="Cabecalho\Utils\ManipularJson.h" />
     <ClInclude Include="libs\cJSON\cJSON.h" />
     <ClInclude Include="PaginaCombinacao.h" />
-    <ClInclude Include="Utilitario.h" />
+    <ClInclude Include="Cabecalho\Utils\Utilitario.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,5 +1,4 @@
 #include "../Cabecalho/Equipamento.h"
-#include "../Utilitario.h"
 
 void gerarNomeEquipamento(Equipamento* equipamento) {
 	switch (equipamento->codigo)

@@ -9,6 +9,8 @@ typedef struct CenarioItem CenarioItem;
 typedef struct ElementoCenario ElementoCenario;
 
 typedef struct ElementoCenario {
+	int indice;
+
 	CenarioItem * cenarioItem;
 	
 	Posicao * posicaoAbsoluta;//Posicão em que o elemento será desenhado na tela.
@@ -16,6 +18,7 @@ typedef struct ElementoCenario {
 	//Caso não tenha diferença entre posição absoluta e relativa usar o mesmo ponteiro para ambas.
 
 	ElementoCenario* proximo;
+	ElementoCenario* anterior;
 
 	int * count;
 };

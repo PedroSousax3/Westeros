@@ -2,6 +2,7 @@
 #define Cabecalho_Equipamento
 
 #include "Posicao.h"
+#include "./Utils/Utilitario.h"
 #include <stdio.h>
 #include <stdlib.h>
 
