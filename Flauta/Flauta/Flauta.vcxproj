@@ -173,9 +173,7 @@
     <Image Include="Utils\Imagens\Arvore_1.png" />
     <Image Include="Utils\Imagens\Arvore_2.png" />
     <Image Include="Utils\Imagens\Arvore_Balanço.png" />
-    <Image Include="Utils\Imagens\deepwater.png" />
     <Image Include="Utils\Imagens\lago.png" />
-    <Image Include="Utils\Imagens\orangetrees.png" />
     <Image Include="Utils\Imagens\planta.png" />
     <Image Include="Utils\Imagens\Eucalipto.png" />
     <Image Include="Utils\Imagens\Fundo_branco.png" />
@@ -188,7 +186,6 @@
     <Image Include="Utils\Imagens\Casa_Int.png" />
     <Image Include="Utils\Imagens\deepwater.png" />
     <Image Include="Utils\Imagens\orangetrees.png" />
-    <Image Include="Utils\Imagens\planta.png" />
     <Image Include="Utils\Imagens\treeorange.png" />
     <Image Include="Utils\Imagens\Árvore_Cortada.png" />
   </ItemGroup>
