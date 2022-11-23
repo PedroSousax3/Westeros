@@ -368,7 +368,7 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 				personagemPrincipal.inventario = inserirItemInventario(personagemPrincipal.inventario, elementoCenario->cenarioItem);
 				removerElementoCenario(elementoCenario);
 			}
-			else if ((*personagemPrincipal.inventario->count) < 4) {
+			else if ((*personagemPrincipal.inventario->count) < 3) {
 				Inventario* ultimoInventario = ultimoItemInventario(personagemPrincipal.inventario);
 				if (ultimoInventario != NULL) {
 					inserirItemInventario(ultimoInventario, elementoCenario->cenarioItem);
