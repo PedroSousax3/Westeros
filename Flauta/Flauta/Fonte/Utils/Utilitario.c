@@ -4,7 +4,6 @@
 
 int gerarNumeroAleatorioInt(int inicio, int fim) {
 	//srand(time(NULL));
-	float randd = rand();
 	int numero = rand() % fim + 1;
 	if (numero < inicio)
 		numero = gerarNumeroAleatorioInt(inicio, fim);

@@ -89,11 +89,17 @@ int main(void) {
 		return -1;
 
 	desenharPersonagem(personagemPrincipal);
-	paginaPrincipal.background.imagem = al_load_bitmap("Mapa.png");
+	paginaPrincipal.background.imagem = al_load_bitmap("Utils/Imagens/Mapa.png");
 	paginaPrincipal.posicaoBackGroud.posicaoX = 0;
 	paginaPrincipal.posicaoBackGroud.tamanhoX = 3833;
 	paginaPrincipal.posicaoBackGroud.posicaoY = 0;
 	paginaPrincipal.posicaoBackGroud.tamanhoY = 2152;
+
+	paginaPrincipal.backgroundCasa.imagem = al_load_bitmap("Utils/Imagens/Casa_Int.png");
+	paginaPrincipal.posicaoBgCasa.posicaoX = 4500;
+	paginaPrincipal.posicaoBgCasa.tamanhoX = 1277;
+	paginaPrincipal.posicaoBgCasa.posicaoY = 4500;
+	paginaPrincipal.posicaoBgCasa.tamanhoY = 898;
 
 	bgCasa = al_load_bitmap("Utils/Imagens/Casa_Int.png");
 	carregarInformacaoesCenario();
@@ -356,6 +362,7 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 		al_clear_to_color(al_map_rgb(0, 0, 0), 0, 0);
 		al_clear_to_color(al_map_rgb(0, 0, 0));
 		desenharImagem(paginaPrincipal.background, paginaPrincipal.posicaoBackGroud);
+		desenharImagem(paginaPrincipal.backgroundCasa, paginaPrincipal.posicaoBgCasa);
 
 		if (colediuComCenario(cenarioItemInicial, personagemPrincipal.movimento.posicao, true)) {
 			personagemPrincipal.movimento.posicao.posicaoX = posicaoXPersonagem;
@@ -379,7 +386,7 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 		al_use_transform(&camera);
 		//desenharItensCenario(cenarioItem);
 	}
-	/*else if (event.type == ALLEGRO_EVENT_MOUSE_AXES) 
+	else if (event.type == ALLEGRO_EVENT_MOUSE_AXES) 
 	{
 		printf("\nMouse:\n\tX: %i\n\tY: %i", event.mouse.x, event.mouse.y);
 		posicaoMouse.posicaoX = event.mouse.x + cameraPosition[0],

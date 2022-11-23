@@ -15,6 +15,8 @@ typedef struct Pagina {
 
 	Imagem background;
 	Posicao posicaoBackGroud;
+	Imagem backgroundCasa;
+	Posicao posicaoBgCasa;
 	ALLEGRO_DISPLAY * display;
 	ALLEGRO_EVENT_QUEUE * eventos;
 	Posicao posicao;
