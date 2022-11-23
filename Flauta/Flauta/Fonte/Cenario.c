@@ -4,6 +4,54 @@ cJSON* obterCJsonCenario(void) {
 	return obterCJson("Utils/ItensCenario.json");
 }
 
+ElementoCenario * gerarElementosCenario(CenarioItem* cenarioItem, int qtdGerar, Posicao posicaoInicialGeracao, Posicao poseicaoBase) {
+	ElementoCenario* primeiro = NULL;
+	ElementoCenario* noAnterior = NULL;
+	ElementoCenario* noProximo = NULL;
+
+	for (int i = 0; i < qtdGerar; i++) {
+		ElementoCenario* elementoCenario = (ElementoCenario*)malloc(sizeof(ElementoCenario));
+		elementoCenario->proximo = NULL;
+		elementoCenario->anterior = NULL;
+
+		if (primeiro == NULL) {
+			primeiro = elementoCenario;
+			primeiro->anterior = NULL;
+			elementoCenario->count = (int*)malloc(sizeof(int));
+			(*elementoCenario->count) = 0;
+		}
+		else if (noAnterior != NULL) {
+			noAnterior->proximo = elementoCenario;
+			elementoCenario->anterior = noAnterior;
+			elementoCenario->count = noAnterior->count;
+		}
+
+		int x = gerarNumeroAleatorioInt(posicaoInicialGeracao.posicaoX, posicaoInicialGeracao.tamanhoX - poseicaoBase.tamanhoX);
+		int y = gerarNumeroAleatorioInt(posicaoInicialGeracao.posicaoY, posicaoInicialGeracao.tamanhoY - poseicaoBase.tamanhoY);
+
+		elementoCenario->cenarioItem = cenarioItem;
+
+		elementoCenario->posicaoAbsoluta = (Posicao*)malloc(sizeof(Posicao));
+		elementoCenario->posicaoRelativa = (Posicao*)malloc(sizeof(Posicao));
+
+		elementoCenario->posicaoAbsoluta->posicaoX = x;
+		elementoCenario->posicaoAbsoluta->posicaoY = y;
+		elementoCenario->posicaoAbsoluta->tamanhoX = poseicaoBase.tamanhoX;
+		elementoCenario->posicaoAbsoluta->tamanhoY = poseicaoBase.tamanhoY;
+
+		elementoCenario->posicaoRelativa->posicaoX = x;
+		elementoCenario->posicaoRelativa->posicaoY = y;
+		elementoCenario->posicaoRelativa->tamanhoX = poseicaoBase.tamanhoX;
+		elementoCenario->posicaoRelativa->tamanhoY = poseicaoBase.tamanhoY;
+
+		elementoCenario->proximo = NULL;
+		elementoCenario->indice = (*elementoCenario->count);
+		(*elementoCenario->count)++;
+		noAnterior = elementoCenario;
+	}
+
+	return primeiro;
+}
 CenarioItem * montarCenarioItemCJson(CenarioItem * noAnterior, cJSON * cenarioItemJson) {
 	CenarioItem* cenarioItem = (CenarioItem*)malloc(sizeof(CenarioItem));
 
@@ -21,7 +69,7 @@ CenarioItem * montarCenarioItemCJson(CenarioItem * noAnterior, cJSON * cenarioIt
 	cenarioItem->nome = bucarItemCJson(cenarioItemJson, "nome")->valuestring;
 	cenarioItem->descricao = bucarItemCJson(cenarioItemJson, "descricao")->valuestring;
 	cenarioItem->coletavelPeloJogador = bucarItemCJson(cenarioItemJson, "coletavelPeloJogador")->valueint;
-	cenarioItem->codigoItemInventario = bucarItemCJson(cenarioItemJson, "codigoItemInventario")->valueint;
+	//cenarioItem->codigoItemInventario = bucarItemCJson(cenarioItemJson, "codigoItemInventario")->valueint;
 
 	cJSON* imagemJson = bucarItemCJson(cenarioItemJson, "imagem");
 	cenarioItem->imagem = (Imagem*)malloc(sizeof(Imagem));
@@ -29,13 +77,32 @@ CenarioItem * montarCenarioItemCJson(CenarioItem * noAnterior, cJSON * cenarioIt
 	cenarioItem->imagem->orientacao = bucarItemCJson(imagemJson->child, "orientacao")->valueint;
 	cenarioItem->imagem->imagem = al_load_bitmap(cenarioItem->imagem->endereco);
 
-	cenarioItem->elementoInical = mapaearElementosCenarios(NULL, cenarioItem, bucarItemCJson(cenarioItemJson, "elementos")->child);
+	cJSON* randomElementesJson = bucarItemCJson(cenarioItemJson, "randomElementes")->child;
+	if (randomElementesJson != NULL) {		
+		cJSON* posicaoGeracaoJson = bucarItemCJson(randomElementesJson->child, "posicaoGeracao")->child;
+		int qtdGerar = bucarItemCJson(randomElementesJson->child, "qtdItens")->valueint;
+		Posicao posicaoGerar = {
+			.posicaoX = bucarItemCJson(posicaoGeracaoJson, "posicaoX")->valueint,
+			.posicaoY = bucarItemCJson(posicaoGeracaoJson, "posicaoY")->valueint,
+			.tamanhoX = bucarItemCJson(posicaoGeracaoJson, "tamanhoX")->valueint,
+			.tamanhoY = bucarItemCJson(posicaoGeracaoJson, "tamanhoY")->valueint,
+		};
+		Posicao posicaoBase = {
+			.tamanhoX = bucarItemCJson(randomElementesJson->child, "tamanhoX")->valueint,
+			.tamanhoY = bucarItemCJson(randomElementesJson->child, "tamanhoY")->valueint,
+		};
+
+		cenarioItem->elementoInical = gerarElementosCenario(cenarioItem, qtdGerar, posicaoGerar, posicaoBase);
+	}
+	else
+		cenarioItem->elementoInical = mapaearElementosCenarios(NULL, cenarioItem, bucarItemCJson(cenarioItemJson, "elementos")->child);
 
 	cenarioItem->proximo = NULL;
 	(*cenarioItem->count)++;
 
 	return cenarioItem;
 }
+
 CenarioItem * mapearCenariosItemCJson(CenarioItem* noAnterior, cJSON* cenarioItemJson) {
 	if (cenarioItemJson != NULL) {
 		CenarioItem* cenarioItem = montarCenarioItemCJson(noAnterior, cenarioItemJson->child);
@@ -73,14 +140,19 @@ CenarioItem * buscarCenarioItem(CenarioItem * baseBusca, int codigoCenarioItem) 
 
 ElementoCenario * mapearElemetosCenarioJson(ElementoCenario* noAnterior, CenarioItem * cenarioItem, cJSON* elementoCenarioJson) {
 	ElementoCenario* elementoCenario = (ElementoCenario*)malloc(sizeof(ElementoCenario));
+	elementoCenario->proximo = NULL;
+	elementoCenario->anterior = NULL;
 
 	if (noAnterior == NULL) {
 		elementoCenario->count = (int*)malloc(sizeof(int));
 		(*elementoCenario->count) = 0;
+		elementoCenario->anterior = NULL;
 	}
 	else {
-		if (noAnterior != NULL)
+		if (noAnterior != NULL) {
 			noAnterior->proximo = elementoCenario;
+			elementoCenario->anterior = noAnterior;
+		}
 		elementoCenario->count = noAnterior->count;
 	}
 
@@ -103,6 +175,7 @@ ElementoCenario * mapearElemetosCenarioJson(ElementoCenario* noAnterior, Cenario
 	elementoCenario->posicaoRelativa->tamanhoY = bucarItemCJson(posicaoRelativaJson->child, "tamanhoY")->valueint;
 
 	elementoCenario->proximo = NULL;
+	elementoCenario->indice = (*elementoCenario->count);
 	(*elementoCenario->count)++;
 
 	return elementoCenario;
@@ -119,6 +192,7 @@ ElementoCenario * mapaearElementosCenarios(ElementoCenario * noAnterior, Cenario
 
 	return NULL;
 }
+
 
 void destruirElementosCenario(ElementoCenario * elementoCenario) {
 	if (elementoCenario != NULL) {
@@ -196,4 +270,30 @@ ElementoCenario * obterElementoCenarioEmPosicao(CenarioItem * cenarioItemInicial
 	}
 
 	return NULL;
+}
+
+void removerElementoCenario (ElementoCenario * elementoCenario) {
+	(*elementoCenario->count)--;
+	if (elementoCenario->count == 0)
+		free(elementoCenario->count);
+
+	ElementoCenario* anterior = elementoCenario->anterior;
+	ElementoCenario* proximo = elementoCenario->proximo;
+
+	alterarPosicaoChildrenElementoCenario(proximo, -1);
+	free(elementoCenario);
+
+	if (anterior != NULL)
+		anterior->proximo = proximo;
+	if (proximo != NULL)
+		proximo->anterior = anterior;
+}
+
+void alterarPosicaoChildrenElementoCenario(ElementoCenario * inicio, int diferenca) {
+	if (inicio != NULL)
+	{
+		inicio->indice = inicio->indice + diferenca;
+		if (inicio->proximo != NULL)
+			alterarPosicaoChildrenElementoCenario(inicio->proximo, diferenca);
+	}
 }

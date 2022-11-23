@@ -6,15 +6,15 @@
 
 #include "Posicao.h"
 #include "Personagem.h"
+#include "./Utils/Imagem.h"
 
 typedef struct Pagina {
 	char nome[50];
-	/*float largura;
-	float altura;*/
 
 	bool aberta;
 
-	ALLEGRO_BITMAP * background;
+	Imagem background;
+	Posicao posicaoBackGroud;
 	ALLEGRO_DISPLAY * display;
 	ALLEGRO_EVENT_QUEUE * eventos;
 	Posicao posicao;

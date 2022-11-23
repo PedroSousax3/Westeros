@@ -2,317 +2,76 @@
   "canarioItem": [
     {
       "codigo": 1,
-      "nome": "Teste 1",
-      "descricao": "Arvore de laranjas.",
+      "nome": "Planta de hortelã",
+      "descricao": "Mentha é um gênero botânico da família Lamiaceae, cujas espécies são popularmente chamadas mentas ou hortelãs.",
       "imagem": {
-        "endereco": "Utils/Imagens/orangetrees.png",
+        "endereco": "Utils/Imagens/arvore_de_hortelan.png",
         "orientacao": 1
       },
       "coletavelPeloJogador": true,
-      "codigoItemInventario": null,
-
-      "elementos": [
+      "elementos": [],
+      "randomElementes": [
         {
-          "canarioItem": 1,
-          "posicaoAbsoluta": {
+          "qtdItens": 30,
+          "posicaoGeracao": {
             "posicaoX": 200,
             "posicaoY": 200,
 
-            "tamanhoX": 88,
-            "tamanhoY": 127
+            "tamanhoX": 3000,
+            "tamanhoY": 3000
           },
-          "posicaoRelativa": {
-            "posicaoX": 240,
-            "posicaoY": 300,
-
-            "tamanhoX": 15,
-            "tamanhoY": 12
-          }
-        },
-        {
-          "canarioItem": 1,
-          "posicaoAbsoluta": {
-            "posicaoX": 288,
-            "posicaoY": 200,
-
-            "tamanhoX": 88,
-            "tamanhoY": 127
-          },
-          "posicaoRelativa": {
-            "posicaoX": 328,
-            "posicaoY": 300,
-
-            "tamanhoX": 15,
-            "tamanhoY": 12
-          }
-        },
-        {
-          "canarioItem": 1,
-          "posicaoAbsoluta": {
-            "posicaoX": 376,
-            "posicaoY": 200,
-
-            "tamanhoX": 88,
-            "tamanhoY": 127
-          },
-          "posicaoRelativa": {
-            "posicaoX": 416,
-            "posicaoY": 300,
-
-            "tamanhoX": 15,
-            "tamanhoY": 12
-          }
+          "tamanhoX": 117,
+          "tamanhoY": 67
         }
       ]
     },
     {
       "codigo": 2,
-      "nome": "Chimarrão",
-      "descricao": "Planta erva-mate.",
+      "nome": "Camomila",
+      "descricao": "A camomila, camomila-vulgar, camomila-alemã, camomilha ou camomila-dos-alemães é uma planta da família Asteraceae. Há indícios de que sua concentração de terpenóides e flavonóides contribua para suas propriedades medicinais.",
       "imagem": {
-        "endereco": "Utils/Imagens/planta.png",
+        "endereco": "Utils/Imagens/camomila.png",
         "orientacao": 1
       },
       "coletavelPeloJogador": true,
-      "codigoItemInventario": null,
-
-      "elementos": [
+      "elementos": [],
+      "randomElementes": [
         {
-          "canarioItem": 1,
-          "posicaoAbsoluta": {
-            "posicaoX": 600,
+          "qtdItens": 30,
+          "posicaoGeracao": {
+            "posicaoX": 200,
             "posicaoY": 200,
 
-            "tamanhoX": 255,
-            "tamanhoY": 255
+            "tamanhoX": 3000,
+            "tamanhoY": 3000
           },
-          "posicaoRelativa": {
-            "posicaoX": 600,
-            "posicaoY": 200,
-
-            "tamanhoX": 255,
-            "tamanhoY": 255
-          }
+          "tamanhoX": 74,
+          "tamanhoY": 81
         }
       ]
     },
     {
       "codigo": 3,
-      "nome": "Rio",
-      "descricao": "",
-      
+      "nome": "Logo",
+      "descricao": "A camomila, camomila-vulgar, camomila-alemã, camomilha ou camomila-dos-alemães é uma planta da família Asteraceae. Há indícios de que sua concentração de terpenóides e flavonóides contribua para suas propriedades medicinais.",
       "imagem": {
-        "endereco": "Utils/Imagens/deepwater.png",
+        "endereco": "Utils/Imagens/lago.png",
         "orientacao": 1
       },
-
       "coletavelPeloJogador": true,
-      "codigoItemInventario": null,
-
-      "elementos": [
+      "elementos": [],
+      "randomElementes": [
         {
-          "canarioItem": 3,
-          "posicaoAbsoluta": {
-            "posicaoX": 620,
-            "posicaoY": 624,
+          "qtdItens": 5,
+          "posicaoGeracao": {
+            "posicaoX": 200,
+            "posicaoY": 200,
 
-            "tamanhoX": 191,
-            "tamanhoY": 127
+            "tamanhoX": 3000,
+            "tamanhoY": 3000
           },
-          "posicaoRelativa": {
-            "posicaoX": 620,
-            "posicaoY": 624,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          }
-        },
-        {
-          "canarioItem": 3,
-          "posicaoAbsoluta": {
-            "posicaoX": 620,
-            "posicaoY": 751,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          },
-          "posicaoRelativa": {
-            "posicaoX": 620,
-            "posicaoY": 751,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          }
-        },
-        {
-          "canarioItem": 3,
-          "posicaoAbsoluta": {
-            "posicaoX": 620,
-            "posicaoY": 878,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          },
-          "posicaoRelativa": {
-            "posicaoX": 620,
-            "posicaoY": 878,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          }
-        },
-        {
-          "canarioItem": 3,
-          "posicaoAbsoluta": {
-            "posicaoX": 620,
-            "posicaoY": 1005,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          },
-          "posicaoRelativa": {
-            "posicaoX": 620,
-            "posicaoY": 1005,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          }
-        },
-        {
-          "canarioItem": 3,
-          "posicaoAbsoluta": {
-            "posicaoX": 811,
-            "posicaoY": 624,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          },
-          "posicaoRelativa": {
-            "posicaoX": 811,
-            "posicaoY": 624,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          }
-        },
-        {
-          "canarioItem": 3,
-          "posicaoAbsoluta": {
-            "posicaoX": 811,
-            "posicaoY": 751,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          },
-          "posicaoRelativa": {
-            "posicaoX": 811,
-            "posicaoY": 751,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          }
-        },
-        {
-          "canarioItem": 3,
-          "posicaoAbsoluta": {
-            "posicaoX": 811,
-            "posicaoY": 878,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          },
-          "posicaoRelativa": {
-            "posicaoX": 811,
-            "posicaoY": 878,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          }
-        },
-        {
-          "canarioItem": 3,
-          "posicaoAbsoluta": {
-            "posicaoX": 811,
-            "posicaoY": 1005,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          },
-          "posicaoRelativa": {
-            "posicaoX": 811,
-            "posicaoY": 1005,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          }
-        },
-        {
-          "canarioItem": 3,
-          "posicaoAbsoluta": {
-            "posicaoX": 1002,
-            "posicaoY": 624,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          },
-          "posicaoRelativa": {
-            "posicaoX": 1002,
-            "posicaoY": 624,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          }
-        },
-        {
-          "canarioItem": 3,
-          "posicaoAbsoluta": {
-            "posicaoX": 1002,
-            "posicaoY": 751,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          },
-          "posicaoRelativa": {
-            "posicaoX": 1002,
-            "posicaoY": 751,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          }
-        },
-        {
-          "canarioItem": 3,
-          "posicaoAbsoluta": {
-            "posicaoX": 1002,
-            "posicaoY": 878,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          },
-          "posicaoRelativa": {
-            "posicaoX": 1002,
-            "posicaoY": 878,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          }
-        },
-        {
-          "canarioItem": 3,
-          "posicaoAbsoluta": {
-            "posicaoX": 1002,
-            "posicaoY": 1005,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          },
-          "posicaoRelativa": {
-            "posicaoX": 1002,
-            "posicaoY": 1005,
-
-            "tamanhoX": 191,
-            "tamanhoY": 127
-          }
+          "tamanhoX": 254,
+          "tamanhoY": 157
         }
       ]
     }

@@ -7,8 +7,11 @@
 #include "CenarioItem.h"
 #include "Utils/ManipularJson.h"
 #include "../Cabecalho/Utils/Imagem.h"
+#include "Posicao.h"
+#include "Utils/Utilitario.h"
 
 cJSON* obterCJsonCenario(void);
+ElementoCenario* gerarElementosCenario(CenarioItem* cenarioItem, int qtdGerar, Posicao posicaoInicialGeracao, Posicao poseicaoBase);
 CenarioItem* montarCenarioItemCJson(CenarioItem* noAnterior, cJSON* cenarioItemJson);
 CenarioItem* mapearCenariosItemCJson(CenarioItem* noAnterior, cJSON* cenarioItemJson);
 void destruirCenarioItens(CenarioItem* cenarioItem);
@@ -22,3 +25,5 @@ bool colediuComElementoCenario(ElementoCenario* elementoCenario, Posicao posicao
 bool colediuComCenario(CenarioItem* cenarioItenInicial, Posicao posicaoComparacao, bool useRelative);
 ElementoCenario* buscarElementoCenarioPorPosicao(ElementoCenario* elementoCenario, Posicao posicao, bool useRelative);
 ElementoCenario* obterElementoCenarioEmPosicao(CenarioItem* cenarioItemInicial, Posicao posicao, bool useRelative);
+void removerElementoCenario(ElementoCenario* elementoCenario);
+void alterarPosicaoChildrenElementoCenario(ElementoCenario* inicio, int diferenca);

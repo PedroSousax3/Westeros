@@ -13,7 +13,7 @@
 
 //Importações
 //#include "Cabecalho/Pagina.h"
-#include "Utilitario.h"
+#include "Cabecalho/Utils/Utilitario.h"
 #include "Cabecalho/Posicao.h"
 #include "Cabecalho/Movimento.h"
 #include "Cabecalho/Personagem.h"
@@ -39,13 +39,13 @@ cJSON* jsonCenario;
 cJSON* jsonMissoes;
 
 ALLEGRO_EVENT_QUEUE* eventos = NULL;
-ALLEGRO_BITMAP* background = NULL;
 ALLEGRO_BITMAP* bgCasa = NULL;
 ALLEGRO_TRANSFORM camera;
 ALLEGRO_FONT *  fonte = NULL;
 ALLEGRO_KEYBOARD_STATE keyState;
 ALLEGRO_TIMER * tempoRenderizacao = NULL;
 ALLEGRO_FONT* fontePasso;
+ALLEGRO_BITMAP* mapaImagem = NULL;
 
 float cameraPosition[2] = { 0 , 0 };
 
@@ -89,14 +89,20 @@ int main(void) {
 		return -1;
 
 	desenharPersonagem(personagemPrincipal);
-	background = al_load_bitmap("Mapa.png");
-	bgCasa = al_load_bitmap("Utils/Imagens/Casa_Int.png");
+	paginaPrincipal.background.imagem = al_load_bitmap("Mapa.png");
+	paginaPrincipal.posicaoBackGroud.posicaoX = 0;
+	paginaPrincipal.posicaoBackGroud.tamanhoX = 3833;
+	paginaPrincipal.posicaoBackGroud.posicaoY = 0;
+	paginaPrincipal.posicaoBackGroud.tamanhoY = 2152;
+
 	carregarInformacaoesCenario();
 	carregarInformacoesMissoes();
 
 	personagemPrincipal.missaoAtual = missaoInicial;
 	misturas = iniciarMisturas(cenarioItemInicial);
 	al_start_timer(tempoRenderizacao);
+
+	bool primeiraVolta = true;
 	while (paginaPrincipal.aberta) {
 		ALLEGRO_EVENT evento;
 		al_wait_for_event(eventos, &evento);
@@ -119,35 +125,11 @@ int main(void) {
 			desenharPersonagem(personagemPrincipal);
 			desenharCenarioItens(cenarioItemInicial);
 			desenharPassoMissao(personagemPrincipal.missaoAtual->passosMissao);
-			Posicao posicao = {
-				.posicaoX = cameraPosition[0] + paginaPrincipal.posicao.tamanhoX - 300, //X inicial
-				.posicaoY = cameraPosition[1] + 5, //Y inicial
-				.tamanhoX = cameraPosition[0] + paginaPrincipal.posicao.tamanhoX - 5, //X Maximo
-				.tamanhoY = cameraPosition[1] + paginaPrincipal.posicao.tamanhoY - 5 //Y Maximo
-			};
-			//al_do_multiline_text(fontePasso, 300, "", )
-			//char* nome = "Meu teste 1, Meu teste 2, Meu teste 3, Meu teste 4, Meu teste 5";
-
-			//al_get_text_dimensions(fontePasso, nome, 0, 0, 300, 300);
-			//al_draw_multiline_textf(
-			//	fontePasso,
-			//	al_map_rgb(0, 0, 0),
-			//	0,
-			//	0,
-			//	300,
-			//	al_get_font_line_height(fontePasso),
-			//	0,
-			//	"Meu teste 1, Meu teste 2, Meu teste 3, Meu teste 4, Meu teste 5"
-			//	/*passoMissao->mensagemInicial/*,
-			//	al_get_display_width(display),
-			//	 al_get_display_height(display),
-			//	 al_get_display_flags(display) & ALLEGRO_MAXIMIZED ? "yes" :
-			//	 "no"*/
-			//);
-			if(personagemPrincipal.movimento.posicao.posicaoX == 200) {
-			personagemPrincipal.movimento.posicao.posicaoX = 5000;
-			personagemPrincipal.movimento.posicao.posicaoY = 5000;
-		}
+			/*if (primeiraVolta) {
+				al_save_bitmap("screenshot.bmp", al_get_backbuffer(paginaPrincipal.display));
+				mapaImagem = al_load_bitmap("screenshot.bmp");
+				primeiraVolta = false;
+			}*/
 		}
 		 
 	}
@@ -160,8 +142,7 @@ int main(void) {
 	al_destroy_display(paginaPrincipal.display);
 	al_destroy_event_queue(eventos);
 	al_destroy_bitmap(personagemPrincipal.imagem);
-	al_destroy_bitmap(background);
-	al_destroy_bitmap(bgCasa);
+	al_destroy_bitmap(paginaPrincipal.background.imagem);
 	al_destroy_timer(tempoRenderizacao);
 
 	return 0;
@@ -213,8 +194,8 @@ Personagem configurarPersonagemPrincipal(void) {
 void configuracaoInicial(void) {
 	paginaPrincipal = iniciarPagina();
 	paginaPrincipal.aberta = true;
-	paginaPrincipal.posicao.tamanhoX = 1200;
-	paginaPrincipal.posicao.tamanhoY = 650;
+	paginaPrincipal.posicao.tamanhoX = 1000;
+	paginaPrincipal.posicao.tamanhoY = 600;
 	paginaPrincipal.display = al_create_display(
 		paginaPrincipal.posicao.tamanhoX ,
 		paginaPrincipal.posicao.tamanhoY
@@ -255,6 +236,7 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 	ALLEGRO_EVENT event = *evento;
 
 	if (event.type == ALLEGRO_EVENT_KEY_DOWN) //Entra na tecla
+	{
 		switch (event.keyboard.keycode)
 		{
 			case ALLEGRO_KEY_DOWN:
@@ -278,7 +260,9 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 				personagemPrincipal.imagemY = 3 * al_get_bitmap_height(personagemPrincipal.imagem) / 4;
 				break;
 		}
+	}
 	else if (event.type == ALLEGRO_EVENT_KEY_UP) //Entra na tecla
+	{
 		switch (event.keyboard.keycode)
 		{
 			case ALLEGRO_KEY_UP:
@@ -294,6 +278,7 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 				personagemPrincipal.movimento.direcaoX = DIRECAOXNENHUM;
 				break;
 		}
+	}
 	else if (event.type == ALLEGRO_EVENT_TIMER && al_is_event_queue_empty(eventos))
 	{
 		switch (personagemPrincipal.movimento.direcaoY)
@@ -335,22 +320,29 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 		else
 			personagemPrincipal.imagemX = 0;
 		
-		
-		
-		
-		if (personagemPrincipal.imagemX != 0) {
+		if (personagemPrincipal.imagemX != 0)
 			printf("X: %i\nY: %i\n", personagemPrincipal.movimento.posicao.posicaoX, personagemPrincipal.movimento.posicao.posicaoY);
-		}
 
 		al_flip_display();
+		al_clear_to_color(al_map_rgb(0, 0, 0), 0, 0);
 		al_clear_to_color(al_map_rgb(0, 0, 0));
-		al_draw_bitmap(background, 0, 0, 0);
-		al_draw_bitmap(bgCasa, 4500, 4500, 0);
+		desenharImagem(paginaPrincipal.background, paginaPrincipal.posicaoBackGroud);
 
 		if (colediuComCenario(cenarioItemInicial, personagemPrincipal.movimento.posicao, true)) {
 			personagemPrincipal.movimento.posicao.posicaoX = posicaoXPersonagem;
 			personagemPrincipal.movimento.posicao.posicaoY = posicaoYPersonagem;
 		}
+
+		//Imagem imagem = {
+		//	.imagem = mapaImagem
+		//};
+		//Posicao posicaoMapa = {
+		//	.posicaoX = paginaPrincipal.posicao.tamanhoX - 500,
+		//	.posicaoY = paginaPrincipal.posicao.tamanhoY - 500,
+		//	.tamanhoX = 500,
+		//	.tamanhoY = 500
+		//};
+		//desenharImagem(imagem, posicaoMapa);
 
 		cameraUpdate(cameraPosition, &personagemPrincipal.movimento.posicao);
 		al_identity_transform(&camera);
@@ -363,21 +355,28 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 		printf("\nMouse:\n\tX: %i\n\tY: %i", event.mouse.x, event.mouse.y);
 		posicaoMouse.posicaoX = event.mouse.x + cameraPosition[0],
 		posicaoMouse.posicaoY = event.mouse.y + cameraPosition[1];
+		if (colediuComCenario(cenarioItemInicial, posicaoMouse, false))
+			al_set_system_mouse_cursor(paginaPrincipal.display, ALLEGRO_SYSTEM_MOUSE_CURSOR_LINK);
+		else
+			al_set_system_mouse_cursor(paginaPrincipal.display, ALLEGRO_SYSTEM_MOUSE_CURSOR_DEFAULT);
 	}
 	else if (event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
-		if (event.mouse.button == 1)
-			if (colediuComCenario(cenarioItemInicial, posicaoMouse, false)) {
-				ElementoCenario* elementoCenario = obterElementoCenarioEmPosicao(cenarioItemInicial, posicaoMouse, false);
-				if (personagemPrincipal.inventario == NULL) {
-					personagemPrincipal.inventario = inserirItemInventario(personagemPrincipal.inventario, elementoCenario->cenarioItem);
-				}
-				//else if ((*personagemPrincipal.inventario->count) <= 4) {
-					Inventario* ultimoInventario = ultimoItemInventario(personagemPrincipal.inventario);
-					if (ultimoInventario != NULL)
-						inserirItemInventario(ultimoInventario, elementoCenario->cenarioItem);
-					printf("Ultimo item não foi encontrado.");
-				//}
+		if (event.mouse.button == 1 && colediuComCenario(cenarioItemInicial, posicaoMouse, false)) {
+			ElementoCenario* elementoCenario = obterElementoCenarioEmPosicao(cenarioItemInicial, posicaoMouse, false);
+			
+			if (personagemPrincipal.inventario == NULL) {
+				personagemPrincipal.inventario = inserirItemInventario(personagemPrincipal.inventario, elementoCenario->cenarioItem);
+				removerElementoCenario(elementoCenario);
 			}
+			else if ((*personagemPrincipal.inventario->count) < 4) {
+				Inventario* ultimoInventario = ultimoItemInventario(personagemPrincipal.inventario);
+				if (ultimoInventario != NULL) {
+					inserirItemInventario(ultimoInventario, elementoCenario->cenarioItem);
+					removerElementoCenario(elementoCenario);
+				}
+
+			}
+		}
 	}
 	else if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
 		paginaPrincipal.aberta = false;
