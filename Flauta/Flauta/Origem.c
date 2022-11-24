@@ -118,11 +118,18 @@ int main(void) {
 	if (!paginaPrincipal.display)
 		return -1;
 
-	paginaPrincipal.background.imagem = al_load_bitmap("Mapa.png");
+	//paginaPrincipal.background.imagem = al_load_bitmap("Mapa.png");
+	paginaPrincipal.backgroundCasa.imagem = al_load_bitmap("Utils/Imagens/Casa_Int.png");
 	paginaPrincipal.posicaoBackGroud.posicaoX = 0;
 	paginaPrincipal.posicaoBackGroud.tamanhoX = 3833;
 	paginaPrincipal.posicaoBackGroud.posicaoY = 0;
 	paginaPrincipal.posicaoBackGroud.tamanhoY = 2152;
+
+	//paginaPrincipal.backgroundCasa.imagem = al_load_bitmap("Utils/Imagens/Casa_Int.png");
+	//paginaPrincipal.posicaoBgCasa.posicaoX = 4500;
+	//paginaPrincipal.posicaoBgCasa.tamanhoX = 1277;
+	//paginaPrincipal.posicaoBgCasa.posicaoY = 4500;
+	//paginaPrincipal.posicaoBgCasa.tamanhoY = 898;
 
 	bgCasa = al_load_bitmap("Utils/Imagens/Casa_Int.png");
 	carregarInformacaoesCenario();
