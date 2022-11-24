@@ -822,6 +822,134 @@
     },
     {
       "codigo": 4,
+      "nome": "Arvore Roxa",
+      "descricao": "Arvore com uma colmeia de abelhas",
+      "imagem": {
+        "endereco": "Utils/Imagens/Arvore_Roxa.png",
+        "orientacao": 1
+      },
+      "coletavelPeloJogador": false,
+      "codigoItemInventario": null,
+      "randomElementes": [],
+
+      "elementos": [
+        {
+          "canarioItem": 4,
+          "posicaoAbsoluta": {
+            "posicaoX": 0,
+            "posicaoY": 0,
+
+            "tamanhoX": 238,
+            "tamanhoY": 334
+          },
+          "posicaoRelativa": {
+            "posicaoX": 0,
+            "posicaoY": 0,
+
+            "tamanhoX": 70,
+            "tamanhoY": 30
+          }
+        }
+      ]
+    },
+    {
+      "codigo": 5,
+      "nome": "Arvore",
+      "descricao": "Arvore normal",
+      "imagem": {
+        "endereco": "Utils/Imagens/Arvore_1.png",
+        "orientacao": 1
+      },
+      "coletavelPeloJogador": false,
+      "codigoItemInventario": null,
+      "randomElementes": [],
+
+      "elementos": [
+        {
+          "canarioItem": 5,
+          "posicaoAbsoluta": {
+            "posicaoX": 0,
+            "posicaoY": 0,
+
+            "tamanhoX": 238,
+            "tamanhoY": 334
+          },
+          "posicaoRelativa": {
+            "posicaoX": 0,
+            "posicaoY": 0,
+
+            "tamanhoX": 70,
+            "tamanhoY": 30
+          }
+        }
+      ]
+    },
+    {
+      "codigo": 6,
+      "nome": "Arvore Florida",
+      "descricao": "Arvore com algumas flores desabrochando",
+      "imagem": {
+        "endereco": "Utils/Imagens/Arvore_2.png",
+        "orientacao": 1
+      },
+      "coletavelPeloJogador": false,
+      "codigoItemInventario": null,
+      "randomElementes": [],
+
+      "elementos": [
+        {
+          "canarioItem": 6,
+          "posicaoAbsoluta": {
+            "posicaoX": 0,
+            "posicaoY": 0,
+
+            "tamanhoX": 238,
+            "tamanhoY": 334
+          },
+          "posicaoRelativa": {
+            "posicaoX": 0,
+            "posicaoY": 0,
+
+            "tamanhoX": 70,
+            "tamanhoY": 30
+          }
+        }
+      ]
+    },
+    {
+      "codigo": 7,
+      "nome": "Arvore Cortada",
+      "descricao": "Arvore que foi derrubada em algum momento",
+      "imagem": {
+        "endereco": "Utils/Imagens/Arvore_Cortada.png",
+        "orientacao": 1
+      },
+      "coletavelPeloJogador": false,
+      "codigoItemInventario": null,
+      "randomElementes": [],
+
+      "elementos": [
+        {
+          "canarioItem": 7,
+          "posicaoAbsoluta": {
+            "posicaoX": 0,
+            "posicaoY": 0,
+
+            "tamanhoX": 238,
+            "tamanhoY": 334
+          },
+          "posicaoRelativa": {
+            "posicaoX": 0,
+            "posicaoY": 0,
+
+            "tamanhoX": 70,
+            "tamanhoY": 30
+          }
+        }
+      ]
+    },
+    {
+      "codigo": 8,
       "nome": "Hortela",
       "descricao": "Hortela",
       "imagem": {
@@ -832,41 +960,23 @@
       "codigoItemInventario": null,
       "randomElementes": [
         {
-          "qtdItens": 5,
+          "qtdItens": 3,
           "posicaoGeracao": {
             "posicaoX": 500,
-            "posicaoY": 500,
+            "posicaoY": 900,
 
-            "tamanhoX": 1000,
-            "tamanhoY": 1000
+            "tamanhoX": 800,
+            "tamanhoY": 950
           },
-          "tamanhoX": 50,
-          "tamanhoY": 50
+          "tamanhoX": 22,
+          "tamanhoY": 22
         }
       ],
 
-      "elementos": [
-        {
-          "canarioItem": 4,
-          "posicaoAbsoluta": {
-            "posicaoX": 900,
-            "posicaoY": 500,
-
-            "tamanhoX": 50,
-            "tamanhoY": 50
-          },
-          "posicaoRelativa": {
-            "posicaoX": 900,
-            "posicaoY": 500,
-
-            "tamanhoX": 50,
-            "tamanhoY": 50
-          }
-        }
-      ]
+      "elementos": []
     },
     {
-      "codigo": 5,
+      "codigo": 9,
       "nome": "Camomila",
       "descricao": "Camomila",
       "imagem": {
@@ -877,23 +987,155 @@
       "codigoItemInventario": null,
       "randomElementes": [
         {
-          "qtdItens": 5,
+          "qtdItens": 3,
           "posicaoGeracao": {
-            "posicaoX": 1200,
-            "posicaoY": 1000,
+            "posicaoX": 500,
+            "posicaoY": 950,
 
-            "tamanhoX": 1400,
-            "tamanhoY": 1050
+            "tamanhoX": 800,
+            "tamanhoY": 1000
           },
-          "tamanhoX": 50,
-          "tamanhoY": 50
+          "tamanhoX": 21,
+          "tamanhoY": 22
         }
       ],
 
-      "elementos": [
- 
-        
-      ]
+      "elementos": []
+    },
+    {
+      "codigo": 10,
+      "nome": "Alecrim",
+      "descricao": "Alecrim",
+      "imagem": {
+        "endereco": "Utils/Imagens/Alecrim.png",
+        "orientacao": 1
+      },
+      "coletavelPeloJogador": true,
+      "codigoItemInventario": null,
+      "randomElementes": [
+        {
+          "qtdItens": 3,
+          "posicaoGeracao": {
+            "posicaoX": 500,
+            "posicaoY": 1000,
+
+            "tamanhoX": 800,
+            "tamanhoY": 1050
+          },
+          "tamanhoX": 22,
+          "tamanhoY": 23
+        }
+      ],
+
+      "elementos": []
+    },
+    {
+      "codigo": 11,
+      "nome": "Folha de Eucalipto",
+      "descricao": "Folha de uma arvore de Eucalipto",
+      "imagem": {
+        "endereco": "Utils/Imagens/Eucalipto.png",
+        "orientacao": 1
+      },
+      "coletavelPeloJogador": true,
+      "codigoItemInventario": null,
+      "randomElementes": [
+        {
+          "qtdItens": 3,
+          "posicaoGeracao": {
+            "posicaoX": 500,
+            "posicaoY": 1050,
+
+            "tamanhoX": 800,
+            "tamanhoY": 1100
+          },
+          "tamanhoX": 18,
+          "tamanhoY": 23
+        }
+      ],
+
+      "elementos": []
+    },
+    {
+      "codigo": 12,
+      "nome": "Gengibre",
+      "descricao": "Gengibre",
+      "imagem": {
+        "endereco": "Utils/Imagens/Gengibre.png",
+        "orientacao": 1
+      },
+      "coletavelPeloJogador": true,
+      "codigoItemInventario": null,
+      "randomElementes": [
+        {
+          "qtdItens": 3,
+          "posicaoGeracao": {
+            "posicaoX": 500,
+            "posicaoY": 1100,
+
+            "tamanhoX": 800,
+            "tamanhoY": 1150
+          },
+          "tamanhoX": 22,
+          "tamanhoY": 23
+        }
+      ],
+
+      "elementos": []
+    },
+    {
+      "codigo": 13,
+      "nome": "Mel",
+      "descricao": "Mel",
+      "imagem": {
+        "endereco": "Utils/Imagens/Mel.png",
+        "orientacao": 1
+      },
+      "coletavelPeloJogador": true,
+      "codigoItemInventario": null,
+      "randomElementes": [
+        {
+          "qtdItens": 3,
+          "posicaoGeracao": {
+            "posicaoX": 500,
+            "posicaoY": 1150,
+
+            "tamanhoX": 800,
+            "tamanhoY": 1200
+          },
+          "tamanhoX": 27,
+          "tamanhoY": 45
+        }
+      ],
+
+      "elementos": []
+    },
+    {
+      "codigo": 14,
+      "nome": "Agua",
+      "descricao": "Agua",
+      "imagem": {
+        "endereco": "Utils/Imagens/Agua.png",
+        "orientacao": 1
+      },
+      "coletavelPeloJogador": true,
+      "codigoItemInventario": null,
+      "randomElementes": [
+        {
+          "qtdItens": 3,
+          "posicaoGeracao": {
+            "posicaoX": 500,
+            "posicaoY": 1200,
+
+            "tamanhoX": 800,
+            "tamanhoY": 1250
+          },
+          "tamanhoX": 25,
+          "tamanhoY": 43
+        }
+      ],
+
+      "elementos": []
     }
   ]
 }
