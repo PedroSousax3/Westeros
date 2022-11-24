@@ -69,7 +69,7 @@ void gerarMapa() {
 		2500
 	); //Cria a tela do programa
 	al_set_target_backbuffer(displayMapa);
-	al_set_window_title(displayMapa, "Mapa");
+	//al_set_window_title(displayMapa, "Mapa");
 
 	al_flip_display();
 	al_clear_to_color(al_map_rgb(0, 0, 0), 0, 0);
@@ -87,7 +87,7 @@ void gerarMapa() {
 	desenharPassoMissao(personagemPrincipal.missaoAtual->passosMissao);
 
 	al_save_bitmap("screenshot.bmp", al_get_backbuffer(displayMapa));
-	mapaImagem = al_load_bitmap("screenshot.bmp");
+	//mapaImagem = al_load_bitmap("screenshot.bmp");
 
 	al_destroy_display(displayMapa);
 
@@ -154,7 +154,7 @@ int main(void) {
 		else if (paginaPrincipal.aberta) {
 
 			if (primeiraVolta) {
-				gerarMapa();
+				//gerarMapa();
 				primeiraVolta = false;
 			}
 			gerenciarPosicaoPersonagem(&evento);
@@ -421,7 +421,7 @@ void cameraUpdate(float * cameraPosition, Posicao * posicaoBase)
 void carregarInformacaoesCenario(void) {
 	jsonCenario = obterCJsonCenario();
 	cJSON * elementosJson = bucarItemCJson(jsonCenario->child, "canarioItem");
-	cenarioItemInicial = mapearCenariosItemCJson(NULL, elementosJson->child);
+	cenarioItemInicial = mapearCenariosItemCJson(NULL, elementosJson->child, NULL);
 }
  
 void carregarInformacoesMissoes(void) {

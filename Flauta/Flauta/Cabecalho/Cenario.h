@@ -9,11 +9,12 @@
 #include "../Cabecalho/Utils/Imagem.h"
 #include "Posicao.h"
 #include "Utils/Utilitario.h"
+#include "../Cabecalho/Posicao.h"
 
 cJSON* obterCJsonCenario(void);
-ElementoCenario* gerarElementosCenario(CenarioItem* cenarioItem, int qtdGerar, Posicao posicaoInicialGeracao, Posicao poseicaoBase);
-CenarioItem* montarCenarioItemCJson(CenarioItem* noAnterior, cJSON* cenarioItemJson);
-CenarioItem* mapearCenariosItemCJson(CenarioItem* noAnterior, cJSON* cenarioItemJson);
+ElementoCenario* gerarElementosCenario(CenarioItem* cenarioItem, int qtdGerar, Posicao posicaoInicialGeracao, Posicao poseicaoBase, CenarioItem* cenarioItemIncial);
+CenarioItem* montarCenarioItemCJson(CenarioItem* noAnterior, cJSON* cenarioItemJson, CenarioItem* cenarioItemIncial);
+CenarioItem* mapearCenariosItemCJson(CenarioItem* noAnterior, cJSON* cenarioItemJson, CenarioItem* cenarioItemIncial);
 void destruirCenarioItens(CenarioItem* cenarioItem);
 CenarioItem* buscarCenarioItem(CenarioItem* baseBusca, int codigoCenarioItem);
 ElementoCenario* mapearElemetosCenarioJson(ElementoCenario* noAnterior, CenarioItem* cenarioItem, cJSON* elementoCenarioJson);

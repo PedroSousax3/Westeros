@@ -1,39 +1,6 @@
 {
   "canarioItem": [
     {
-      "codigo": 1,
-      "nome": "Casa",
-      "descricao": "Casa Serena",
-      "imagem": {
-        "endereco": "Utils/Imagens/Casa.png",
-        "orientacao": 1
-      },
-
-      "coletavelPeloJogador": false,
-      "codigoItemInventario": null,
-      "randomElementes": [],
-
-      "elementos": [
-        {
-          "canarioItem": 1,
-          "posicaoAbsoluta": {
-            "posicaoX": 317,
-            "posicaoY": 314,
-
-            "tamanhoX": 431,
-            "tamanhoY": 412
-          },
-          "posicaoRelativa": {
-            "posicaoX": 0,
-            "posicaoY": 0,
-
-            "tamanhoX": 0,
-            "tamanhoY": 0
-          }
-        }
-      ]
-    },
-    {
       "codigo": 2,
       "nome": "Vazio",
       "descricao": "Parede Invisivel",
@@ -791,6 +758,39 @@
       ]
     },
     {
+      "codigo": 1,
+      "nome": "Casa",
+      "descricao": "Casa Serena",
+      "imagem": {
+        "endereco": "Utils/Imagens/Casa.png",
+        "orientacao": 1
+      },
+
+      "coletavelPeloJogador": false,
+      "codigoItemInventario": null,
+      "randomElementes": [],
+
+      "elementos": [
+        {
+          "canarioItem": 1,
+          "posicaoAbsoluta": {
+            "posicaoX": 317,
+            "posicaoY": 314,
+
+            "tamanhoX": 431,
+            "tamanhoY": 412
+          },
+          "posicaoRelativa": {
+            "posicaoX": 0,
+            "posicaoY": 0,
+
+            "tamanhoX": 0,
+            "tamanhoY": 0
+          }
+        }
+      ]
+    },
+    {
       "codigo": 3,
       "nome": "Arvore Balanço",
       "descricao": "Arvore com um balanço feito pela avó de Serena",
@@ -834,7 +834,20 @@
 
       "coletavelPeloJogador": true,
       "codigoItemInventario": null,
-      "randomElementes": [],
+      "randomElementes": [
+        {
+          "qtdItens": 100,
+          "posicaoGeracao": {
+            "posicaoX": 0,
+            "posicaoY": 0,
+
+            "tamanhoX": 4000,
+            "tamanhoY": 2500
+          },
+          "tamanhoX": 50,
+          "tamanhoY": 50
+        }
+      ],
 
       "elementos": [
         {
