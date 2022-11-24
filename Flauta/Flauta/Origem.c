@@ -119,17 +119,17 @@ int main(void) {
 		return -1;
 
 	//paginaPrincipal.background.imagem = al_load_bitmap("Mapa.png");
-	paginaPrincipal.backgroundCasa.imagem = al_load_bitmap("Utils/Imagens/Casa_Int.png");
+	paginaPrincipal.background.imagem = al_load_bitmap("Utils/Imagens/Mapa.png");
 	paginaPrincipal.posicaoBackGroud.posicaoX = 0;
 	paginaPrincipal.posicaoBackGroud.tamanhoX = 3833;
 	paginaPrincipal.posicaoBackGroud.posicaoY = 0;
 	paginaPrincipal.posicaoBackGroud.tamanhoY = 2152;
 
-	//paginaPrincipal.backgroundCasa.imagem = al_load_bitmap("Utils/Imagens/Casa_Int.png");
-	//paginaPrincipal.posicaoBgCasa.posicaoX = 4500;
-	//paginaPrincipal.posicaoBgCasa.tamanhoX = 1277;
-	//paginaPrincipal.posicaoBgCasa.posicaoY = 4500;
-	//paginaPrincipal.posicaoBgCasa.tamanhoY = 898;
+	paginaPrincipal.backgroundCasa.imagem = al_load_bitmap("Utils/Imagens/Casa_Int.png");
+	paginaPrincipal.posicaoBgCasa.posicaoX = 4500;
+	paginaPrincipal.posicaoBgCasa.tamanhoX = 1277;
+	paginaPrincipal.posicaoBgCasa.posicaoY = 4500;
+	paginaPrincipal.posicaoBgCasa.tamanhoY = 898;
 
 	bgCasa = al_load_bitmap("Utils/Imagens/Casa_Int.png");
 	carregarInformacaoesCenario();
@@ -161,7 +161,7 @@ int main(void) {
 		else if (paginaPrincipal.aberta) {
 
 			if (primeiraVolta) {
-				//gerarMapa();
+				/*gerarMapa();*/
 				primeiraVolta = false;
 			}
 			gerenciarPosicaoPersonagem(&evento);
@@ -188,6 +188,7 @@ int main(void) {
 	al_destroy_event_queue(eventos);
 	al_destroy_bitmap(personagemPrincipal.imagem);
 	al_destroy_bitmap(paginaPrincipal.background.imagem);
+	al_destroy_bitmap(paginaPrincipal.backgroundCasa.imagem);
 	al_destroy_timer(tempoRenderizacao);
 
 	return 0;
@@ -372,6 +373,7 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 		al_clear_to_color(al_map_rgb(0, 0, 0));
 
 		desenharImagem(paginaPrincipal.background, paginaPrincipal.posicaoBackGroud);
+		desenharImagem(paginaPrincipal.backgroundCasa, paginaPrincipal.posicaoBgCasa);
 
 		cameraUpdate(cameraPosition, &personagemPrincipal.movimento.posicao);
 		al_identity_transform(&camera);

@@ -880,10 +880,10 @@
           "qtdItens": 5,
           "posicaoGeracao": {
             "posicaoX": 1200,
-            "posicaoY": 1200,
+            "posicaoY": 1000,
 
-            "tamanhoX": 1000,
-            "tamanhoY": 1000
+            "tamanhoX": 1400,
+            "tamanhoY": 1050
           },
           "tamanhoX": 50,
           "tamanhoY": 50
@@ -891,23 +891,8 @@
       ],
 
       "elementos": [
-        {
-          "canarioItem": 5,
-          "posicaoAbsoluta": {
-            "posicaoX": 900,
-            "posicaoY": 500,
-
-            "tamanhoX": 50,
-            "tamanhoY": 50
-          },
-          "posicaoRelativa": {
-            "posicaoX": 900,
-            "posicaoY": 500,
-
-            "tamanhoX": 50,
-            "tamanhoY": 50
-          }
-        }
+ 
+        
       ]
     }
   ]
