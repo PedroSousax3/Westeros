@@ -46,6 +46,7 @@ ALLEGRO_KEYBOARD_STATE keyState;
 ALLEGRO_TIMER * tempoRenderizacao = NULL;
 ALLEGRO_FONT* fontePasso;
 ALLEGRO_BITMAP* mapaImagem = NULL;
+bool primeiraVolta = true;
 
 float cameraPosition[2] = { 0 , 0 };
 
@@ -60,9 +61,38 @@ void carregarInformacoesMissoes(void);
 char* concatenarTexto(char* mensagem, char* conteudo, char* separador);
 void desenharPassoMissao(PassoMissao* passoMissao);
 
-//void desenharItemCenario(CenarioItem* cenario);
-//void desenharItensCenario(CenarioItem* cenarioItenInicial);
 
+void gerarMapa() {
+	al_set_new_display_flags(ALLEGRO_NOFRAME);
+	ALLEGRO_DISPLAY * displayMapa = al_create_display(
+		4000,
+		2500
+	); //Cria a tela do programa
+	al_set_target_backbuffer(displayMapa);
+	al_set_window_title(displayMapa, "Mapa");
+
+	al_flip_display();
+	al_clear_to_color(al_map_rgb(0, 0, 0), 0, 0);
+	al_clear_to_color(al_map_rgb(0, 0, 0));
+
+	desenharImagem(paginaPrincipal.background, paginaPrincipal.posicaoBackGroud);
+
+	//cameraUpdate(cameraPosition, &personagemPrincipal.movimento.posicao);
+	//al_identity_transform(&camera);
+	//al_translate_transform(&camera, -cameraPosition[0], -cameraPosition[1]);
+	//al_use_transform(&camera);
+
+	//desenharPersonagem(personagemPrincipal);
+	desenharCenarioItens(cenarioItemInicial);
+	desenharPassoMissao(personagemPrincipal.missaoAtual->passosMissao);
+
+	al_save_bitmap("screenshot.bmp", al_get_backbuffer(displayMapa));
+	mapaImagem = al_load_bitmap("screenshot.bmp");
+
+	al_destroy_display(displayMapa);
+
+	al_set_target_backbuffer(paginaPrincipal.display);
+}
 int main(void) {
 	if (!al_init())
 		return -1;
@@ -88,7 +118,6 @@ int main(void) {
 	if (!paginaPrincipal.display)
 		return -1;
 
-	desenharPersonagem(personagemPrincipal);
 	paginaPrincipal.background.imagem = al_load_bitmap("Mapa.png");
 	paginaPrincipal.posicaoBackGroud.posicaoX = 0;
 	paginaPrincipal.posicaoBackGroud.tamanhoX = 3833;
@@ -103,7 +132,8 @@ int main(void) {
 	misturas = iniciarMisturas(cenarioItemInicial);
 	al_start_timer(tempoRenderizacao);
 
-	bool primeiraVolta = true;
+	
+
 	while (paginaPrincipal.aberta) {
 		ALLEGRO_EVENT evento;
 		al_wait_for_event(eventos, &evento);
@@ -122,45 +152,24 @@ int main(void) {
 		if (paginaCombinacao.aberta)
 			executarPaginaCombinacao(&paginaCombinacao, personagemPrincipal.inventario);
 		else if (paginaPrincipal.aberta) {
-			gerenciarPosicaoPersonagem(&evento);
-			desenharPersonagem(personagemPrincipal);
-			desenharCenarioItens(cenarioItemInicial);
-			desenharPassoMissao(personagemPrincipal.missaoAtual->passosMissao);
-			Posicao posicao = {
-				.posicaoX = cameraPosition[0] + paginaPrincipal.posicao.tamanhoX - 300, //X inicial
-				.posicaoY = cameraPosition[1] + 5, //Y inicial
-				.tamanhoX = cameraPosition[0] + paginaPrincipal.posicao.tamanhoX - 5, //X Maximo
-				.tamanhoY = cameraPosition[1] + paginaPrincipal.posicao.tamanhoY - 5 //Y Maximo
-			};
-			//al_do_multiline_text(fontePasso, 300, "", )
-			//char* nome = "Meu teste 1, Meu teste 2, Meu teste 3, Meu teste 4, Meu teste 5";
 
-			//al_get_text_dimensions(fontePasso, nome, 0, 0, 300, 300);
-			//al_draw_multiline_textf(
-			//	fontePasso,
-			//	al_map_rgb(0, 0, 0),
-			//	0,
-			//	0,
-			//	300,
-			//	al_get_font_line_height(fontePasso),
-			//	0,
-			//	"Meu teste 1, Meu teste 2, Meu teste 3, Meu teste 4, Meu teste 5"
-			//	/*passoMissao->mensagemInicial/*,
-			//	al_get_display_width(display),
-			//	 al_get_display_height(display),
-			//	 al_get_display_flags(display) & ALLEGRO_MAXIMIZED ? "yes" :
-			//	 "no"*/
-			//);
+			if (primeiraVolta) {
+				gerarMapa();
+				primeiraVolta = false;
+			}
+			gerenciarPosicaoPersonagem(&evento);
+
 			if(personagemPrincipal.movimento.posicao.posicaoX <= 5140 && personagemPrincipal.movimento.posicao.posicaoX >= 5050 && personagemPrincipal.movimento.posicao.posicaoY >= 5240) {
-			personagemPrincipal.movimento.posicao.posicaoX = 533;
-			personagemPrincipal.movimento.posicao.posicaoY = 680;
-		}
+				personagemPrincipal.movimento.posicao.posicaoX = 533;
+				personagemPrincipal.movimento.posicao.posicaoY = 680;
+			}
 			if (personagemPrincipal.movimento.posicao.posicaoX >= 530 && personagemPrincipal.movimento.posicao.posicaoX <= 540 && personagemPrincipal.movimento.posicao.posicaoY >= 644 && personagemPrincipal.movimento.posicao.posicaoY <= 660) {
 				personagemPrincipal.movimento.posicao.posicaoX = 5105;
 				personagemPrincipal.movimento.posicao.posicaoY = 5220;
 			}
 		}
-		 
+
+		
 	}
 
 	destruirCenarioItens(cenarioItemInicial);
@@ -210,12 +219,6 @@ Personagem configurarPersonagemPrincipal(void) {
 
 	movimento.posicao = posicao;
 	personagem.movimento = movimento;
-
-	//Careaga inventario teste
-	for (int i = 0; i < 10; i++) {
-		Equipamento equipamento = gerarEquipamento(1);
-		personagemPrincipal.equipamentos[i] = equipamento;
-	}
 
 	return personagem;
 }
@@ -352,34 +355,27 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 		if (personagemPrincipal.imagemX != 0)
 			printf("X: %i\nY: %i\n", personagemPrincipal.movimento.posicao.posicaoX, personagemPrincipal.movimento.posicao.posicaoY);
 
-		al_flip_display();
-		al_clear_to_color(al_map_rgb(0, 0, 0), 0, 0);
-		al_clear_to_color(al_map_rgb(0, 0, 0));
-		desenharImagem(paginaPrincipal.background, paginaPrincipal.posicaoBackGroud);
-
 		if (colediuComCenario(cenarioItemInicial, personagemPrincipal.movimento.posicao, true)) {
 			personagemPrincipal.movimento.posicao.posicaoX = posicaoXPersonagem;
 			personagemPrincipal.movimento.posicao.posicaoY = posicaoYPersonagem;
 		}
 
-		//Imagem imagem = {
-		//	.imagem = mapaImagem
-		//};
-		//Posicao posicaoMapa = {
-		//	.posicaoX = paginaPrincipal.posicao.tamanhoX - 500,
-		//	.posicaoY = paginaPrincipal.posicao.tamanhoY - 500,
-		//	.tamanhoX = 500,
-		//	.tamanhoY = 500
-		//};
-		//desenharImagem(imagem, posicaoMapa);
+		al_flip_display();
+		al_clear_to_color(al_map_rgb(0, 0, 0), 0, 0);
+		al_clear_to_color(al_map_rgb(0, 0, 0));
+
+		desenharImagem(paginaPrincipal.background, paginaPrincipal.posicaoBackGroud);
 
 		cameraUpdate(cameraPosition, &personagemPrincipal.movimento.posicao);
 		al_identity_transform(&camera);
 		al_translate_transform(&camera, -cameraPosition[0], -cameraPosition[1]);
 		al_use_transform(&camera);
-		//desenharItensCenario(cenarioItem);
+		
+		desenharPersonagem(personagemPrincipal);
+		desenharCenarioItens(cenarioItemInicial);
+		desenharPassoMissao(personagemPrincipal.missaoAtual->passosMissao);
 	}
-	/*else if (event.type == ALLEGRO_EVENT_MOUSE_AXES) 
+	else if (event.type == ALLEGRO_EVENT_MOUSE_AXES) 
 	{
 		printf("\nMouse:\n\tX: %i\n\tY: %i", event.mouse.x, event.mouse.y);
 		posicaoMouse.posicaoX = event.mouse.x + cameraPosition[0],
@@ -392,18 +388,18 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 	else if (event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
 		if (event.mouse.button == 1 && colediuComCenario(cenarioItemInicial, posicaoMouse, false)) {
 			ElementoCenario* elementoCenario = obterElementoCenarioEmPosicao(cenarioItemInicial, posicaoMouse, false);
-			
-			if (personagemPrincipal.inventario == NULL) {
-				personagemPrincipal.inventario = inserirItemInventario(personagemPrincipal.inventario, elementoCenario->cenarioItem);
-				removerElementoCenario(elementoCenario);
-			}
-			else if ((*personagemPrincipal.inventario->count) < 3) {
-				Inventario* ultimoInventario = ultimoItemInventario(personagemPrincipal.inventario);
-				if (ultimoInventario != NULL) {
-					inserirItemInventario(ultimoInventario, elementoCenario->cenarioItem);
+			if (elementoCenario->cenarioItem->coletavelPeloJogador) {
+				if (personagemPrincipal.inventario == NULL) {
+					personagemPrincipal.inventario = inserirItemInventario(personagemPrincipal.inventario, elementoCenario->cenarioItem);
 					removerElementoCenario(elementoCenario);
 				}
-
+				else if ((*personagemPrincipal.inventario->count) < 3) {
+					Inventario* ultimoInventario = ultimoItemInventario(personagemPrincipal.inventario);
+					if (ultimoInventario != NULL) {
+						inserirItemInventario(ultimoInventario, elementoCenario->cenarioItem);
+						removerElementoCenario(elementoCenario);
+					}
+				}
 			}
 		}
 	}

@@ -8,8 +8,10 @@
         "endereco": "Utils/Imagens/Casa.png",
         "orientacao": 1
       },
+
       "coletavelPeloJogador": false,
       "codigoItemInventario": null,
+      "randomElementes": [],
 
       "elementos": [
         {
@@ -39,8 +41,10 @@
         "endereco": "Utils/Imagens/Fundo_branco.png",
         "orientacao": 1
       },
+
       "coletavelPeloJogador": false,
       "codigoItemInventario": null,
+      "randomElementes": [],
 
       "elementos": [
         {
@@ -794,8 +798,10 @@
         "endereco": "Utils/Imagens/Arvore_Balanço.png",
         "orientacao": 1
       },
+
       "coletavelPeloJogador": false,
       "codigoItemInventario": null,
+      "randomElementes": [],
 
       "elementos": [
         {
@@ -825,8 +831,10 @@
         "endereco": "Utils/Imagens/Hortela.png",
         "orientacao": 1
       },
+
       "coletavelPeloJogador": true,
       "codigoItemInventario": null,
+      "randomElementes": [],
 
       "elementos": [
         {
