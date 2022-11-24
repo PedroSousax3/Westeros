@@ -3,8 +3,8 @@
 #include <time.h>    /* time() */
 
 int gerarNumeroAleatorioInt(int inicio, int fim) {
-	//srand(fim + 1);
-	int numero = rand() %fim + 1;
+	//srand(rand());
+	int numero = rand() % fim + 1;
 	if (numero < inicio)
 		numero = gerarNumeroAleatorioInt(inicio, fim);
 	return numero;

@@ -237,6 +237,7 @@ void desenharCenarioItens(CenarioItem * cenarioItenInicial) {
 }
 
 bool colediuComElementoCenario(ElementoCenario * elementoCenario, Posicao posicaoComparacao, bool useRelative) {
+	printf("Item: %i\n", elementoCenario->indice);
 	if (elementoCenario != NULL) {
 		if (posicaoColediu(useRelative  ? *elementoCenario->posicaoRelativa : *elementoCenario->posicaoAbsoluta, posicaoComparacao))
 			return true;
@@ -283,7 +284,7 @@ ElementoCenario * obterElementoCenarioEmPosicao(CenarioItem * cenarioItemInicial
 	return NULL;
 }
 
-void removerElementoCenario (ElementoCenario * elementoCenario) {
+ElementoCenario * removerElementoCenario (ElementoCenario * elementoCenario) {
 	(*elementoCenario->count)--;
 	if (elementoCenario->count == 0)
 		free(elementoCenario->count);
@@ -298,6 +299,11 @@ void removerElementoCenario (ElementoCenario * elementoCenario) {
 		anterior->proximo = proximo;
 	if (proximo != NULL)
 		proximo->anterior = anterior;
+
+	if (anterior != NULL)
+		return anterior;
+	if (proximo != NULL)
+		return proximo;
 }
 
 void alterarPosicaoChildrenElementoCenario(ElementoCenario * inicio, int diferenca) {

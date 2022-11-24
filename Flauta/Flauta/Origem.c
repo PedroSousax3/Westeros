@@ -397,18 +397,24 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 	else if (event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
 		if (event.mouse.button == 1 && colediuComCenario(cenarioItemInicial, posicaoMouse, false)) {
 			ElementoCenario* elementoCenario = obterElementoCenarioEmPosicao(cenarioItemInicial, posicaoMouse, false);
+			CenarioItem* cernarioItem = elementoCenario->cenarioItem;
 			if (elementoCenario->cenarioItem->coletavelPeloJogador) {
 				if (personagemPrincipal.inventario == NULL) {
 					personagemPrincipal.inventario = inserirItemInventario(personagemPrincipal.inventario, elementoCenario->cenarioItem);
-					removerElementoCenario(elementoCenario);
+					elementoCenario = removerElementoCenario(elementoCenario);
+					if (elementoCenario->indice == 0)
+						cernarioItem->elementoInical = elementoCenario;
 				}
 				else if ((*personagemPrincipal.inventario->count) < 3) {
 					Inventario* ultimoInventario = ultimoItemInventario(personagemPrincipal.inventario);
 					if (ultimoInventario != NULL) {
 						inserirItemInventario(ultimoInventario, elementoCenario->cenarioItem);
-						removerElementoCenario(elementoCenario);
+						elementoCenario = removerElementoCenario(elementoCenario);
 					}
 				}
+
+				if (elementoCenario->indice == 0)
+					cernarioItem->elementoInical = elementoCenario;
 			}
 		}
 	}

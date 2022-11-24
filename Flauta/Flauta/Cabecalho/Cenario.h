@@ -26,5 +26,5 @@ bool colediuComElementoCenario(ElementoCenario* elementoCenario, Posicao posicao
 bool colediuComCenario(CenarioItem* cenarioItenInicial, Posicao posicaoComparacao, bool useRelative);
 ElementoCenario* buscarElementoCenarioPorPosicao(ElementoCenario* elementoCenario, Posicao posicao, bool useRelative);
 ElementoCenario* obterElementoCenarioEmPosicao(CenarioItem* cenarioItemInicial, Posicao posicao, bool useRelative);
-void removerElementoCenario(ElementoCenario* elementoCenario);
+ElementoCenario * removerElementoCenario(ElementoCenario* elementoCenario);
 void alterarPosicaoChildrenElementoCenario(ElementoCenario* inicio, int diferenca);
