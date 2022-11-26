@@ -164,7 +164,12 @@
     <Image Include="Mapa.png" />
     <Image Include="Serena_Player.png" />
     <Image Include="Sprite-0002.png" />
-    <Image Include="Utils\Imagens\arvore_de_hortelan.png" />
+    <Image Include="Utils\Imagens\Arvore_mini_1.png" />
+    <Image Include="Utils\Imagens\Arvore_mini_2.png" />
+    <Image Include="Utils\Imagens\Arvore_mini_flor.png" />
+    <Image Include="Utils\Imagens\Arvore_mini_pura.png" />
+    <Image Include="Utils\Imagens\Arvore_mini_pura_2.png" />
+    <Image Include="Utils\Imagens\Arvore_Roxa.png" />
     <Image Include="Utils\Imagens\camomila.png" />
     <Image Include="BG-0001.png" />
     <Image Include="Serena.png" />
@@ -173,7 +178,12 @@
     <Image Include="Utils\Imagens\Arvore_1.png" />
     <Image Include="Utils\Imagens\Arvore_2.png" />
     <Image Include="Utils\Imagens\Arvore_Balanço.png" />
-    <Image Include="Utils\Imagens\lago.png" />
+    <Image Include="Utils\Imagens\Casa.png" />
+    <Image Include="Utils\Imagens\Eucalipto_Arvore.png" />
+    <Image Include="Utils\Imagens\Mato_1.png" />
+    <Image Include="Utils\Imagens\Mato_2.png" />
+    <Image Include="Utils\Imagens\Mato_3.png" />
+    <Image Include="Utils\Imagens\Pedra_1.png" />
     <Image Include="Utils\Imagens\planta.png" />
     <Image Include="Utils\Imagens\Eucalipto.png" />
     <Image Include="Utils\Imagens\Fundo_branco.png" />

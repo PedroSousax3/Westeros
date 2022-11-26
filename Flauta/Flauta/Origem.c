@@ -121,9 +121,9 @@ int main(void) {
 	//paginaPrincipal.background.imagem = al_load_bitmap("Mapa.png");
 	paginaPrincipal.background.imagem = al_load_bitmap("Utils/Imagens/Mapa.png");
 	paginaPrincipal.posicaoBackGroud.posicaoX = 0;
-	paginaPrincipal.posicaoBackGroud.tamanhoX = 3833;
+	paginaPrincipal.posicaoBackGroud.tamanhoX = 5268;
 	paginaPrincipal.posicaoBackGroud.posicaoY = 0;
-	paginaPrincipal.posicaoBackGroud.tamanhoY = 2152;
+	paginaPrincipal.posicaoBackGroud.tamanhoY = 2160;
 
 	paginaPrincipal.backgroundCasa.imagem = al_load_bitmap("Utils/Imagens/Casa_Int.png");
 	paginaPrincipal.posicaoBgCasa.posicaoX = 4500;

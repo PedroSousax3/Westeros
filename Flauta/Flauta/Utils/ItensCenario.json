@@ -109,21 +109,100 @@
             "tamanhoY": 45
           }
         },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 1160,
+            "posicaoY": 250,
 
+            "tamanhoX": 1000,
+            "tamanhoY": 100
+          },
+          "posicaoRelativa": {
+            "posicaoX": 1160,
+            "posicaoY": 250,
+
+            "tamanhoX": 1000,
+            "tamanhoY": 100
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 1200,
+            "posicaoY": 350,
+
+            "tamanhoX": 900,
+            "tamanhoY": 100
+          },
+          "posicaoRelativa": {
+            "posicaoX": 1200,
+            "posicaoY": 350,
+
+            "tamanhoX": 900,
+            "tamanhoY": 100
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 1250,
+            "posicaoY": 450,
+
+            "tamanhoX": 400,
+            "tamanhoY": 100
+          },
+          "posicaoRelativa": {
+            "posicaoX": 1250,
+            "posicaoY": 450,
+
+            "tamanhoX": 400,
+            "tamanhoY": 100
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 1340,
+            "posicaoY": 550,
+
+            "tamanhoX": 230,
+            "tamanhoY": 100
+          },
+          "posicaoRelativa": {
+            "posicaoX": 1340,
+            "posicaoY": 550,
+
+            "tamanhoX": 230,
+            "tamanhoY": 100
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 1410,
+            "posicaoY": 650,
+
+            "tamanhoX": 90,
+            "tamanhoY": 100
+          },
+          "posicaoRelativa": {
+            "posicaoX": 1410,
+            "posicaoY": 650,
+
+            "tamanhoX": 90,
+            "tamanhoY": 100
+          }
+        },
         {
           "posicaoAbsoluta": {
             "posicaoX": 0,
             "posicaoY": 0,
 
-            "tamanhoX": 3840,
-            "tamanhoY": 257
+            "tamanhoX": 5268,
+            "tamanhoY": 270
           },
           "posicaoRelativa": {
             "posicaoX": 0,
             "posicaoY": 0,
 
-            "tamanhoX": 3840,
-            "tamanhoY": 257
+            "tamanhoX": 5268,
+            "tamanhoY": 270
           }
         },
 
@@ -160,38 +239,213 @@
             "tamanhoY": 290
           }
         },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 1230,
+            "posicaoY": 1760,
 
+            "tamanhoX": 35,
+            "tamanhoY": 290
+          },
+          "posicaoRelativa": {
+            "posicaoX": 1230,
+            "posicaoY": 1760,
+
+            "tamanhoX": 35,
+            "tamanhoY": 290
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 1330,
+            "posicaoY": 1760,
+
+            "tamanhoX": 35,
+            "tamanhoY": 290
+          },
+          "posicaoRelativa": {
+            "posicaoX": 1330,
+            "posicaoY": 1760,
+
+            "tamanhoX": 35,
+            "tamanhoY": 290
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 1440,
+            "posicaoY": 1760,
+
+            "tamanhoX": 35,
+            "tamanhoY": 290
+          },
+          "posicaoRelativa": {
+            "posicaoX": 1440,
+            "posicaoY": 1760,
+
+            "tamanhoX": 35,
+            "tamanhoY": 290
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 1555,
+            "posicaoY": 1760,
+
+            "tamanhoX": 35,
+            "tamanhoY": 290
+          },
+          "posicaoRelativa": {
+            "posicaoX": 1555,
+            "posicaoY": 1760,
+
+            "tamanhoX": 35,
+            "tamanhoY": 290
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 4030,
+            "posicaoY": 1700,
+
+            "tamanhoX": 35,
+            "tamanhoY": 290
+          },
+          "posicaoRelativa": {
+            "posicaoX": 4030,
+            "posicaoY": 1700,
+
+            "tamanhoX": 35,
+            "tamanhoY": 290
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 4130,
+            "posicaoY": 1700,
+
+            "tamanhoX": 35,
+            "tamanhoY": 290
+          },
+          "posicaoRelativa": {
+            "posicaoX": 4130,
+            "posicaoY": 1700,
+
+            "tamanhoX": 35,
+            "tamanhoY": 290
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 4240,
+            "posicaoY": 1700,
+
+            "tamanhoX": 35,
+            "tamanhoY": 290
+          },
+          "posicaoRelativa": {
+            "posicaoX": 4240,
+            "posicaoY": 1700,
+
+            "tamanhoX": 35,
+            "tamanhoY": 290
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 4355,
+            "posicaoY": 1700,
+
+            "tamanhoX": 35,
+            "tamanhoY": 290
+          },
+          "posicaoRelativa": {
+            "posicaoX": 4355,
+            "posicaoY": 1700,
+
+            "tamanhoX": 35,
+            "tamanhoY": 290
+          }
+        },
         {
           "posicaoAbsoluta": {
             "posicaoX": 0,
-            "posicaoY": 2022,
+            "posicaoY": 2050,
 
-            "tamanhoX": 3840,
+            "tamanhoX": 5268,
             "tamanhoY": 238
           },
           "posicaoRelativa": {
             "posicaoX": 0,
-            "posicaoY": 2022,
+            "posicaoY": 2050,
 
-            "tamanhoX": 3840,
+            "tamanhoX": 5268,
             "tamanhoY": 238
           }
         },
 
         {
           "posicaoAbsoluta": {
-            "posicaoX": 3820,
+            "posicaoX": 5170,
             "posicaoY": 0,
 
-            "tamanhoX": 20,
+            "tamanhoX": 98,
             "tamanhoY": 2160
           },
           "posicaoRelativa": {
-            "posicaoX": 3820,
+            "posicaoX": 5170,
             "posicaoY": 0,
 
-            "tamanhoX": 20,
+            "tamanhoX": 98,
             "tamanhoY": 2160
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 3965,
+            "posicaoY": 1960,
+
+            "tamanhoX": 1300,
+            "tamanhoY": 200
+          },
+          "posicaoRelativa": {
+            "posicaoX": 3965,
+            "posicaoY": 1960,
+
+            "tamanhoX": 1300,
+            "tamanhoY": 200
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 1585,
+            "posicaoY": 1960,
+
+            "tamanhoX": 2100,
+            "tamanhoY": 200
+          },
+          "posicaoRelativa": {
+            "posicaoX": 1585,
+            "posicaoY": 1960,
+
+            "tamanhoX": 2100,
+            "tamanhoY": 200
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 940,
+            "posicaoY": 1890,
+
+            "tamanhoX": 240,
+            "tamanhoY": 310
+          },
+          "posicaoRelativa": {
+            "posicaoX": 940,
+            "posicaoY": 1890,
+
+            "tamanhoX": 240,
+            "tamanhoY": 310
           }
         },
         {
@@ -680,13 +934,61 @@
             "posicaoY": 5045,
 
             "tamanhoX": 150,
-            "tamanhoY": 100
+            "tamanhoY": 10
           },
           "posicaoRelativa": {
             "posicaoX": 4750,
             "posicaoY": 5045,
 
             "tamanhoX": 150,
+            "tamanhoY": 10
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 4750,
+            "posicaoY": 5135,
+
+            "tamanhoX": 150,
+            "tamanhoY": 10
+          },
+          "posicaoRelativa": {
+            "posicaoX": 4750,
+            "posicaoY": 5135,
+
+            "tamanhoX": 150,
+            "tamanhoY": 10
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 4890,
+            "posicaoY": 5045,
+
+            "tamanhoX": 10,
+            "tamanhoY": 100
+          },
+          "posicaoRelativa": {
+            "posicaoX": 4890,
+            "posicaoY": 5045,
+
+            "tamanhoX": 10,
+            "tamanhoY": 100
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 4750,
+            "posicaoY": 5045,
+
+            "tamanhoX": 10,
+            "tamanhoY": 100
+          },
+          "posicaoRelativa": {
+            "posicaoX": 4750,
+            "posicaoY": 5045,
+
+            "tamanhoX": 10,
             "tamanhoY": 100
           }
         },
@@ -784,6 +1086,38 @@
 
             "tamanhoX": 30,
             "tamanhoY": 15
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 3645,
+            "posicaoY": 1140,
+
+            "tamanhoX": 320,
+            "tamanhoY": 1000
+          },
+          "posicaoRelativa": {
+            "posicaoX": 3645,
+            "posicaoY": 1140,
+
+            "tamanhoX": 320,
+            "tamanhoY": 1000
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 3645,
+            "posicaoY": 0,
+
+            "tamanhoX": 320,
+            "tamanhoY": 1055
+          },
+          "posicaoRelativa": {
+            "posicaoX": 3645,
+            "posicaoY": 0,
+
+            "tamanhoX": 320,
+            "tamanhoY": 1055
           }
         }
       ]
@@ -960,13 +1294,13 @@
       "codigoItemInventario": null,
       "randomElementes": [
         {
-          "qtdItens": 3,
+          "qtdItens": 12,
           "posicaoGeracao": {
-            "posicaoX": 500,
-            "posicaoY": 900,
+            "posicaoX": 2050,
+            "posicaoY": 1300,
 
-            "tamanhoX": 800,
-            "tamanhoY": 950
+            "tamanhoX": 3150,
+            "tamanhoY": 1700
           },
           "tamanhoX": 22,
           "tamanhoY": 22
@@ -987,13 +1321,13 @@
       "codigoItemInventario": null,
       "randomElementes": [
         {
-          "qtdItens": 3,
+          "qtdItens": 12,
           "posicaoGeracao": {
-            "posicaoX": 500,
-            "posicaoY": 950,
+            "posicaoX": 2160,
+            "posicaoY": 300,
 
-            "tamanhoX": 800,
-            "tamanhoY": 1000
+            "tamanhoX": 2830,
+            "tamanhoY": 650
           },
           "tamanhoX": 21,
           "tamanhoY": 22
@@ -1016,11 +1350,65 @@
         {
           "qtdItens": 3,
           "posicaoGeracao": {
-            "posicaoX": 500,
-            "posicaoY": 1000,
+            "posicaoX": 4275,
+            "posicaoY": 1700,
 
-            "tamanhoX": 800,
-            "tamanhoY": 1050
+            "tamanhoX": 4355,
+            "tamanhoY": 1900
+          },
+          "tamanhoX": 22,
+          "tamanhoY": 23
+        }
+      ],
+
+      "elementos": []
+    },
+    {
+      "codigo": 10,
+      "nome": "Alecrim",
+      "descricao": "Alecrim",
+      "imagem": {
+        "endereco": "Utils/Imagens/Alecrim.png",
+        "orientacao": 1
+      },
+      "coletavelPeloJogador": true,
+      "codigoItemInventario": null,
+      "randomElementes": [
+        {
+          "qtdItens": 3,
+          "posicaoGeracao": {
+            "posicaoX": 4065,
+            "posicaoY": 1700,
+
+            "tamanhoX": 4130,
+            "tamanhoY": 1900
+          },
+          "tamanhoX": 22,
+          "tamanhoY": 23
+        }
+      ],
+
+      "elementos": []
+    },
+    {
+      "codigo": 10,
+      "nome": "Alecrim",
+      "descricao": "Alecrim",
+      "imagem": {
+        "endereco": "Utils/Imagens/Alecrim.png",
+        "orientacao": 1
+      },
+      "coletavelPeloJogador": true,
+      "codigoItemInventario": null,
+      "randomElementes": [
+        {
+          "qtdItens": 3,
+          "posicaoGeracao": {
+            "posicaoX": 4165,
+            "posicaoY": 1700,
+
+            "tamanhoX": 4240,
+            "tamanhoY": 1900
           },
           "tamanhoX": 22,
           "tamanhoY": 23
@@ -1041,13 +1429,13 @@
       "codigoItemInventario": null,
       "randomElementes": [
         {
-          "qtdItens": 3,
+          "qtdItens": 7,
           "posicaoGeracao": {
-            "posicaoX": 500,
-            "posicaoY": 1050,
+            "posicaoX": 4750,
+            "posicaoY": 590,
 
-            "tamanhoX": 800,
-            "tamanhoY": 1100
+            "tamanhoX": 5100,
+            "tamanhoY": 750
           },
           "tamanhoX": 18,
           "tamanhoY": 23
@@ -1068,13 +1456,67 @@
       "codigoItemInventario": null,
       "randomElementes": [
         {
+          "qtdItens": 2,
+          "posicaoGeracao": {
+            "posicaoX": 1265,
+            "posicaoY": 1760,
+
+            "tamanhoX": 1330,
+            "tamanhoY": 2050
+          },
+          "tamanhoX": 22,
+          "tamanhoY": 23
+        }
+      ],
+
+      "elementos": []
+    },
+    {
+      "codigo": 12,
+      "nome": "Gengibre",
+      "descricao": "Gengibre",
+      "imagem": {
+        "endereco": "Utils/Imagens/Gengibre.png",
+        "orientacao": 1
+      },
+      "coletavelPeloJogador": true,
+      "codigoItemInventario": null,
+      "randomElementes": [
+        {
           "qtdItens": 3,
           "posicaoGeracao": {
-            "posicaoX": 500,
-            "posicaoY": 1100,
+            "posicaoX": 1365,
+            "posicaoY": 1760,
 
-            "tamanhoX": 800,
-            "tamanhoY": 1150
+            "tamanhoX": 1440,
+            "tamanhoY": 2050
+          },
+          "tamanhoX": 22,
+          "tamanhoY": 23
+        }
+      ],
+
+      "elementos": []
+    },
+    {
+      "codigo": 12,
+      "nome": "Gengibre",
+      "descricao": "Gengibre",
+      "imagem": {
+        "endereco": "Utils/Imagens/Gengibre.png",
+        "orientacao": 1
+      },
+      "coletavelPeloJogador": true,
+      "codigoItemInventario": null,
+      "randomElementes": [
+        {
+          "qtdItens": 2,
+          "posicaoGeracao": {
+            "posicaoX": 1475,
+            "posicaoY": 1760,
+
+            "tamanhoX": 1555,
+            "tamanhoY": 2050
           },
           "tamanhoX": 22,
           "tamanhoY": 23
@@ -1093,22 +1535,41 @@
       },
       "coletavelPeloJogador": true,
       "codigoItemInventario": null,
-      "randomElementes": [
+      "randomElementes": [],
+      "elementos": [
         {
-          "qtdItens": 3,
-          "posicaoGeracao": {
-            "posicaoX": 500,
-            "posicaoY": 1150,
+          "posicaoAbsoluta": {
+            "posicaoX": 4780,
+            "posicaoY": 5055,
 
-            "tamanhoX": 800,
-            "tamanhoY": 1200
+            "tamanhoX": 15,
+            "tamanhoY": 25
           },
-          "tamanhoX": 27,
-          "tamanhoY": 45
-        }
-      ],
+          "posicaoRelativa": {
+            "posicaoX": 4780,
+            "posicaoY": 5055,
 
-      "elementos": []
+            "tamanhoX": 15,
+            "tamanhoY": 25
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 4865,
+            "posicaoY": 5100,
+
+            "tamanhoX": 15,
+            "tamanhoY": 25
+          },
+          "posicaoRelativa": {
+            "posicaoX": 4865,
+            "posicaoY": 5100,
+
+            "tamanhoX": 15,
+            "tamanhoY": 25
+          }
+        }
+      ]
     },
     {
       "codigo": 14,
@@ -1136,6 +1597,37 @@
       ],
 
       "elementos": []
+    },
+    {
+      "codigo": 14,
+      "nome": "Arvore de Eucalipto",
+      "descricao": "Arvore de Eucalipto",
+      "imagem": {
+        "endereco": "Utils/Imagens/Eucalipto_Arvore.png",
+        "orientacao": 1
+      },
+      "coletavelPeloJogador": true,
+      "codigoItemInventario": null,
+      "randomElementes": [],
+      "elementos": [
+        {
+          "canarioItem": null,
+          "posicaoAbsoluta": {
+            "posicaoX": 4700,
+            "posicaoY": 20,
+
+            "tamanhoX": 550,
+            "tamanhoY": 636
+          },
+          "posicaoRelativa": {
+            "posicaoX": 4910,
+            "posicaoY": 550,
+
+            "tamanhoX": 120,
+            "tamanhoY": 30
+          }
+        }
+      ]
     }
   ]
 }

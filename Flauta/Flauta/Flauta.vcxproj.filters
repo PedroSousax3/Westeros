@@ -57,9 +57,6 @@
     <ClCompile Include="PaginaCombinacao.c">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Utilitario.c">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
     <ClCompile Include="Fonte\Inventario.c">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
@@ -67,6 +64,9 @@
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
     <ClCompile Include="Fonte\Missao.c">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="Fonte\Utils\Utilitario.c">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
   </ItemGroup>
@@ -95,13 +95,7 @@
     <Image Include="Utils\Imagens\Arvore_Balanço.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
-    <Image Include="Utils\Imagens\Arvore_Roxa.png">
-      <Filter>Arquivos de Recurso</Filter>
-    </Image>
     <Image Include="Utils\Imagens\Camomila.png">
-      <Filter>Arquivos de Recurso</Filter>
-    </Image>
-    <Image Include="Utils\Imagens\Casa.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
     <Image Include="Utils\Imagens\Casa_Int.png">
@@ -132,6 +126,60 @@
       <Filter>Arquivos de Recurso</Filter>
     </Image>
     <Image Include="Utils\Imagens\Árvore_Cortada.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Mapa.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Serena_Player.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Sprite-0002.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\planta.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\deepwater.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\orangetrees.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Arvore_Roxa.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Casa.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Eucalipto_Arvore.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Mato_1.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Mato_2.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Mato_3.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Pedra_1.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Arvore_mini_1.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Arvore_mini_2.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Arvore_mini_flor.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Arvore_mini_pura.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Arvore_mini_pura_2.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
   </ItemGroup>
@@ -176,9 +224,6 @@
     <ClInclude Include="PaginaCombinacao.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Utilitario.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
     <ClInclude Include="Cabecalho\Inventario.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
@@ -186,6 +231,9 @@
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="Cabecalho\Missao.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Cabecalho\Utils\Utilitario.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
   </ItemGroup>
