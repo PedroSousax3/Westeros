@@ -389,7 +389,7 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 		printf("\nMouse:\n\tX: %i\n\tY: %i", event.mouse.x, event.mouse.y);
 		posicaoMouse.posicaoX = event.mouse.x + cameraPosition[0],
 		posicaoMouse.posicaoY = event.mouse.y + cameraPosition[1];
-		if (colediuComCenario(cenarioItemInicial, posicaoMouse, false))
+		if (colediuComCenario(cenarioItemInicial, posicaoMouse, false) && obterElementoCenarioEmPosicao(cenarioItemInicial, posicaoMouse, false)->cenarioItem->coletavelPeloJogador)
 			al_set_system_mouse_cursor(paginaPrincipal.display, ALLEGRO_SYSTEM_MOUSE_CURSOR_LINK);
 		else
 			al_set_system_mouse_cursor(paginaPrincipal.display, ALLEGRO_SYSTEM_MOUSE_CURSOR_DEFAULT);
@@ -445,24 +445,24 @@ void carregarInformacoesMissoes(void) {
 	missaoInicial = mapearMissoesDeJson(NULL, missoesCJSON->child, cenarioItemInicial);
 }
 
-char* concatenarTexto(char* mensagem, char* conteudo, char * separador) {
-	if (mensagem != NULL) {
+char* concatenarTexto(char* mensagem1, char* mensagem2, char * separador) {
+	if (mensagem1 != NULL) {
 		//Mensagem Atual
-		int countMensagem = strlen(mensagem);
+		int countMensagem = strlen(mensagem1);
 		//Separador
 		int countSeparador = strlen(separador);
 		//Nova Mensagem
-		int count = strlen(conteudo);
+		int count = strlen(mensagem2);
 		char* mensagemFinal = (char*)malloc((count + countMensagem + countSeparador) * sizeof(char) + 1);
 
-		strcpy(mensagemFinal, mensagem);
+		strcpy(mensagemFinal, mensagem1);
 		strcat(mensagemFinal, separador);
-		strcat(mensagemFinal, conteudo);
+		strcat(mensagemFinal, mensagem2);
 
 		return mensagemFinal;
 	}
 
-	return conteudo;
+	return mensagem2;
 }
 
 void desenharPassoMissao(PassoMissao * passoMissao) {
@@ -482,6 +482,7 @@ void desenharPassoMissao(PassoMissao * passoMissao) {
 		.tamanhoY = cameraPosition[1] + paginaPrincipal.posicao.tamanhoY - 5 //Y Maximo
 	};
 
+	//Desenha o container que terá o conteúdo das missões
 	al_draw_filled_rectangle(
 		posicao.posicaoX,
 		posicao.posicaoY,
@@ -490,6 +491,7 @@ void desenharPassoMissao(PassoMissao * passoMissao) {
 		al_map_rgb(255, 255, 255)
 	);
 
+	//Escreve o texto com todos os passos obrigatorios para a conclusão da missão
 	al_draw_multiline_textf(
 		fontePasso,
 		al_map_rgb(0, 0, 0),
