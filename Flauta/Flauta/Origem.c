@@ -360,9 +360,6 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 		else
 			personagemPrincipal.imagemX = 0;
 		
-		if (personagemPrincipal.imagemX != 0)
-			printf("X: %i\nY: %i\n", personagemPrincipal.movimento.posicao.posicaoX, personagemPrincipal.movimento.posicao.posicaoY);
-
 		if (colediuComCenario(cenarioItemInicial, personagemPrincipal.movimento.posicao, true)) {
 			personagemPrincipal.movimento.posicao.posicaoX = posicaoXPersonagem;
 			personagemPrincipal.movimento.posicao.posicaoY = posicaoYPersonagem;
@@ -386,7 +383,6 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 	}
 	else if (event.type == ALLEGRO_EVENT_MOUSE_AXES) 
 	{
-		printf("\nMouse:\n\tX: %i\n\tY: %i", event.mouse.x, event.mouse.y);
 		posicaoMouse.posicaoX = event.mouse.x + cameraPosition[0],
 		posicaoMouse.posicaoY = event.mouse.y + cameraPosition[1];
 		if (colediuComCenario(cenarioItemInicial, posicaoMouse, false) && obterElementoCenarioEmPosicao(cenarioItemInicial, posicaoMouse, false)->cenarioItem->coletavelPeloJogador)
@@ -402,15 +398,16 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 			if (elementoCenario->cenarioItem->coletavelPeloJogador) {
 				if (personagemPrincipal.inventario == NULL) {
 					personagemPrincipal.inventario = inserirItemInventario(personagemPrincipal.inventario, elementoCenario->cenarioItem);
-					elementoCenario = removerElementoCenario(elementoCenario);
+					//elementoCenario = removerElementoCenario(elementoCenario);
 					if (elementoCenario->indice == 0)
 						cernarioItem->elementoInical = elementoCenario;
 				}
-				else if ((*personagemPrincipal.inventario->count) < 3) {
+				//else if ((*personagemPrincipal.inventario->count) < 3) {
+				else {
 					Inventario* ultimoInventario = ultimoItemInventario(personagemPrincipal.inventario);
 					if (ultimoInventario != NULL) {
 						inserirItemInventario(ultimoInventario, elementoCenario->cenarioItem);
-						elementoCenario = removerElementoCenario(elementoCenario);
+						//elementoCenario = removerElementoCenario(elementoCenario);
 					}
 				}
 

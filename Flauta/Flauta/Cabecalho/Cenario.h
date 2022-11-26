@@ -28,3 +28,4 @@ ElementoCenario* buscarElementoCenarioPorPosicao(ElementoCenario* elementoCenari
 ElementoCenario* obterElementoCenarioEmPosicao(CenarioItem* cenarioItemInicial, Posicao posicao, bool useRelative);
 ElementoCenario * removerElementoCenario(ElementoCenario* elementoCenario);
 void alterarPosicaoChildrenElementoCenario(ElementoCenario* inicio, int diferenca);
+ElementoCenario* obterUltimoElementoCenario(ElementoCenario* elementoCenario);

@@ -11,57 +11,63 @@ ElementoCenario * gerarElementosCenario(CenarioItem* cenarioItem, int qtdGerar, 
 	ElementoCenario* noProximo = NULL;
 
 	for (int i = 0; i < qtdGerar; i++) {
-		ElementoCenario* elementoCenario = (ElementoCenario*)malloc(sizeof(ElementoCenario));
-		elementoCenario->proximo = NULL;
-		elementoCenario->anterior = NULL;
-
 		int x = gerarNumeroAleatorioInt(posicaoInicialGeracao.posicaoX, posicaoInicialGeracao.tamanhoX - poseicaoBase.tamanhoX);
 		int y = gerarNumeroAleatorioInt(posicaoInicialGeracao.posicaoY, posicaoInicialGeracao.tamanhoY - poseicaoBase.tamanhoY);
 
-		elementoCenario->cenarioItem = cenarioItem;
+		Posicao posicaoValidar = {
+			.posicaoX = x,
+			.posicaoY = y,
+			.tamanhoX = poseicaoBase.tamanhoX,
+			.tamanhoY = poseicaoBase.tamanhoY
+		};
 
-		elementoCenario->posicaoAbsoluta = (Posicao*)malloc(sizeof(Posicao));
-		elementoCenario->posicaoRelativa = (Posicao*)malloc(sizeof(Posicao));
+		if (colediuComCenario(cenarioItemIncial, posicaoValidar, false)) {
+			i--;
+		} 
+		else {
+			ElementoCenario* elementoCenario = (ElementoCenario*)malloc(sizeof(ElementoCenario));
+			elementoCenario->proximo = NULL;
+			elementoCenario->anterior = NULL;
 
-		elementoCenario->posicaoAbsoluta->posicaoX = x;
-		elementoCenario->posicaoAbsoluta->posicaoY = y;
-		elementoCenario->posicaoAbsoluta->tamanhoX = poseicaoBase.tamanhoX;
-		elementoCenario->posicaoAbsoluta->tamanhoY = poseicaoBase.tamanhoY;
+			elementoCenario->cenarioItem = cenarioItem;
 
-		elementoCenario->posicaoRelativa->posicaoX = x;
-		elementoCenario->posicaoRelativa->posicaoY = y;
-		elementoCenario->posicaoRelativa->tamanhoX = poseicaoBase.tamanhoX;
-		elementoCenario->posicaoRelativa->tamanhoY = poseicaoBase.tamanhoY;
+			elementoCenario->posicaoAbsoluta = (Posicao*)malloc(sizeof(Posicao));
+			elementoCenario->posicaoRelativa = (Posicao*)malloc(sizeof(Posicao));
 
-		if (primeiro == NULL) {
-			primeiro = elementoCenario;
-			primeiro->anterior = NULL;
-			elementoCenario->count = (int*)malloc(sizeof(int));
-			(*elementoCenario->count) = 0;
-		}
-		else if (noAnterior != NULL) {
-			noAnterior->proximo = elementoCenario;
-			elementoCenario->anterior = noAnterior;
-			elementoCenario->count = noAnterior->count;
-		}
+			elementoCenario->posicaoAbsoluta->posicaoX = x;
+			elementoCenario->posicaoAbsoluta->posicaoY = y;
+			elementoCenario->posicaoAbsoluta->tamanhoX = poseicaoBase.tamanhoX;
+			elementoCenario->posicaoAbsoluta->tamanhoY = poseicaoBase.tamanhoY;
 
-		elementoCenario->proximo = NULL;
-		elementoCenario->indice = (*elementoCenario->count);
-		(*elementoCenario->count)++;
-		noAnterior = elementoCenario;
+			elementoCenario->posicaoRelativa->posicaoX = x;
+			elementoCenario->posicaoRelativa->posicaoY = y;
+			elementoCenario->posicaoRelativa->tamanhoX = poseicaoBase.tamanhoX;
+			elementoCenario->posicaoRelativa->tamanhoY = poseicaoBase.tamanhoY;
 		
-		/*if (colediuComCenario(cenarioItemIncial, *elementoCenario->posicaoAbsoluta, false)) {
-			if (primeiro->indice == elementoCenario->indice) {
-				primeiro = NULL;
+			if (primeiro == NULL) {
+				primeiro = elementoCenario;
+				primeiro->anterior = NULL;
+				elementoCenario->count = (int*)malloc(sizeof(int));
+				(*elementoCenario->count) = 0;
 			}
-			removerElementoCenario(elementoCenario);
-		}*/
+			else if (noAnterior != NULL) {
+				noAnterior->proximo = elementoCenario;
+				elementoCenario->anterior = noAnterior;
+				elementoCenario->count = noAnterior->count;
+			}
+
+			elementoCenario->proximo = NULL;
+			elementoCenario->indice = (*elementoCenario->count);
+			(*elementoCenario->count)++;
+			noAnterior = elementoCenario;
+		}		
 	}
 
 	return primeiro;
 }
 CenarioItem * montarCenarioItemCJson(CenarioItem * noAnterior, cJSON * cenarioItemJson, CenarioItem * cenarioItemIncial) {
 	CenarioItem* cenarioItem = (CenarioItem*)malloc(sizeof(CenarioItem));
+	cenarioItem->proximo = NULL;
 
 	if (noAnterior == NULL) {
 		cenarioItem->count = (int*)malloc(sizeof(int));
@@ -86,22 +92,44 @@ CenarioItem * montarCenarioItemCJson(CenarioItem * noAnterior, cJSON * cenarioIt
 	cenarioItem->imagem->orientacao = bucarItemCJson(imagemJson->child, "orientacao")->valueint;
 	cenarioItem->imagem->imagem = al_load_bitmap(cenarioItem->imagem->endereco);
 
+	//Todos os itens dentro do vetor randomElementos
 	cJSON* randomElementesJson = bucarItemCJson(cenarioItemJson, "randomElementes")->child;
-	if (randomElementesJson != NULL) {		
-		cJSON* posicaoGeracaoJson = bucarItemCJson(randomElementesJson->child, "posicaoGeracao")->child;
-		int qtdGerar = bucarItemCJson(randomElementesJson->child, "qtdItens")->valueint;
-		Posicao posicaoGerar = {
-			.posicaoX = bucarItemCJson(posicaoGeracaoJson, "posicaoX")->valueint,
-			.posicaoY = bucarItemCJson(posicaoGeracaoJson, "posicaoY")->valueint,
-			.tamanhoX = bucarItemCJson(posicaoGeracaoJson, "tamanhoX")->valueint,
-			.tamanhoY = bucarItemCJson(posicaoGeracaoJson, "tamanhoY")->valueint,
-		};
-		Posicao posicaoBase = {
-			.tamanhoX = bucarItemCJson(randomElementesJson->child, "tamanhoX")->valueint,
-			.tamanhoY = bucarItemCJson(randomElementesJson->child, "tamanhoY")->valueint,
-		};
 
-		cenarioItem->elementoInical = gerarElementosCenario(cenarioItem, qtdGerar, posicaoGerar, posicaoBase, cenarioItemIncial);
+	if (randomElementesJson != NULL) {		
+		cJSON* atualCJsonAleatorio = randomElementesJson;
+
+		cenarioItem->elementoInical = NULL;
+
+
+		while (atualCJsonAleatorio != NULL) {
+			//Quantidade de itens que devem ser gerados
+			int qtdGerar = bucarItemCJson(atualCJsonAleatorio->child, "qtdItens")->valueint;
+
+			cJSON* posicaoGeracaoJson = bucarItemCJson(randomElementesJson->child, "posicaoGeracao")->child;
+
+			//Container que define o inicio e fim da geração dos elementos
+			Posicao posicaoGerar = {
+				.posicaoX = bucarItemCJson(posicaoGeracaoJson, "posicaoX")->valueint,
+				.posicaoY = bucarItemCJson(posicaoGeracaoJson, "posicaoY")->valueint,
+				.tamanhoX = bucarItemCJson(posicaoGeracaoJson, "tamanhoX")->valueint,
+				.tamanhoY = bucarItemCJson(posicaoGeracaoJson, "tamanhoY")->valueint,
+			};
+
+			//Dados da posicção base dos elementos
+			Posicao posicaoBase = {
+				.tamanhoX = bucarItemCJson(atualCJsonAleatorio->child, "tamanhoX")->valueint,
+				.tamanhoY = bucarItemCJson(atualCJsonAleatorio->child, "tamanhoY")->valueint,
+			};
+
+			if (cenarioItem->elementoInical == NULL)
+				cenarioItem->elementoInical = gerarElementosCenario(cenarioItem, qtdGerar, posicaoGerar, posicaoBase, cenarioItemIncial);
+			else {
+				ElementoCenario * ultimo = obterUltimoElementoCenario(cenarioItem->elementoInical);
+				ultimo->proximo = gerarElementosCenario(cenarioItem, qtdGerar, posicaoGerar, posicaoBase, cenarioItemIncial);
+			}
+
+			atualCJsonAleatorio = atualCJsonAleatorio->next;
+		}
 	}
 	else
 		cenarioItem->elementoInical = mapaearElementosCenarios(NULL, cenarioItem, bucarItemCJson(cenarioItemJson, "elementos")->child);
@@ -237,7 +265,6 @@ void desenharCenarioItens(CenarioItem * cenarioItenInicial) {
 }
 
 bool colediuComElementoCenario(ElementoCenario * elementoCenario, Posicao posicaoComparacao, bool useRelative) {
-	printf("Item: %i\n", elementoCenario->indice);
 	if (elementoCenario != NULL) {
 		if (posicaoColediu(useRelative  ? *elementoCenario->posicaoRelativa : *elementoCenario->posicaoAbsoluta, posicaoComparacao))
 			return true;
@@ -315,4 +342,11 @@ void alterarPosicaoChildrenElementoCenario(ElementoCenario * inicio, int diferen
 		if (inicio->proximo != NULL)
 			alterarPosicaoChildrenElementoCenario(inicio->proximo, diferenca);
 	}
+}
+
+ElementoCenario* obterUltimoElementoCenario(ElementoCenario * elementoCenario) {
+	if (elementoCenario->proximo == NULL)
+		return elementoCenario;
+	else
+		return obterUltimoElementoCenario(elementoCenario->proximo);
 }
