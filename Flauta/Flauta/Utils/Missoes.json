@@ -25,26 +25,9 @@
         },
         {
           "obrigatorio": true,
-          "executar": 1,
+          "executar": 2,
           "mensagemInicial": "O passo iniciou 3.",
           "mensagemFinal": "O passo finalizou 3.",
-          "quando": 1,
-          "cenarioItem": 1
-        }
-      ]
-    },
-    {
-      "codigo": 2,
-      "nome": "Missão 2",
-      "mensagemInicial": "Você precisa fazer o remedio 2.",
-      "mensagemFinal": "Você conclui a missão 2.",
-      "misturaFinal": 2,
-      "passos": [
-        {
-          "obrigatorio": false,
-          "executar": 1,
-          "mensagemInicial": "O passo iniciou.",
-          "mensagemFinal": "O passo finalizou.",
           "quando": 1,
           "cenarioItem": 1
         }

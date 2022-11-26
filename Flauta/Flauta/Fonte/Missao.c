@@ -51,6 +51,9 @@ void destruirMissoes(Missao * missao) {
 		(*missao->count)--;
 		if (*missao->count == 0)
 			free(missao->count);
+		
+		destruirPassosMissao(missao->passosMissao);
+
 		free(missao);
 	}
 }
@@ -96,5 +99,13 @@ PassoMissao* mapearPassosMissaoDeJson(PassoMissao* noAnterior, cJSON* passoJson,
 }
 
 void destruirPassosMissao(PassoMissao* passoMissao) {
+	if (passoMissao != NULL) {
+		if (passoMissao->proxima != NULL)
+			destruirPassosMissao(passoMissao->proxima);
 
+		if (passoMissao->count == 0)
+			free(passoMissao->count);
+
+		free(passoMissao);
+	}
 }

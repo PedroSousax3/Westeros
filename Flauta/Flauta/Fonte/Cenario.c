@@ -304,6 +304,8 @@ ElementoCenario * removerElementoCenario (ElementoCenario * elementoCenario) {
 		return anterior;
 	if (proximo != NULL)
 		return proximo;
+
+	return NULL;
 }
 
 void alterarPosicaoChildrenElementoCenario(ElementoCenario * inicio, int diferenca) {

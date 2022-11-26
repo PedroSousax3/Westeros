@@ -26,7 +26,8 @@ enum EnumPassoQuandoExecutar {
 	/// <summary>
 	/// Evento ocorre com click no botão esquerdo do mouses
 	/// </summary>
-	Click = 1
+	Click = 1,
+	ColetarItem
 };
 /// <summary>
 /// Struct com as definições de cada missão do jogo
@@ -51,7 +52,7 @@ struct Missao {
 	/// <summary>
 	/// O objetivo da missão será gerar esse mistura
 	/// </summary>
-	Mistura misturaFinal;
+	Mistura * misturaFinal;
 	/// <summary>
 	/// Passos que devem ser realizandos para a conclusão da missão
 	/// </summary>
@@ -64,6 +65,9 @@ struct Missao {
 	/// Quantidade de missoões disponiveis no vetor dinamico
 	/// </summary>
 	int* count;
+	/// <summary>
+	/// Proxima missão
+	/// </summary>
 	Missao* proxima;
 };
 /// <summary>
