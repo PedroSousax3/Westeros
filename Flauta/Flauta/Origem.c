@@ -398,6 +398,7 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 		if (event.mouse.button == 1 && colediuComCenario(cenarioItemInicial, posicaoMouse, false)) {
 			ElementoCenario* elementoCenario = obterElementoCenarioEmPosicao(cenarioItemInicial, posicaoMouse, false);
 			CenarioItem* cernarioItem = elementoCenario->cenarioItem;
+
 			if (elementoCenario->cenarioItem->coletavelPeloJogador) {
 				if (personagemPrincipal.inventario == NULL) {
 					personagemPrincipal.inventario = inserirItemInventario(personagemPrincipal.inventario, elementoCenario->cenarioItem);
@@ -413,7 +414,9 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 					}
 				}
 
-				if (elementoCenario->indice == 0)
+				if (elementoCenario == NULL)
+					cernarioItem->elementoInical = NULL;
+				else if (elementoCenario->indice == 0)
 					cernarioItem->elementoInical = elementoCenario;
 			}
 		}
