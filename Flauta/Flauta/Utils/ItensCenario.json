@@ -1580,7 +1580,7 @@
         "orientacao": 1
       },
       "coletavelPeloJogador": true,
-      "codigoItemInventario": null,
+      "codigoItemInventario": 14,
       "randomElementes": [
         {
           "qtdItens": 3,
@@ -1591,22 +1591,22 @@
             "tamanhoX": 800,
             "tamanhoY": 1250
           },
-          "tamanhoX": 25,
-          "tamanhoY": 43
+          "tamanhoX": 15,
+          "tamanhoY": 25
         }
       ],
 
       "elementos": []
     },
     {
-      "codigo": 14,
+      "codigo": 15,
       "nome": "Arvore de Eucalipto",
       "descricao": "Arvore de Eucalipto",
       "imagem": {
         "endereco": "Utils/Imagens/Eucalipto_Arvore.png",
         "orientacao": 1
       },
-      "coletavelPeloJogador": true,
+      "coletavelPeloJogador": false,
       "codigoItemInventario": null,
       "randomElementes": [],
       "elementos": [
@@ -1628,6 +1628,33 @@
           }
         }
       ]
+    },
+    {
+      "codigo": 16,
+      "nome": "Arbusto",
+      "descricao": "Arbusto",
+      "imagem": {
+        "endereco": "Utils/Imagens/Arvore_mini_2.png",
+        "orientacao": 1
+      },
+      "coletavelPeloJogador": false,
+      "codigoItemInventario": null,
+      "randomElementes": [
+        {
+          "qtdItens": 12,
+          "posicaoGeracao": {
+            "posicaoX": 1700,
+            "posicaoY": 1000,
+
+            "tamanhoX": 3150,
+            "tamanhoY": 1700
+          },
+          "tamanhoX": 47,
+          "tamanhoY": 47
+        }
+      ],
+
+      "elementos": []
     }
   ]
 }
