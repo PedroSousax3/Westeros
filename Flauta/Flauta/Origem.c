@@ -369,8 +369,6 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 			al_set_system_mouse_cursor(paginaPrincipal.display, ALLEGRO_SYSTEM_MOUSE_CURSOR_LINK);
 		else
 			al_set_system_mouse_cursor(paginaPrincipal.display, ALLEGRO_SYSTEM_MOUSE_CURSOR_DEFAULT);
-
-		printf("\nX: %i\n Y: %i", posicaoMouse.posicaoX, posicaoMouse.posicaoY);
 	}
 	else if (event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
 		if (event.mouse.button == 1) {
