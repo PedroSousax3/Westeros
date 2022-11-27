@@ -146,14 +146,17 @@ int main(void) {
 		}
 	}
 
+	//Remover dados do programa da memoria
 	destruirCenarioItens(cenarioItemInicial);
 	cJSON_Delete(jsonCenario);
 	free(posicaoRealizarMistura);
 	destruirMissoes(missaoInicial);
 	cJSON_Delete(jsonMissoes);
 	destruirInvetario(personagemPrincipal.inventario);
-	al_destroy_font(fonte);
 	free(posicaoFinalizarMissao);
+	//Remover dados do ALLEGRO da memoria
+	al_destroy_font(fontePasso);
+	al_destroy_font(fonte);
 	al_destroy_bitmap(mapaImagem);
 	al_destroy_display(paginaPrincipal.display);
 	al_destroy_event_queue(eventos);
