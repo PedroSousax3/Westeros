@@ -147,7 +147,7 @@ int main(void) {
 
 		//Gerenciador de display
 		if (evento.type == ALLEGRO_EVENT_KEY_DOWN) {
-			if (evento.keyboard.keycode == ALLEGRO_KEY_F1) {
+			if (evento.keyboard.keycode == ALLEGRO_KEY_I) {
 				if (paginaCombinacao.aberta)
 					ocultarPagina(&paginaCombinacao, &paginaPrincipal);
 				else
@@ -189,6 +189,7 @@ int main(void) {
 	al_destroy_bitmap(personagemPrincipal.imagem);
 	al_destroy_bitmap(paginaPrincipal.background.imagem);
 	al_destroy_bitmap(paginaPrincipal.backgroundCasa.imagem);
+	al_destroy_bitmap(paginaCombinacao.backgroundCasa.imagem);
 	al_destroy_timer(tempoRenderizacao);
 
 	return 0;
@@ -262,10 +263,11 @@ void registrarEventos(void) {
 }
 
 void abrirPaginaComposicao() {
+	paginaCombinacao.background.imagem = al_load_bitmap("Utils/Imagens/Inventario.png");
 	paginaCombinacao.posicao.posicaoX = 0;
 	paginaCombinacao.posicao.posicaoY = 0;
-	paginaCombinacao.posicao.tamanhoX = 500;
-	paginaCombinacao.posicao.tamanhoY = 500;
+	paginaCombinacao.posicao.tamanhoX = 230;
+	paginaCombinacao.posicao.tamanhoY = 104;
 	exibirPagina(&paginaCombinacao);
 }
 
@@ -279,22 +281,22 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 	{
 		switch (event.keyboard.keycode)
 		{
-			case ALLEGRO_KEY_DOWN:
+			case ALLEGRO_KEY_S:
 				personagemPrincipal.movimento.direcaoY = DIRECAOYBAIXO;
 				personagemPrincipal.imagemX = 0;
 				personagemPrincipal.imagemY = 0 * al_get_bitmap_height(personagemPrincipal.imagem) / 4;
 				break;
-			case ALLEGRO_KEY_LEFT:
+			case ALLEGRO_KEY_A:
 				personagemPrincipal.movimento.direcaoX = DIRECAOXESQUERDA;
 				personagemPrincipal.imagemX = 0;
 				personagemPrincipal.imagemY = 1 * al_get_bitmap_height(personagemPrincipal.imagem) / 4;
 				break;
-			case ALLEGRO_KEY_RIGHT:
+			case ALLEGRO_KEY_D:
 				personagemPrincipal.movimento.direcaoX = DIRECAOXDIREITA;
 				personagemPrincipal.imagemX = 0;
 				personagemPrincipal.imagemY = 2 * al_get_bitmap_height(personagemPrincipal.imagem) / 4;
 				break;
-			case ALLEGRO_KEY_UP:
+			case ALLEGRO_KEY_W:
 				personagemPrincipal.movimento.direcaoY = DIRECAOYCIMA;
 				personagemPrincipal.imagemX = 0;
 				personagemPrincipal.imagemY = 3 * al_get_bitmap_height(personagemPrincipal.imagem) / 4;
@@ -305,16 +307,16 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 	{
 		switch (event.keyboard.keycode)
 		{
-			case ALLEGRO_KEY_UP:
+			case ALLEGRO_KEY_W:
 				personagemPrincipal.movimento.direcaoY = DIRECAOYNENHUM;
 				break;
-			case ALLEGRO_KEY_DOWN:
+			case ALLEGRO_KEY_S:
 				personagemPrincipal.movimento.direcaoY = DIRECAOYNENHUM;
 				break;
-			case ALLEGRO_KEY_RIGHT:
+			case ALLEGRO_KEY_D:
 				personagemPrincipal.movimento.direcaoX = DIRECAOXNENHUM;
 				break;
-			case ALLEGRO_KEY_LEFT:
+			case ALLEGRO_KEY_A:
 				personagemPrincipal.movimento.direcaoX = DIRECAOXNENHUM;
 				break;
 		}

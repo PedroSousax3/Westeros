@@ -4,8 +4,8 @@ void desenharItemInventarioTelaConbinacao(Inventario* inventario, Posicao posica
 	if (inventario != NULL) {
 		Posicao posicao = {
 			.posicaoY = posicaoDoItemAnterior.posicaoY,
-			.tamanhoX = 100,
-			.tamanhoY = 100
+			.tamanhoX = 64,
+			.tamanhoY = 56
 		};
 		posicao.posicaoX = posicaoDoItemAnterior.posicaoX + posicao.tamanhoX;
 
@@ -29,11 +29,12 @@ void desenharItemInventarioTelaConbinacao(Inventario* inventario, Posicao posica
 void executarPaginaCombinacao(Pagina * pagina, Inventario * inventario) {
 	if (pagina->aberta)
 	{	
-		desenhaQuadrado(pagina->posicao, al_map_rgb(255, 255, 255));
-		int posicaoY = pagina->posicao.tamanhoY - 206;
+		//desenhaQuadrado(pagina->posicao, al_map_rgb(255, 255, 255));
+		desenharImagem(pagina->background, pagina->posicao);
+		int posicaoY = pagina->posicao.tamanhoY - 80;
 		Posicao posicaoBase = {
-			.posicaoY = 0,
-			.posicaoX = -100,
+			.posicaoY = 24,
+			.posicaoX = - 49,
 			.posicaoY = posicaoY
 		};
 		desenharItemInventarioTelaConbinacao(inventario, posicaoBase, pagina);
