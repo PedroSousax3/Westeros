@@ -32,6 +32,7 @@ typedef struct CenarioItem {
 	int codigoItemInventario;
 
 	struct Imagem * imagem;
+	struct Imagem * imagemInventario;
 	struct CenarioItem * proximo;
 
 	struct ElementoCenario * elementoInical;

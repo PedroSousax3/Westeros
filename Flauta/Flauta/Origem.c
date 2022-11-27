@@ -398,16 +398,14 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 			if (elementoCenario->cenarioItem->coletavelPeloJogador) {
 				if (personagemPrincipal.inventario == NULL) {
 					personagemPrincipal.inventario = inserirItemInventario(personagemPrincipal.inventario, elementoCenario->cenarioItem);
-					//elementoCenario = removerElementoCenario(elementoCenario);
-					if (elementoCenario->indice == 0)
-						cernarioItem->elementoInical = elementoCenario;
+					elementoCenario = removerElementoCenario(elementoCenario);
 				}
 				//else if ((*personagemPrincipal.inventario->count) < 3) {
 				else {
 					Inventario* ultimoInventario = ultimoItemInventario(personagemPrincipal.inventario);
 					if (ultimoInventario != NULL) {
-						inserirItemInventario(ultimoInventario, elementoCenario->cenarioItem);
-						//elementoCenario = removerElementoCenario(elementoCenario);
+						ultimoInventario->proximo = inserirItemInventario(ultimoInventario, elementoCenario->cenarioItem);
+						elementoCenario = removerElementoCenario(elementoCenario);
 					}
 				}
 
