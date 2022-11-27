@@ -49,6 +49,70 @@
       "elementos": [
         {
           "posicaoAbsoluta": {
+            "posicaoX": 260,
+            "posicaoY": 1305,
+
+            "tamanhoX": 435,
+            "tamanhoY": 10
+          },
+          "posicaoRelativa": {
+            "posicaoX": 260,
+            "posicaoY": 1305,
+
+            "tamanhoX": 435,
+            "tamanhoY": 10
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 260,
+            "posicaoY": 1305,
+
+            "tamanhoX": 10,
+            "tamanhoY": 290
+          },
+          "posicaoRelativa": {
+            "posicaoX": 260,
+            "posicaoY": 1305,
+
+            "tamanhoX": 10,
+            "tamanhoY": 290
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 260,
+            "posicaoY": 1585,
+
+            "tamanhoX": 435,
+            "tamanhoY": 10
+          },
+          "posicaoRelativa": {
+            "posicaoX": 260,
+            "posicaoY": 1585,
+
+            "tamanhoX": 435,
+            "tamanhoY": 10
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 685,
+            "posicaoY": 1305,
+
+            "tamanhoX": 10,
+            "tamanhoY": 290
+          },
+          "posicaoRelativa": {
+            "posicaoX": 685,
+            "posicaoY": 1305,
+
+            "tamanhoX": 10,
+            "tamanhoY": 290
+          }
+        },
+        {
+          "posicaoAbsoluta": {
             "posicaoX": 340,
             "posicaoY": 455,
 
@@ -471,7 +535,7 @@
             "posicaoX": 4620,
             "posicaoY": 4930,
 
-            "tamanhoX": 75,
+            "tamanhoX": 360,
             "tamanhoY": 100
           },
           "posicaoRelativa": {
@@ -1158,6 +1222,72 @@
       ]
     },
     {
+      "codigo": 13,
+      "nome": "Mel",
+      "descricao": "Mel",
+      "imagem": {
+        "endereco": "Utils/Imagens/Fundo_transparente.png",
+        "orientacao": 1
+      },
+      "imagemInventario": {
+        "endereco": "Utils/Imagens/Mel_Inv.png",
+        "orientacao": 1
+      },
+      "coletavelPeloJogador": true,
+      "codigoItemInventario": null,
+      "randomElementes": [],
+      "elementos": [
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 4200,
+            "posicaoY": 250,
+
+            "tamanhoX": 238,
+            "tamanhoY": 270
+          },
+          "posicaoRelativa": {
+            "posicaoX": 4200,
+            "posicaoY": 250,
+
+            "tamanhoX": 15,
+            "tamanhoY": 25
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 950,
+            "posicaoY": 700,
+
+            "tamanhoX": 238,
+            "tamanhoY": 270
+          },
+          "posicaoRelativa": {
+            "posicaoX": 950,
+            "posicaoY": 700,
+
+            "tamanhoX": 0,
+            "tamanhoY": 0
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 3040,
+            "posicaoY": 720,
+
+            "tamanhoX": 238,
+            "tamanhoY": 270
+          },
+          "posicaoRelativa": {
+            "posicaoX": 3040,
+            "posicaoY": 720,
+
+            "tamanhoX": 0,
+            "tamanhoY": 0
+          }
+        }
+      ]
+    },
+    {
       "codigo": 4,
       "nome": "Arvore Roxa",
       "descricao": "Arvore com uma colmeia de abelhas",
@@ -1174,15 +1304,15 @@
         {
           "canarioItem": 4,
           "posicaoAbsoluta": {
-            "posicaoX": 0,
-            "posicaoY": 0,
+            "posicaoX": 4200,
+            "posicaoY": 250,
 
             "tamanhoX": 238,
             "tamanhoY": 334
           },
           "posicaoRelativa": {
-            "posicaoX": 0,
-            "posicaoY": 0,
+            "posicaoX": 4280,
+            "posicaoY": 550,
 
             "tamanhoX": 70,
             "tamanhoY": 30
@@ -1207,15 +1337,15 @@
         {
           "canarioItem": 5,
           "posicaoAbsoluta": {
-            "posicaoX": 0,
-            "posicaoY": 0,
+            "posicaoX": 950,
+            "posicaoY": 700,
 
             "tamanhoX": 238,
             "tamanhoY": 334
           },
           "posicaoRelativa": {
-            "posicaoX": 0,
-            "posicaoY": 0,
+            "posicaoX": 1030,
+            "posicaoY": 1000,
 
             "tamanhoX": 70,
             "tamanhoY": 30
@@ -1240,15 +1370,15 @@
         {
           "canarioItem": 6,
           "posicaoAbsoluta": {
-            "posicaoX": 0,
-            "posicaoY": 0,
+            "posicaoX": 3040,
+            "posicaoY": 720,
 
             "tamanhoX": 238,
             "tamanhoY": 334
           },
           "posicaoRelativa": {
-            "posicaoX": 0,
-            "posicaoY": 0,
+            "posicaoX": 3120,
+            "posicaoY": 1020,
 
             "tamanhoX": 70,
             "tamanhoY": 30
@@ -1271,20 +1401,19 @@
 
       "elementos": [
         {
-          "canarioItem": 7,
           "posicaoAbsoluta": {
-            "posicaoX": 0,
-            "posicaoY": 0,
+            "posicaoX": 4725,
+            "posicaoY": 1235,
 
-            "tamanhoX": 238,
-            "tamanhoY": 334
+            "tamanhoX": 115,
+            "tamanhoY": 96
           },
           "posicaoRelativa": {
-            "posicaoX": 0,
-            "posicaoY": 0,
+            "posicaoX": 4730,
+            "posicaoY": 1250,
 
-            "tamanhoX": 70,
-            "tamanhoY": 30
+            "tamanhoX": 100,
+            "tamanhoY": 75
           }
         }
       ]
@@ -1297,7 +1426,10 @@
         "endereco": "Utils/Imagens/Hortela.png",
         "orientacao": 1
       },
-      "imagemInventario": null,
+      "imagemInventario": {
+        "endereco": "Utils/Imagens/Hortela_Inv.png",
+        "orientacao": 1
+      },
       "coletavelPeloJogador": true,
       "codigoItemInventario": null,
       "randomElementes": [
@@ -1325,7 +1457,10 @@
         "endereco": "Utils/Imagens/Camomila.png",
         "orientacao": 1
       },
-      "imagemInventario": null,
+      "imagemInventario": {
+        "endereco": "Utils/Imagens/Camomila_Inv.png",
+        "orientacao": 1
+      },
       "coletavelPeloJogador": true,
       "codigoItemInventario": null,
       "randomElementes": [
@@ -1353,7 +1488,10 @@
         "endereco": "Utils/Imagens/Alecrim.png",
         "orientacao": 1
       },
-      "imagemInventario": null,
+      "imagemInventario": {
+        "endereco": "Utils/Imagens/Alecrim_Inv.png",
+        "orientacao": 1
+      },
       "coletavelPeloJogador": true,
       "codigoItemInventario": null,
       "randomElementes": [
@@ -1381,7 +1519,10 @@
         "endereco": "Utils/Imagens/Alecrim.png",
         "orientacao": 1
       },
-      "imagemInventario": null,
+      "imagemInventario": {
+        "endereco": "Utils/Imagens/Alecrim_Inv.png",
+        "orientacao": 1
+      },
       "coletavelPeloJogador": true,
       "codigoItemInventario": null,
       "randomElementes": [
@@ -1409,7 +1550,10 @@
         "endereco": "Utils/Imagens/Alecrim.png",
         "orientacao": 1
       },
-      "imagemInventario": null,
+      "imagemInventario": {
+        "endereco": "Utils/Imagens/Alecrim_Inv.png",
+        "orientacao": 1
+      },
       "coletavelPeloJogador": true,
       "codigoItemInventario": null,
       "randomElementes": [
@@ -1437,7 +1581,10 @@
         "endereco": "Utils/Imagens/Eucalipto.png",
         "orientacao": 1
       },
-      "imagemInventario": null,
+      "imagemInventario": {
+        "endereco": "Utils/Imagens/Eucalipto_Inv.png",
+        "orientacao": 1
+      },
       "coletavelPeloJogador": true,
       "codigoItemInventario": null,
       "randomElementes": [
@@ -1465,7 +1612,10 @@
         "endereco": "Utils/Imagens/Gengibre.png",
         "orientacao": 1
       },
-      "imagemInventario": null,
+      "imagemInventario": {
+        "endereco": "Utils/Imagens/Gengibre_Inv.png",
+        "orientacao": 1
+      },
       "coletavelPeloJogador": true,
       "codigoItemInventario": null,
       "randomElementes": [
@@ -1493,7 +1643,10 @@
         "endereco": "Utils/Imagens/Gengibre.png",
         "orientacao": 1
       },
-      "imagemInventario": null,
+      "imagemInventario": {
+        "endereco": "Utils/Imagens/Gengibre_Inv.png",
+        "orientacao": 1
+      },
       "coletavelPeloJogador": true,
       "codigoItemInventario": null,
       "randomElementes": [
@@ -1521,7 +1674,10 @@
         "endereco": "Utils/Imagens/Gengibre.png",
         "orientacao": 1
       },
-      "imagemInventario": null,
+      "imagemInventario": {
+        "endereco": "Utils/Imagens/Gengibre_Inv.png",
+        "orientacao": 1
+      },
       "coletavelPeloJogador": true,
       "codigoItemInventario": null,
       "randomElementes": [
@@ -1549,7 +1705,10 @@
         "endereco": "Utils/Imagens/Mel.png",
         "orientacao": 1
       },
-      "imagemInventario": null,
+      "imagemInventario": {
+        "endereco": "Utils/Imagens/Mel_Inv.png",
+        "orientacao": 1
+      },
       "coletavelPeloJogador": true,
       "codigoItemInventario": null,
       "randomElementes": [],
@@ -1593,31 +1752,130 @@
       "nome": "Agua",
       "descricao": "Agua",
       "imagem": {
-        "endereco": "Utils/Imagens/Agua.png",
+        "endereco": "Utils/Imagens/Fundo_transparente.png",
         "orientacao": 1
       },
       "imagemInventario": {
-        "endereco": "Utils/Imagens/Mel.png",
+        "endereco": "Utils/Imagens/Agua_Inv.png",
         "orientacao": 1
       },
       "coletavelPeloJogador": true,
       "codigoItemInventario": 14,
-      "randomElementes": [
+      "randomElementes": [],
+      "elementos": [
         {
-          "qtdItens": 3,
-          "posicaoGeracao": {
-            "posicaoX": 500,
-            "posicaoY": 1200,
+          "posicaoAbsoluta": {
+            "posicaoX": 270,
+            "posicaoY": 1315,
 
-            "tamanhoX": 800,
-            "tamanhoY": 1250
+            "tamanhoX": 415,
+            "tamanhoY": 270
           },
-          "tamanhoX": 15,
-          "tamanhoY": 25
-        }
-      ],
+          "posicaoRelativa": {
+            "posicaoX": 270,
+            "posicaoY": 1315,
 
-      "elementos": []
+            "tamanhoX": 415,
+            "tamanhoY": 270
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 270,
+            "posicaoY": 1315,
+
+            "tamanhoX": 415,
+            "tamanhoY": 270
+          },
+          "posicaoRelativa": {
+            "posicaoX": 270,
+            "posicaoY": 1315,
+
+            "tamanhoX": 415,
+            "tamanhoY": 270
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 270,
+            "posicaoY": 1315,
+
+            "tamanhoX": 415,
+            "tamanhoY": 270
+          },
+          "posicaoRelativa": {
+            "posicaoX": 270,
+            "posicaoY": 1315,
+
+            "tamanhoX": 415,
+            "tamanhoY": 270
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 270,
+            "posicaoY": 1315,
+
+            "tamanhoX": 415,
+            "tamanhoY": 270
+          },
+          "posicaoRelativa": {
+            "posicaoX": 270,
+            "posicaoY": 1315,
+
+            "tamanhoX": 415,
+            "tamanhoY": 270
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 270,
+            "posicaoY": 1315,
+
+            "tamanhoX": 415,
+            "tamanhoY": 270
+          },
+          "posicaoRelativa": {
+            "posicaoX": 270,
+            "posicaoY": 1315,
+
+            "tamanhoX": 415,
+            "tamanhoY": 270
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 270,
+            "posicaoY": 1315,
+
+            "tamanhoX": 415,
+            "tamanhoY": 270
+          },
+          "posicaoRelativa": {
+            "posicaoX": 270,
+            "posicaoY": 1315,
+
+            "tamanhoX": 415,
+            "tamanhoY": 270
+          }
+        },
+        {
+          "posicaoAbsoluta": {
+            "posicaoX": 270,
+            "posicaoY": 1315,
+
+            "tamanhoX": 415,
+            "tamanhoY": 270
+          },
+          "posicaoRelativa": {
+            "posicaoX": 270,
+            "posicaoY": 1315,
+
+            "tamanhoX": 415,
+            "tamanhoY": 270
+          }
+        }
+      ]
     },
     {
       "codigo": 15,
