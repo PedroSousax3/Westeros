@@ -179,6 +179,8 @@
     <Image Include="Utils\Imagens\Arvore_2.png" />
     <Image Include="Utils\Imagens\Arvore_Balanço.png" />
     <Image Include="Utils\Imagens\Casa.png" />
+    <Image Include="Utils\Imagens\Cha_camomila_hortela.png" />
+    <Image Include="Utils\Imagens\Cha_gengibre_mel.png" />
     <Image Include="Utils\Imagens\Eucalipto_Arvore.png" />
     <Image Include="Utils\Imagens\Mato_1.png" />
     <Image Include="Utils\Imagens\Mato_2.png" />
