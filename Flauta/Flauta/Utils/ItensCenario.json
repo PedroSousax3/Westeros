@@ -10,6 +10,7 @@
       },
       "imagemInventario": null,
       "coletavelPeloJogador": false,
+      "removeItenCenarioAposColeta": true,
       "codigoItemInventario": null,
       "randomElementes": [],
 
@@ -43,6 +44,7 @@
       },
       "imagemInventario": null,
       "coletavelPeloJogador": false,
+      "removeItenCenarioAposColeta": true,
       "codigoItemInventario": null,
       "randomElementes": [],
 
@@ -1198,6 +1200,7 @@
       },
       "imagemInventario": null,
       "coletavelPeloJogador": false,
+      "removeItenCenarioAposColeta": true,
       "codigoItemInventario": null,
       "randomElementes": [],
 
@@ -1234,6 +1237,7 @@
         "orientacao": 1
       },
       "coletavelPeloJogador": true,
+      "removeItenCenarioAposColeta": true,
       "codigoItemInventario": null,
       "randomElementes": [],
       "elementos": [
@@ -1297,6 +1301,7 @@
       },
       "imagemInventario": null,
       "coletavelPeloJogador": false,
+      "removeItenCenarioAposColeta": true,
       "codigoItemInventario": null,
       "randomElementes": [],
 
@@ -1330,6 +1335,7 @@
       },
       "imagemInventario": null,
       "coletavelPeloJogador": false,
+      "removeItenCenarioAposColeta": true,
       "codigoItemInventario": null,
       "randomElementes": [],
 
@@ -1363,6 +1369,7 @@
       },
       "imagemInventario": null,
       "coletavelPeloJogador": false,
+      "removeItenCenarioAposColeta": true,
       "codigoItemInventario": null,
       "randomElementes": [],
 
@@ -1396,6 +1403,7 @@
       },
       "imagemInventario": null,
       "coletavelPeloJogador": false,
+      "removeItenCenarioAposColeta": true,
       "codigoItemInventario": null,
       "randomElementes": [],
 
@@ -1431,6 +1439,7 @@
         "orientacao": 1
       },
       "coletavelPeloJogador": true,
+      "removeItenCenarioAposColeta": true,
       "codigoItemInventario": null,
       "randomElementes": [
         {
@@ -1462,6 +1471,7 @@
         "orientacao": 1
       },
       "coletavelPeloJogador": true,
+      "removeItenCenarioAposColeta": true,
       "codigoItemInventario": null,
       "randomElementes": [
         {
@@ -1493,6 +1503,7 @@
         "orientacao": 1
       },
       "coletavelPeloJogador": true,
+      "removeItenCenarioAposColeta": true,
       "codigoItemInventario": null,
       "randomElementes": [
         {
@@ -1524,6 +1535,7 @@
         "orientacao": 1
       },
       "coletavelPeloJogador": true,
+      "removeItenCenarioAposColeta": true,
       "codigoItemInventario": null,
       "randomElementes": [
         {
@@ -1555,6 +1567,7 @@
         "orientacao": 1
       },
       "coletavelPeloJogador": true,
+      "removeItenCenarioAposColeta": true,
       "codigoItemInventario": null,
       "randomElementes": [
         {
@@ -1586,6 +1599,7 @@
         "orientacao": 1
       },
       "coletavelPeloJogador": true,
+      "removeItenCenarioAposColeta": true,
       "codigoItemInventario": null,
       "randomElementes": [
         {
@@ -1617,6 +1631,7 @@
         "orientacao": 1
       },
       "coletavelPeloJogador": true,
+      "removeItenCenarioAposColeta": true,
       "codigoItemInventario": null,
       "randomElementes": [
         {
@@ -1648,6 +1663,7 @@
         "orientacao": 1
       },
       "coletavelPeloJogador": true,
+      "removeItenCenarioAposColeta": true,
       "codigoItemInventario": null,
       "randomElementes": [
         {
@@ -1679,6 +1695,7 @@
         "orientacao": 1
       },
       "coletavelPeloJogador": true,
+      "removeItenCenarioAposColeta": true,
       "codigoItemInventario": null,
       "randomElementes": [
         {
@@ -1710,6 +1727,7 @@
         "orientacao": 1
       },
       "coletavelPeloJogador": true,
+      "removeItenCenarioAposColeta": true,
       "codigoItemInventario": null,
       "randomElementes": [],
       "elementos": [
@@ -1760,105 +1778,10 @@
         "orientacao": 1
       },
       "coletavelPeloJogador": true,
+      "removeItenCenarioAposColeta" : false,
       "codigoItemInventario": 14,
       "randomElementes": [],
       "elementos": [
-        {
-          "posicaoAbsoluta": {
-            "posicaoX": 270,
-            "posicaoY": 1315,
-
-            "tamanhoX": 415,
-            "tamanhoY": 270
-          },
-          "posicaoRelativa": {
-            "posicaoX": 270,
-            "posicaoY": 1315,
-
-            "tamanhoX": 415,
-            "tamanhoY": 270
-          }
-        },
-        {
-          "posicaoAbsoluta": {
-            "posicaoX": 270,
-            "posicaoY": 1315,
-
-            "tamanhoX": 415,
-            "tamanhoY": 270
-          },
-          "posicaoRelativa": {
-            "posicaoX": 270,
-            "posicaoY": 1315,
-
-            "tamanhoX": 415,
-            "tamanhoY": 270
-          }
-        },
-        {
-          "posicaoAbsoluta": {
-            "posicaoX": 270,
-            "posicaoY": 1315,
-
-            "tamanhoX": 415,
-            "tamanhoY": 270
-          },
-          "posicaoRelativa": {
-            "posicaoX": 270,
-            "posicaoY": 1315,
-
-            "tamanhoX": 415,
-            "tamanhoY": 270
-          }
-        },
-        {
-          "posicaoAbsoluta": {
-            "posicaoX": 270,
-            "posicaoY": 1315,
-
-            "tamanhoX": 415,
-            "tamanhoY": 270
-          },
-          "posicaoRelativa": {
-            "posicaoX": 270,
-            "posicaoY": 1315,
-
-            "tamanhoX": 415,
-            "tamanhoY": 270
-          }
-        },
-        {
-          "posicaoAbsoluta": {
-            "posicaoX": 270,
-            "posicaoY": 1315,
-
-            "tamanhoX": 415,
-            "tamanhoY": 270
-          },
-          "posicaoRelativa": {
-            "posicaoX": 270,
-            "posicaoY": 1315,
-
-            "tamanhoX": 415,
-            "tamanhoY": 270
-          }
-        },
-        {
-          "posicaoAbsoluta": {
-            "posicaoX": 270,
-            "posicaoY": 1315,
-
-            "tamanhoX": 415,
-            "tamanhoY": 270
-          },
-          "posicaoRelativa": {
-            "posicaoX": 270,
-            "posicaoY": 1315,
-
-            "tamanhoX": 415,
-            "tamanhoY": 270
-          }
-        },
         {
           "posicaoAbsoluta": {
             "posicaoX": 270,
@@ -1887,6 +1810,7 @@
       },
       "imagemInventario": null,
       "coletavelPeloJogador": false,
+      "removeItenCenarioAposColeta": true,
       "codigoItemInventario": null,
       "randomElementes": [],
       "elementos": [
@@ -1919,6 +1843,7 @@
       },
       "imagemInventario": null,
       "coletavelPeloJogador": false,
+      "removeItenCenarioAposColeta": true,
       "codigoItemInventario": null,
       "randomElementes": [
         {
@@ -1950,6 +1875,7 @@
         "orientacao": 1
       },
       "coletavelPeloJogador": true,
+      "removeItenCenarioAposColeta": true,
       "codigoItemInventario": null,
       "randomElementes": [],
       "elementos": []
@@ -1967,6 +1893,7 @@
         "orientacao": 1
       },
       "coletavelPeloJogador": true,
+      "removeItenCenarioAposColeta": true,
       "codigoItemInventario": null,
       "randomElementes": [],
       "elementos": []
@@ -1984,6 +1911,7 @@
         "orientacao": 1
       },
       "coletavelPeloJogador": true,
+      "removeItenCenarioAposColeta": true,
       "codigoItemInventario": null,
       "randomElementes": [],
       "elementos": []
@@ -1998,6 +1926,7 @@
       },
       "imagemInventario": null,
       "coletavelPeloJogador": false,
+      "removeItenCenarioAposColeta": true,
       "codigoItemInventario": null,
       "randomElementes": [
         {

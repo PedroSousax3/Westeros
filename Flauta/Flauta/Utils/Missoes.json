@@ -1,10 +1,17 @@
 {
-  "posicoesRealizarMistura" : {
-      "posicaoX": 5661,
-      "posicaoY": 4929,
+  "posicoesRealizarMistura": {
+    "posicaoX": 5661,
+    "posicaoY": 4929,
 
-      "tamanhoX": 62,
-      "tamanhoY": 98
+    "tamanhoX": 62,
+    "tamanhoY": 98
+  },
+  "posicaoFinalizarMissao": {
+    "posicaoX": 5414,
+    "posicaoY": 4764,
+
+    "tamanhoX": 61,
+    "tamanhoY": 112
   },
   "missoes": [
     {

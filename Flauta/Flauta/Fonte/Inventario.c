@@ -36,10 +36,13 @@ void removerItemInventario(Inventario * inventario) {
 }
 
 Inventario* buscarItemInventario(Inventario * inventario, int codCenarioItem) {
-	if (inventario->cenarioItem->codigo == codCenarioItem)
-		return inventario;
-	else if (inventario->proximo != NULL)
-		return buscarItemInventario(inventario->proximo, codCenarioItem);
+	if (inventario != NULL)
+	{
+		if (inventario->cenarioItem->codigo == codCenarioItem)
+			return inventario;
+		else if (inventario->proximo != NULL)
+			return buscarItemInventario(inventario->proximo, codCenarioItem);
+	}
 
 	return NULL;
 }

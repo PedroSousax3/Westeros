@@ -1,5 +1,6 @@
 #ifndef Cabelhado_CenarioItem
 #define Cabelhado_CenarioItem
+
 #include "Posicao.h"
 #include "Utils/Imagem.h"
 
@@ -29,6 +30,7 @@ typedef struct CenarioItem {
 	char * descricao;
 	
 	bool coletavelPeloJogador;
+	bool removeItenCenarioAposColeta;
 	int codigoItemInventario;
 
 	struct Imagem * imagem;
