@@ -43,8 +43,8 @@ void desenharPassoMissao(PassoMissao* passoMissao);
 void gerarMapa() {
 	al_set_new_display_flags(ALLEGRO_NOFRAME);
 	ALLEGRO_DISPLAY * displayMapa = al_create_display(
-		4000,
-		2500
+		paginaPrincipal.posicaoBackGroud.tamanhoX,
+		paginaPrincipal.posicaoBackGroud.tamanhoY
 	); //Cria a tela do programa
 	al_set_target_backbuffer(displayMapa);
 	//al_set_window_title(displayMapa, "Mapa");
@@ -62,10 +62,10 @@ void gerarMapa() {
 
 	//desenharPersonagem(personagemPrincipal);
 	desenharCenarioItens(cenarioItemInicial);
-	desenharPassoMissao(personagemPrincipal.missaoAtual->passosMissao);
+	//desenharPassoMissao(personagemPrincipal.missaoAtual->passosMissao);
 
 	al_save_bitmap("screenshot.bmp", al_get_backbuffer(displayMapa));
-	//mapaImagem = al_load_bitmap("screenshot.bmp");
+	mapaImagem = al_load_bitmap("screenshot.bmp");
 
 	al_destroy_display(displayMapa);
 
@@ -82,10 +82,7 @@ int main(void) {
 	al_init_font_addon();
 	al_init_ttf_addon();
 
-	//setlocale(LC_ALL, "");
-	//ALLEGRO_CONFIG * config = al_load_config_file("Utils/configuracao.cfg");
-	//const char* lang = get_config_string("system", "language", "EN");
-	//al_set_config_value(config, "system", "language", "PT-BR");
+	setlocale(LC_ALL, "Portuguese");
 
 	configuracaoInicial();
 	personagemPrincipal = configurarPersonagemPrincipal();
@@ -116,6 +113,8 @@ int main(void) {
 	personagemPrincipal.missaoAtual = missaoInicial;
 	al_start_timer(tempoRenderizacao);
 
+	//gerarMapa();
+
 	while (paginaPrincipal.aberta) {
 		ALLEGRO_EVENT evento;
 		al_wait_for_event(eventos, &evento);
@@ -134,12 +133,7 @@ int main(void) {
 		if (paginaCombinacao.aberta)
 			executarPaginaCombinacao(&paginaCombinacao, personagemPrincipal.inventario);
 		else if (paginaPrincipal.aberta) {
-
-			if (primeiraVolta) {
-				/*gerarMapa();*/
-				primeiraVolta = false;
-			}
-			gerenciarPosicaoPersonagem(&evento);
+			gerenciarPosicaoPersonagem(&evento);\
 
 			if(personagemPrincipal.movimento.posicao.posicaoX <= 5140 && personagemPrincipal.movimento.posicao.posicaoX >= 5050 && personagemPrincipal.movimento.posicao.posicaoY >= 5240) {
 				personagemPrincipal.movimento.posicao.posicaoX = 533;
@@ -160,6 +154,7 @@ int main(void) {
 	destruirInvetario(personagemPrincipal.inventario);
 	al_destroy_font(fonte);
 	free(posicaoFinalizarMissao);
+	al_destroy_bitmap(mapaImagem);
 	al_destroy_display(paginaPrincipal.display);
 	al_destroy_event_queue(eventos);
 	al_destroy_bitmap(personagemPrincipal.imagem);

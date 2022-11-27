@@ -28,7 +28,7 @@
         {
           "obrigatorio": true,
           "executar": 1,
-          "mensagemInicial": "O passo iniciou 1. O passo iniciou 1. O passo iniciou 1. O passo iniciou 1. O passo iniciou 1. O passo iniciou 1. O passo iniciou 1.",
+          "mensagemInicial": "O passo iniciou 1. O passo Você 1. Caçar animais pedções. passo iniciou 1. O passo iniciou 1. O passo iniciou 1. O passo iniciou 1. O passo iniciou 1.",
           "mensagemFinal": "O passo finalizou 1.",
           "quando": 1,
           "cenarioItem": 1

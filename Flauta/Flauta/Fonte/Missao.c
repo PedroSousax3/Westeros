@@ -57,8 +57,8 @@ Missao * montarMissaoDeJson(Missao* missaoAnterior, cJSON* jsonMissao, CenarioIt
 	}
 
 	missao->passosMissao = NULL;
-	//cJSON* jsonPassos = bucarItemCJson(jsonMissao, "dicas")->child;
-	//missao->passosMissao = mapearPassosMissaoDeJson(NULL, jsonPassos, cenarioItem);
+	cJSON* jsonPassos = bucarItemCJson(jsonMissao, "dicas")->child;
+	missao->passosMissao = mapearPassosMissaoDeJson(NULL, jsonPassos, cenarioItem);
 
 	missao->proxima = NULL;
 	(*missao->count)++;
