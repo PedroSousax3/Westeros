@@ -224,6 +224,7 @@
     <ClInclude Include="Cabecalho\Pagina.h" />
     <ClInclude Include="Cabecalho\Utils\ManipularJson.h" />
     <ClInclude Include="libs\cJSON\cJSON.h" />
+    <ClInclude Include="Origem.h" />
     <ClInclude Include="PaginaCombinacao.h" />
     <ClInclude Include="Cabecalho\Utils\Utilitario.h" />
   </ItemGroup>
