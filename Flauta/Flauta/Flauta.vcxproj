@@ -145,6 +145,7 @@
     <ClCompile Include="Cabecalho\Utils\Imagem.h" />
     <ClCompile Include="Fonte\Cenario.c" />
     <ClCompile Include="Fonte\Equipamento.c" />
+    <ClCompile Include="Fonte\Ingrediente.c" />
     <ClCompile Include="Fonte\Inventario.c" />
     <ClCompile Include="Fonte\Itens.c" />
     <ClCompile Include="Fonte\Missao.c" />
@@ -214,6 +215,7 @@
   <ItemGroup>
     <ClInclude Include="Cabecalho\CenarioItem.h" />
     <ClInclude Include="Cabecalho\Equipamento.h" />
+    <ClInclude Include="Cabecalho\Ingrediente.h" />
     <ClInclude Include="Cabecalho\Inventario.h" />
     <ClInclude Include="Cabecalho\Itens.h" />
     <ClInclude Include="Cabecalho\Missao.h" />

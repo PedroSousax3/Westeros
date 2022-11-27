@@ -52,11 +52,11 @@ struct Missao {
 	/// <summary>
 	/// O objetivo da missão será gerar esse mistura
 	/// </summary>
-	Mistura * misturaFinal;
+	struct Mistura * misturaFinal;
 	/// <summary>
 	/// Passos que devem ser realizandos para a conclusão da missão
 	/// </summary>
-	PassoMissao * passosMissao;
+	struct PassoMissao * passosMissao;
 	/// <summary>
 	/// Indice da missão no vetor dinamico Missões
 	/// </summary>
@@ -68,7 +68,7 @@ struct Missao {
 	/// <summary>
 	/// Proxima missão
 	/// </summary>
-	Missao* proxima;
+	struct Missao* proxima;
 };
 /// <summary>
 /// Passos que devem ser executados para a finalização da missão
@@ -97,7 +97,7 @@ struct PassoMissao {
 	/// <summary>
 	/// Elemento em que o evento deve ocorrer para finalizar a tarefa
 	/// </summary>
-	CenarioItem * cenarioItem;
+	struct CenarioItem * cenarioItem;
 	/// <summary>
 	/// Posicao do passo
 	/// </summary>
@@ -106,9 +106,8 @@ struct PassoMissao {
 	/// Quantidade de missoões disponiveis no vetor dinamico
 	/// </summary>
 	int* count;
-	PassoMissao * proxima;
+	struct PassoMissao * proxima;
 };
-
 /// <summary>
 /// Obtem o objeto cJSON com as informções das missões do jogo
 /// </summary>
@@ -156,4 +155,10 @@ PassoMissao* mapearPassosMissaoDeJson(PassoMissao* noAnterior, cJSON* passoJson,
 /// </summary>
 /// <param name="passoMissao">Inicio da destruição</param>
 void destruirPassosMissao(PassoMissao * passoMissao);
+/// <summary>
+/// Coleta a posição em que as misturas poderá ser realizada
+/// </summary>
+/// <param name="posicaoMisturaCJson">cJSON base para a coleta das indormações da posição</param>
+/// <returns>Posição em que as misturas serão realizadas</returns>
+Posicao* mapearPosicaoMistura(cJSON* posicaoMisturaCJson);
 #endif // !Cabecalho_Missao

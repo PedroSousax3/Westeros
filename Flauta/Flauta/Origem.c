@@ -9,6 +9,7 @@ Pagina paginaCombinacao;
 Personagem personagemPrincipal;
 Posicao posicoes[1];
 Mistura * misturas;
+Posicao * posicaoRealizarMistura;
 CenarioItem * cenarioItemInicial;
 Missao* missaoInicial;
 cJSON* jsonCenario;
@@ -112,7 +113,6 @@ int main(void) {
 	carregarInformacoesMissoes();
 
 	personagemPrincipal.missaoAtual = missaoInicial;
-	misturas = iniciarMisturas(cenarioItemInicial);
 	al_start_timer(tempoRenderizacao);
 
 	
@@ -157,8 +157,10 @@ int main(void) {
 
 	destruirCenarioItens(cenarioItemInicial);
 	cJSON_Delete(jsonCenario);
+	free(posicaoRealizarMistura);
 	destruirMissoes(missaoInicial);
 	cJSON_Delete(jsonMissoes);
+	destruirInvetario(personagemPrincipal.inventario);
 	al_destroy_font(fonte);
 	al_destroy_display(paginaPrincipal.display);
 	al_destroy_event_queue(eventos);
@@ -361,34 +363,50 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 	{
 		posicaoMouse.posicaoX = event.mouse.x + cameraPosition[0],
 		posicaoMouse.posicaoY = event.mouse.y + cameraPosition[1];
-		if (colediuComCenario(cenarioItemInicial, posicaoMouse, false) && obterElementoCenarioEmPosicao(cenarioItemInicial, posicaoMouse, false)->cenarioItem->coletavelPeloJogador)
+
+		if (posicaoColediu(*posicaoRealizarMistura, posicaoMouse) || (colediuComCenario(cenarioItemInicial, posicaoMouse, false) && obterElementoCenarioEmPosicao(cenarioItemInicial, posicaoMouse, false)->cenarioItem->coletavelPeloJogador))
 			al_set_system_mouse_cursor(paginaPrincipal.display, ALLEGRO_SYSTEM_MOUSE_CURSOR_LINK);
 		else
 			al_set_system_mouse_cursor(paginaPrincipal.display, ALLEGRO_SYSTEM_MOUSE_CURSOR_DEFAULT);
 	}
 	else if (event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
-		if (event.mouse.button == 1 && colediuComCenario(cenarioItemInicial, posicaoMouse, false)) {
-			ElementoCenario* elementoCenario = obterElementoCenarioEmPosicao(cenarioItemInicial, posicaoMouse, false);
-			CenarioItem* cernarioItem = elementoCenario->cenarioItem;
-
-			if (elementoCenario->cenarioItem->coletavelPeloJogador) {
-				if (personagemPrincipal.inventario == NULL) {
-					personagemPrincipal.inventario = inserirItemInventario(personagemPrincipal.inventario, elementoCenario->cenarioItem);
-					elementoCenario = removerElementoCenario(elementoCenario);
+		if (event.mouse.button == 1) {
+			if (posicaoColediu(*posicaoRealizarMistura, posicaoMouse)) {
+				if (misturaPossuiTodosIngredientes(personagemPrincipal.missaoAtual->misturaFinal->ingrediente, personagemPrincipal.inventario)) {
+					printf("Realizar mistura.");
+					destruirInvetario(personagemPrincipal.inventario);
+					personagemPrincipal.inventario = inserirItemInventario(NULL, personagemPrincipal.missaoAtual->misturaFinal->produto);
+				} 
+				else
+				{
+					printf("Não foi possível realizar a mistura.");
+					destruirInvetario(personagemPrincipal.inventario);
+					personagemPrincipal.inventario = NULL;
 				}
-				//else if ((*personagemPrincipal.inventario->count) < 3) {
-				else {
-					Inventario* ultimoInventario = ultimoItemInventario(personagemPrincipal.inventario);
-					if (ultimoInventario != NULL) {
-						ultimoInventario->proximo = inserirItemInventario(ultimoInventario, elementoCenario->cenarioItem);
+			}
+			else if (colediuComCenario(cenarioItemInicial, posicaoMouse, false)) {
+				ElementoCenario* elementoCenario = obterElementoCenarioEmPosicao(cenarioItemInicial, posicaoMouse, false);
+				CenarioItem* cernarioItem = elementoCenario->cenarioItem;
+
+				if (elementoCenario->cenarioItem->coletavelPeloJogador) {
+					if (personagemPrincipal.inventario == NULL) {
+						personagemPrincipal.inventario = inserirItemInventario(personagemPrincipal.inventario, elementoCenario->cenarioItem);
 						elementoCenario = removerElementoCenario(elementoCenario);
 					}
-				}
+					//else if ((*personagemPrincipal.inventario->count) < 3) {
+					else {
+						Inventario* ultimoInventario = ultimoItemInventario(personagemPrincipal.inventario);
+						if (ultimoInventario != NULL) {
+							ultimoInventario->proximo = inserirItemInventario(ultimoInventario, elementoCenario->cenarioItem);
+							elementoCenario = removerElementoCenario(elementoCenario);
+						}
+					}
 
-				if (elementoCenario == NULL)
-					cernarioItem->elementoInical = NULL;
-				else if (elementoCenario->indice == 0)
-					cernarioItem->elementoInical = elementoCenario;
+					if (elementoCenario == NULL)
+						cernarioItem->elementoInical = NULL;
+					else if (elementoCenario->indice == 0)
+						cernarioItem->elementoInical = elementoCenario;
+				}
 			}
 		}
 	}
@@ -415,7 +433,9 @@ void carregarInformacaoesCenario(void) {
  
 void carregarInformacoesMissoes(void) {
 	jsonMissoes = obterMissoesJson();
+	cJSON * possicaoRealizarMisturaCJson = bucarItemCJson(jsonMissoes->child, "posicoesRealizarMistura");
 	cJSON * missoesCJSON = bucarItemCJson(jsonMissoes->child, "missoes");
+	posicaoRealizarMistura = mapearPosicaoMistura(possicaoRealizarMisturaCJson);
 	missaoInicial = mapearMissoesDeJson(NULL, missoesCJSON->child, cenarioItemInicial);
 }
 

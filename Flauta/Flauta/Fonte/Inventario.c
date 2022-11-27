@@ -70,3 +70,16 @@ CenarioItem* ultimoItemInventario(Inventario* inventarioInicial) {
 		return inventarioInicial;
 	return ultimoItemInventario(inventarioInicial->proximo);
 }
+
+void destruirInvetario(Inventario * inventarioInicial) {
+	if (inventarioInicial != NULL) {
+		if (inventarioInicial->proximo != NULL)
+			destruirInvetario(inventarioInicial->proximo);
+
+		(*inventarioInicial->count)--;
+		if ((*inventarioInicial->count) == 0)
+			free(inventarioInicial->count);
+
+		free(inventarioInicial);
+	}
+}

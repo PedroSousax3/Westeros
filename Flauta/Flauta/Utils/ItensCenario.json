@@ -38,7 +38,7 @@
       "nome": "Vazio",
       "descricao": "Parede Invisivel",
       "imagem": {
-        "endereco": "Utils/Imagens/Fundo_branco.png",
+        "endereco": "",
         "orientacao": 1
       },
       "imagemInventario": null,
@@ -1757,6 +1757,39 @@
       ],
 
       "elementos": []
+    },
+    {
+      "codigo": 21,
+      "nome": "Elemento realizar mistura",
+      "descricao": "Item para realizar a misturas de elementos",
+      "imagem": {
+        "endereco": "",
+        "orientacao": 1
+      },
+      "imagemInventario": null,
+      "coletavelPeloJogador": false,
+      "codigoItemInventario": null,
+      "randomElementes": [],
+
+      "elementos": [
+        {
+          "canarioItem": 1,
+          "posicaoAbsoluta": {
+            "posicaoX": 317,
+            "posicaoY": 314,
+
+            "tamanhoX": 431,
+            "tamanhoY": 412
+          },
+          "posicaoRelativa": {
+            "posicaoX": 0,
+            "posicaoY": 0,
+
+            "tamanhoX": 0,
+            "tamanhoY": 0
+          }
+        }
+      ]
     }
   ]
 }
