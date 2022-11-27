@@ -17,26 +17,26 @@
     {
       "codigo": 1,
       "nome": "Missão 1",
-      "mensagemInicial": "Você precisa fazer o remedio 1.",
+      "mensagemInicial": "Fazer chá de Camomila e Hortela.",
       "mensagemFinal": "Você conclui a missão 1.",
       "mistura": {
-        "produto": 20,
-        "ingredientes": [ 14, 14, 14 ]
+        "produto": 17,
+        "ingredientes": [ 8, 9, 14 ]
       },
-      
+
       "dicas": [
         {
           "obrigatorio": true,
           "executar": 1,
-          "mensagemInicial": "O passo iniciou 1. O passo Você 1. Caçar animais pedções. passo iniciou 1. O passo iniciou 1. O passo iniciou 1. O passo iniciou 1. O passo iniciou 1.",
+          "mensagemInicial": "Colete uma Hortela.",
           "mensagemFinal": "O passo finalizou 1.",
           "quando": 1,
           "cenarioItem": 1
         },
         {
-          "obrigatorio": false,
+          "obrigatorio": true,
           "executar": 1,
-          "mensagemInicial": "O passo iniciou 2.",
+          "mensagemInicial": "Colete uma Camomila.",
           "mensagemFinal": "O passo finalizou 2.",
           "quando": 1,
           "cenarioItem": 1
@@ -44,7 +44,105 @@
         {
           "obrigatorio": true,
           "executar": 2,
-          "mensagemInicial": "O passo iniciou 3.",
+          "mensagemInicial": "Colete uma Agua.",
+          "mensagemFinal": "O passo finalizou 3.",
+          "quando": 1,
+          "cenarioItem": 1
+        },
+        {
+          "obrigatorio": true,
+          "executar": 2,
+          "mensagemInicial": "Com os ingredientes coletados, faça o remedio. E entregem para a senhora na casa.",
+          "mensagemFinal": "O passo finalizou 3.",
+          "quando": 1,
+          "cenarioItem": 1
+        }
+      ]
+    },
+    {
+      "codigo": 2,
+      "nome": "Missão 1",
+      "mensagemInicial": "Você precisa fazer o remedio 1.",
+      "mensagemFinal": "Você conclui a missão 1.",
+      "mistura": {
+        "produto": 17,
+        "ingredientes": [ 12, 13, 14 ]
+      },
+
+      "dicas": [
+        {
+          "obrigatorio": true,
+          "executar": 1,
+          "mensagemInicial": "Colete uma Gengibre.",
+          "mensagemFinal": "O passo finalizou 1.",
+          "quando": 1,
+          "cenarioItem": 1
+        },
+        {
+          "obrigatorio": true,
+          "executar": 1,
+          "mensagemInicial": "Colete uma Mel.",
+          "mensagemFinal": "O passo finalizou 2.",
+          "quando": 1,
+          "cenarioItem": 1
+        },
+        {
+          "obrigatorio": true,
+          "executar": 2,
+          "mensagemInicial": "Colete uma Agua.",
+          "mensagemFinal": "O passo finalizou 3.",
+          "quando": 1,
+          "cenarioItem": 1
+        },
+        {
+          "obrigatorio": true,
+          "executar": 2,
+          "mensagemInicial": "Com os ingredientes coletados, faça o remedio. E entregem para a senhora na casa.",
+          "mensagemFinal": "O passo finalizou 3.",
+          "quando": 1,
+          "cenarioItem": 1
+        }
+      ]
+    },
+    {
+      "codigo": 3,
+      "nome": "Missão 2",
+      "mensagemInicial": "Fazer pomada de Eucalipto, alecrim e hortelã,",
+      "mensagemFinal": "Você conclui a missão 1.",
+      "mistura": {
+        "produto": 19,
+        "ingredientes": [ 11, 10, 8 ]
+      },
+
+      "dicas": [
+        {
+          "obrigatorio": true,
+          "executar": 1,
+          "mensagemInicial": "Colete uma Folha de Eucalipto.",
+          "mensagemFinal": "O passo finalizou 1.",
+          "quando": 1,
+          "cenarioItem": 1
+        },
+        {
+          "obrigatorio": true,
+          "executar": 1,
+          "mensagemInicial": "Colete uma Alecrim.",
+          "mensagemFinal": "O passo finalizou 2.",
+          "quando": 1,
+          "cenarioItem": 1
+        },
+        {
+          "obrigatorio": true,
+          "executar": 2,
+          "mensagemInicial": "Colete uma Hortela.",
+          "mensagemFinal": "O passo finalizou 3.",
+          "quando": 1,
+          "cenarioItem": 1
+        },
+        {
+          "obrigatorio": true,
+          "executar": 2,
+          "mensagemInicial": "Com os ingredientes coletados, faça o remedio. E entregem para a senhora na casa.",
           "mensagemFinal": "O passo finalizou 3.",
           "quando": 1,
           "cenarioItem": 1

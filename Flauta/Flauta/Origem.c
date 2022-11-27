@@ -367,7 +367,7 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 	}
 	else if (event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
 		if (event.mouse.button == 1) {
-			if (posicaoColediu(*posicaoFinalizarMissao, posicaoMouse)) {
+			if (personagemPrincipal.missaoAtual != NULL && posicaoColediu(*posicaoFinalizarMissao, posicaoMouse)) {
 				Inventario * itemInventario = buscarItemInventario(personagemPrincipal.inventario, personagemPrincipal.missaoAtual->misturaFinal->produto->codigo);
 
 				if (itemInventario == NULL) {
@@ -388,7 +388,7 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 				};
 			}
 			else if (posicaoColediu(*posicaoRealizarMistura, posicaoMouse)) {
-				if (misturaPossuiTodosIngredientes(personagemPrincipal.missaoAtual->misturaFinal->ingrediente, personagemPrincipal.inventario)) {
+				if (personagemPrincipal.missaoAtual != NULL && misturaPossuiTodosIngredientes(personagemPrincipal.missaoAtual->misturaFinal->ingrediente, personagemPrincipal.inventario)) {
 					destruirInvetario(personagemPrincipal.inventario);
 					personagemPrincipal.inventario = inserirItemInventario(NULL, personagemPrincipal.missaoAtual->misturaFinal->produto);
 					abrirPaginaComposicao();
