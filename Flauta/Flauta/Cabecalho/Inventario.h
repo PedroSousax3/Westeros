@@ -22,4 +22,5 @@ void removerItemInventario(Inventario* inventario);
 Inventario* buscarItemInventario(Inventario* inventario, int codCenarioItem);
 void desenharItensInventarios(Inventario inventarioInicial);
 CenarioItem* ultimoItemInventario(Inventario* inventarioInicial);
+void destruirInvetario(Inventario* inventarioInicial);
 #endif // !Cabecalho_Inventario

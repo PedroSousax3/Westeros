@@ -84,6 +84,20 @@
     <Allegro_AddonVideo>true</Allegro_AddonVideo>
     <Allegro_LibraryType>DynamicDebug</Allegro_LibraryType>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Allegro_AddonImage>true</Allegro_AddonImage>
+    <Allegro_AddonTTF>true</Allegro_AddonTTF>
+    <Allegro_AddonPrimitives>true</Allegro_AddonPrimitives>
+    <Allegro_AddonAudio>true</Allegro_AddonAudio>
+    <Allegro_AddonAcodec>true</Allegro_AddonAcodec>
+    <Allegro_AddonPhysfs>true</Allegro_AddonPhysfs>
+    <Allegro_AddonDialog>true</Allegro_AddonDialog>
+    <Allegro_AddonMemfile>true</Allegro_AddonMemfile>
+    <Allegro_AddonFont>true</Allegro_AddonFont>
+    <Allegro_AddonColor>true</Allegro_AddonColor>
+    <Allegro_AddonVideo>true</Allegro_AddonVideo>
+    <Allegro_LibraryType>DynamicRelease</Allegro_LibraryType>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -145,6 +159,7 @@
     <ClCompile Include="Cabecalho\Utils\Imagem.h" />
     <ClCompile Include="Fonte\Cenario.c" />
     <ClCompile Include="Fonte\Equipamento.c" />
+    <ClCompile Include="Fonte\Ingrediente.c" />
     <ClCompile Include="Fonte\Inventario.c" />
     <ClCompile Include="Fonte\Itens.c" />
     <ClCompile Include="Fonte\Missao.c" />
@@ -220,6 +235,7 @@
   <ItemGroup>
     <ClInclude Include="Cabecalho\CenarioItem.h" />
     <ClInclude Include="Cabecalho\Equipamento.h" />
+    <ClInclude Include="Cabecalho\Ingrediente.h" />
     <ClInclude Include="Cabecalho\Inventario.h" />
     <ClInclude Include="Cabecalho\Itens.h" />
     <ClInclude Include="Cabecalho\Missao.h" />
@@ -230,6 +246,7 @@
     <ClInclude Include="Cabecalho\Pagina.h" />
     <ClInclude Include="Cabecalho\Utils\ManipularJson.h" />
     <ClInclude Include="libs\cJSON\cJSON.h" />
+    <ClInclude Include="Origem.h" />
     <ClInclude Include="PaginaCombinacao.h" />
     <ClInclude Include="Cabecalho\Utils\Utilitario.h" />
   </ItemGroup>

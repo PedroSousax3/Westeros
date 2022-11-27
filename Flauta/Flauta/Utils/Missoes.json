@@ -1,12 +1,30 @@
 {
+  "posicoesRealizarMistura": {
+    "posicaoX": 5661,
+    "posicaoY": 4929,
+
+    "tamanhoX": 62,
+    "tamanhoY": 98
+  },
+  "posicaoFinalizarMissao": {
+    "posicaoX": 5414,
+    "posicaoY": 4764,
+
+    "tamanhoX": 61,
+    "tamanhoY": 112
+  },
   "missoes": [
     {
       "codigo": 1,
       "nome": "Missão 1",
       "mensagemInicial": "Você precisa fazer o remedio 1.",
       "mensagemFinal": "Você conclui a missão 1.",
-      "misturaFinal": 1,
-      "passos": [
+      "mistura": {
+        "produto": 20,
+        "ingredientes": [ 14, 14, 14 ]
+      },
+      
+      "dicas": [
         {
           "obrigatorio": true,
           "executar": 1,

@@ -83,6 +83,7 @@ CenarioItem * montarCenarioItemCJson(CenarioItem * noAnterior, cJSON * cenarioIt
 	cenarioItem->nome = bucarItemCJson(cenarioItemJson, "nome")->valuestring;
 	cenarioItem->descricao = bucarItemCJson(cenarioItemJson, "descricao")->valuestring;
 	cenarioItem->coletavelPeloJogador = bucarItemCJson(cenarioItemJson, "coletavelPeloJogador")->valueint;
+	cenarioItem->removeItenCenarioAposColeta = bucarItemCJson(cenarioItemJson, "removeItenCenarioAposColeta")->valueint;
 	//cenarioItem->codigoItemInventario = bucarItemCJson(cenarioItemJson, "codigoItemInventario")->valueint;
 
 	cJSON* imagemJson = bucarItemCJson(cenarioItemJson, "imagem");

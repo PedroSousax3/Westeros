@@ -21,8 +21,44 @@ Missao * montarMissaoDeJson(Missao* missaoAnterior, cJSON* jsonMissao, CenarioIt
 	missao->nome = bucarItemCJson(jsonMissao, "nome")->valuestring;
 	missao->mensagemInicial = bucarItemCJson(jsonMissao, "mensagemInicial")->valuestring;
 	missao->mensagemFinal = bucarItemCJson(jsonMissao, "mensagemFinal")->valuestring;
-	cJSON* jsonPassos = bucarItemCJson(jsonMissao, "passos")->child;
-	missao->passosMissao = mapearPassosMissaoDeJson(NULL, jsonPassos, cenarioItem);
+
+	cJSON* jsonMistura = bucarItemCJson(jsonMissao, "mistura")->child;
+	missao->misturaFinal = (Mistura*)malloc(sizeof(Mistura));
+	missao->misturaFinal->produto = buscarCenarioItem(cenarioItem, bucarItemCJson(jsonMistura, "produto")->valueint);
+
+	cJSON* jsonIngedientes = bucarItemCJson(jsonMistura, "ingredientes");
+	cJSON* proximoIngediente = jsonIngedientes->child;
+
+	Ingrediente * anterior = NULL;
+	while (proximoIngediente != NULL)
+	{
+		Ingrediente * ingrediente = (Ingrediente*)malloc(sizeof(Ingrediente));
+		ingrediente->proximo = NULL;
+		ingrediente->anterior = NULL;
+
+		if (anterior == NULL) {
+			missao->misturaFinal->ingrediente = ingrediente;
+			ingrediente->count = (int*)malloc(sizeof(int));
+			(*ingrediente->count) = 0;
+		}
+		else {
+			ingrediente->count = missao->misturaFinal->ingrediente->count;
+			anterior->proximo = ingrediente;
+			ingrediente->anterior = anterior;
+		}
+
+		ingrediente->elementoCenario = buscarCenarioItem(cenarioItem, proximoIngediente->valueint);
+		ingrediente->indice = (*ingrediente->count);
+		(*ingrediente->count)++;
+
+		anterior = ingrediente;
+		
+		proximoIngediente = proximoIngediente->next;
+	}
+
+	missao->passosMissao = NULL;
+	//cJSON* jsonPassos = bucarItemCJson(jsonMissao, "dicas")->child;
+	//missao->passosMissao = mapearPassosMissaoDeJson(NULL, jsonPassos, cenarioItem);
 
 	missao->proxima = NULL;
 	(*missao->count)++;
@@ -48,11 +84,13 @@ void destruirMissoes(Missao * missao) {
 		if (missao->proxima != NULL)
 			destruirMissoes(missao->proxima);
 
+		destruirPassosMissao(missao->passosMissao);
+		destruirIngredientes(missao->misturaFinal->ingrediente);
+		free(missao->misturaFinal);
+
 		(*missao->count)--;
 		if (*missao->count == 0)
 			free(missao->count);
-		
-		destruirPassosMissao(missao->passosMissao);
 
 		free(missao);
 	}
@@ -108,4 +146,16 @@ void destruirPassosMissao(PassoMissao* passoMissao) {
 
 		free(passoMissao);
 	}
+}
+
+Posicao * mapearPosicaoMistura(cJSON* posicaoMisturaCJson) {
+	Posicao* posicao = (Posicao*)malloc(sizeof(Posicao));
+
+	posicao->posicaoX = bucarItemCJson(posicaoMisturaCJson->child, "posicaoX")->valueint;
+	posicao->posicaoY = bucarItemCJson(posicaoMisturaCJson->child, "posicaoY")->valueint;
+	posicao->tamanhoX = bucarItemCJson(posicaoMisturaCJson->child, "tamanhoX")->valueint;
+	posicao->tamanhoY = bucarItemCJson(posicaoMisturaCJson->child, "tamanhoY")->valueint;
+	posicao->velocidadeX = posicao->velocidadeY = 0;
+
+	return posicao;
 }
