@@ -276,7 +276,7 @@ bool colediuComElementoCenario(ElementoCenario * elementoCenario, Posicao posica
 }
 
 bool colediuComCenario(CenarioItem * cenarioItenInicial, Posicao posicaoComparacao, bool useRelative) {
-	if (cenarioItenInicial != NULL && cenarioItenInicial->elementoInical != NULL) {
+	if (cenarioItenInicial != NULL) {
 		if (colediuComElementoCenario(cenarioItenInicial->elementoInical, posicaoComparacao, useRelative))
 			return true;
 		else if (cenarioItenInicial->proximo != NULL)
