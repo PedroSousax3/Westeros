@@ -5,6 +5,8 @@
 #include "Cabecalho/Equipamento.h"
 
 void desenharItemInventarioTelaConbinacao(Inventario* inventario, Posicao posicaoDoItemAnterior, Pagina* pagina);
+void desenharItemInventarioTelaCriacao(Inventario* inventario, Posicao posicaoDoItemAnterior, Pagina* pagina);
 void executarPaginaCombinacao(Pagina* pagina, Inventario * inventario);
+void executarPaginaCriacao(Pagina* pagina, Inventario* inventario);
 #endif // !Cabecalho_PaginaCombincao
 

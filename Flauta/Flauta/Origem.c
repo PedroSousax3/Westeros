@@ -30,6 +30,7 @@ int fpsAnimacao = 0;
 Pagina paginaPrincipal;
 Posicao posicaoMouse;
 Pagina paginaCombinacao;
+Pagina paginaCriacao;
 Personagem personagemPrincipal;
 Posicao posicoes[1];
 Mistura * misturas;
@@ -52,6 +53,7 @@ float cameraPosition[2] = { 0 , 0 };
 
 Personagem configurarPersonagemPrincipal(void);
 void abrirPaginaComposicao();
+void abrirPaginaCriacao();
 void configuracaoInicial(void);
 void registrarEventos(void);
 void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento);
@@ -146,7 +148,18 @@ int main(void) {
 		al_wait_for_event(eventos, &evento);
 
 		//Gerenciador de display
-		if (evento.type == ALLEGRO_EVENT_KEY_DOWN) {
+		if (personagemPrincipal.movimento.posicao.posicaoX <= 4980 && personagemPrincipal.movimento.posicao.posicaoX >= 4695 && personagemPrincipal.movimento.posicao.posicaoY >= 4930 && personagemPrincipal.movimento.posicao.posicaoY <= 4990) {
+			if (evento.type == ALLEGRO_EVENT_KEY_DOWN) {
+				if (evento.keyboard.keycode == ALLEGRO_KEY_I) {
+					if (paginaCriacao.aberta)
+						ocultarPagina(&paginaCriacao, &paginaPrincipal);
+					else
+						abrirPaginaCriacao();
+				}
+			}
+		}
+
+		else if (evento.type == ALLEGRO_EVENT_KEY_DOWN) {
 			if (evento.keyboard.keycode == ALLEGRO_KEY_I) {
 				if (paginaCombinacao.aberta)
 					ocultarPagina(&paginaCombinacao, &paginaPrincipal);
@@ -154,8 +167,15 @@ int main(void) {
 					abrirPaginaComposicao();
 			}
 		}
-
+		
 		//Execucao de dislay
+		if (paginaCriacao.aberta) {
+			executarPaginaCriacao(&paginaCriacao, personagemPrincipal.inventario);
+			if (evento.keyboard.keycode == ALLEGRO_KEY_1) {
+				realizarMistura(17, personagemPrincipal.inventario);
+			}
+		}
+		else if (paginaPrincipal.aberta)
 		if (paginaCombinacao.aberta)
 			executarPaginaCombinacao(&paginaCombinacao, personagemPrincipal.inventario);
 		else if (paginaPrincipal.aberta) {
@@ -190,6 +210,7 @@ int main(void) {
 	al_destroy_bitmap(paginaPrincipal.background.imagem);
 	al_destroy_bitmap(paginaPrincipal.backgroundCasa.imagem);
 	al_destroy_bitmap(paginaCombinacao.backgroundCasa.imagem);
+	al_destroy_bitmap(paginaCriacao.backgroundCasa.imagem);
 	al_destroy_timer(tempoRenderizacao);
 
 	return 0;
@@ -269,6 +290,15 @@ void abrirPaginaComposicao() {
 	paginaCombinacao.posicao.tamanhoX = 230;
 	paginaCombinacao.posicao.tamanhoY = 104;
 	exibirPagina(&paginaCombinacao);
+}
+
+void abrirPaginaCriacao() {
+	paginaCriacao.background.imagem = al_load_bitmap("Utils/Imagens/Criacao.png");
+	paginaCriacao.posicao.posicaoX = 0;
+	paginaCriacao.posicao.posicaoY = 0;
+	paginaCriacao.posicao.tamanhoX = 230;
+	paginaCriacao.posicao.tamanhoY = 198;
+	exibirPagina(&paginaCriacao);
 }
 
 void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {

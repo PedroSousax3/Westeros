@@ -29,7 +29,6 @@ void desenharItemInventarioTelaConbinacao(Inventario* inventario, Posicao posica
 void executarPaginaCombinacao(Pagina * pagina, Inventario * inventario) {
 	if (pagina->aberta)
 	{	
-		//desenhaQuadrado(pagina->posicao, al_map_rgb(255, 255, 255));
 		desenharImagem(pagina->background, pagina->posicao);
 		int posicaoY = pagina->posicao.tamanhoY - 80;
 		Posicao posicaoBase = {
@@ -38,6 +37,47 @@ void executarPaginaCombinacao(Pagina * pagina, Inventario * inventario) {
 			.posicaoY = posicaoY
 		};
 		desenharItemInventarioTelaConbinacao(inventario, posicaoBase, pagina);
+		al_flip_display();
+	}
+}
+
+void desenharItemInventarioTelaCriacao(Inventario* inventario, Posicao posicaoDoItemAnterior, Pagina* pagina) {
+	if (inventario != NULL) {
+		Posicao posicao = {
+			.posicaoY = posicaoDoItemAnterior.posicaoY,
+			.tamanhoX = 64,
+			.tamanhoY = 56
+		};
+		posicao.posicaoX = posicaoDoItemAnterior.posicaoX + posicao.tamanhoX;
+
+		if (posicao.posicaoX + posicao.tamanhoX > pagina->posicao.tamanhoX) {
+			posicao.posicaoX = 0;
+			posicao.posicaoY += posicao.tamanhoY;
+		}
+
+		Imagem* imagem = NULL;
+		if (inventario->cenarioItem->imagemInventario != NULL)
+			imagem = inventario->cenarioItem->imagemInventario;
+		else
+			imagem = inventario->cenarioItem->imagem;
+
+		desenharImagem(*imagem, posicao);
+
+		if (inventario->proximo != NULL)
+			desenharItemInventarioTelaCriacao(inventario->proximo, posicao, pagina);
+	}
+}
+void executarPaginaCriacao(Pagina* pagina, Inventario* inventario) {
+	if (pagina->aberta)
+	{
+		desenharImagem(pagina->background, pagina->posicao);
+		int posicaoY = pagina->posicao.tamanhoY - 80;
+		Posicao posicaoBase = {
+			.posicaoY = 24,
+			.posicaoX = -49,
+			.posicaoY = posicaoY
+		};
+		desenharItemInventarioTelaCriacao(inventario, posicaoBase, pagina);
 		al_flip_display();
 	}
 }
