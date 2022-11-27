@@ -14,7 +14,13 @@ void desenharItemInventarioTelaConbinacao(Inventario* inventario, Posicao posica
 			posicao.posicaoY += posicao.tamanhoY;
 		}
 
-		desenharImagem(*inventario->cenarioItem->imagem, posicao);
+		Imagem* imagem = NULL;
+		if (inventario->cenarioItem->imagemInventario != NULL)
+			imagem = inventario->cenarioItem->imagemInventario;
+		else
+			imagem = inventario->cenarioItem->imagem;
+
+		desenharImagem(*imagem, posicao);
 	
 		if (inventario->proximo != NULL)
 			desenharItemInventarioTelaConbinacao(inventario->proximo, posicao, pagina);

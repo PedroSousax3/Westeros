@@ -92,6 +92,17 @@ CenarioItem * montarCenarioItemCJson(CenarioItem * noAnterior, cJSON * cenarioIt
 	cenarioItem->imagem->orientacao = bucarItemCJson(imagemJson->child, "orientacao")->valueint;
 	cenarioItem->imagem->imagem = al_load_bitmap(cenarioItem->imagem->endereco);
 
+	cJSON* imagemInventarioJson = bucarItemCJson(cenarioItemJson, "imagemInventario");
+	if (imagemInventarioJson->child == NULL)
+		cenarioItem->imagemInventario = NULL;
+	else
+	{
+		cenarioItem->imagemInventario = (Imagem*)malloc(sizeof(Imagem));
+		cenarioItem->imagemInventario->endereco = bucarItemCJson(imagemInventarioJson->child, "endereco")->valuestring;
+		cenarioItem->imagemInventario->orientacao = bucarItemCJson(imagemInventarioJson->child, "orientacao")->valueint;
+		cenarioItem->imagemInventario->imagem = al_load_bitmap(cenarioItem->imagemInventario->endereco);
+	}
+
 	//Todos os itens dentro do vetor randomElementos
 	cJSON* randomElementesJson = bucarItemCJson(cenarioItemJson, "randomElementes")->child;
 
