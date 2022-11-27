@@ -1165,7 +1165,10 @@
         "endereco": "Utils/Imagens/Arvore_Roxa.png",
         "orientacao": 1
       },
-      "imagemInventario": null,
+      "imagemInventario": {
+        "endereco": "Utils/Imagens/Mel.png",
+        "orientacao": 1
+      },
       "coletavelPeloJogador": false,
       "codigoItemInventario": null,
       "randomElementes": [],
