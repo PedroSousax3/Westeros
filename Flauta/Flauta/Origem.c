@@ -378,6 +378,7 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 					printf("Realizar mistura.");
 					destruirInvetario(personagemPrincipal.inventario);
 					personagemPrincipal.inventario = inserirItemInventario(NULL, personagemPrincipal.missaoAtual->misturaFinal->produto);
+					abrirPaginaComposicao();
 				} 
 				else
 				{
@@ -395,8 +396,7 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 						personagemPrincipal.inventario = inserirItemInventario(personagemPrincipal.inventario, elementoCenario->cenarioItem);
 						elementoCenario = removerElementoCenario(elementoCenario);
 					}
-					//else if ((*personagemPrincipal.inventario->count) < 3) {
-					else {
+					else if ((*personagemPrincipal.inventario->count) < 3) {
 						Inventario* ultimoInventario = ultimoItemInventario(personagemPrincipal.inventario);
 						if (ultimoInventario != NULL) {
 							ultimoInventario->proximo = inserirItemInventario(ultimoInventario, elementoCenario->cenarioItem);
