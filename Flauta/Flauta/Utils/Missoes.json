@@ -61,11 +61,11 @@
     },
     {
       "codigo": 2,
-      "nome": "Missão 1",
+      "nome": "Missão 2",
       "mensagemInicial": "Você precisa fazer o remedio 1.",
       "mensagemFinal": "Você conclui a missão 1.",
       "mistura": {
-        "produto": 17,
+        "produto": 18,
         "ingredientes": [ 12, 13, 14 ]
       },
 
@@ -106,7 +106,7 @@
     },
     {
       "codigo": 3,
-      "nome": "Missão 2",
+      "nome": "Missão 3",
       "mensagemInicial": "Fazer pomada de Eucalipto, alecrim e hortelã,",
       "mensagemFinal": "Você conclui a missão 1.",
       "mistura": {
