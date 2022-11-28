@@ -57,3 +57,4 @@ Flauta/Flauta/x64/*
 Flauta/packages/
 Flauta/packages/*
 *.log
+/Flauta/Flauta/screenshot.bmp

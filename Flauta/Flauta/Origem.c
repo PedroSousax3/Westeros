@@ -45,8 +45,8 @@ void desenharPassoMissao(PassoMissao* passoMissao);
 void gerarMapa() {
 	al_set_new_display_flags(ALLEGRO_NOFRAME);
 	ALLEGRO_DISPLAY * displayMapa = al_create_display(
-		4000,
-		2500
+		paginaPrincipal.posicaoBackGroud.tamanhoX,
+		paginaPrincipal.posicaoBackGroud.tamanhoY
 	); //Cria a tela do programa
 	al_set_target_backbuffer(displayMapa);
 	//al_set_window_title(displayMapa, "Mapa");
@@ -64,10 +64,10 @@ void gerarMapa() {
 
 	//desenharPersonagem(personagemPrincipal);
 	desenharCenarioItens(cenarioItemInicial);
-	desenharPassoMissao(personagemPrincipal.missaoAtual->passosMissao);
+	//desenharPassoMissao(personagemPrincipal.missaoAtual->passosMissao);
 
 	al_save_bitmap("screenshot.bmp", al_get_backbuffer(displayMapa));
-	//mapaImagem = al_load_bitmap("screenshot.bmp");
+	mapaImagem = al_load_bitmap("screenshot.bmp");
 
 	al_destroy_display(displayMapa);
 
@@ -84,10 +84,7 @@ int main(void) {
 	al_init_font_addon();
 	al_init_ttf_addon();
 
-	//setlocale(LC_ALL, "");
-	//ALLEGRO_CONFIG * config = al_load_config_file("Utils/configuracao.cfg");
-	//const char* lang = get_config_string("system", "language", "EN");
-	//al_set_config_value(config, "system", "language", "PT-BR");
+	setlocale(LC_ALL, "Portuguese");
 
 	configuracaoInicial();
 	personagemPrincipal = configurarPersonagemPrincipal();
@@ -117,6 +114,8 @@ int main(void) {
 
 	personagemPrincipal.missaoAtual = missaoInicial;
 	al_start_timer(tempoRenderizacao);
+
+	//gerarMapa();
 
 	while (paginaPrincipal.aberta) {
 		ALLEGRO_EVENT evento;
@@ -154,12 +153,7 @@ int main(void) {
 		if (paginaCombinacao.aberta)
 			executarPaginaCombinacao(&paginaCombinacao, personagemPrincipal.inventario);
 		else if (paginaPrincipal.aberta) {
-
-			if (primeiraVolta) {
-				/*gerarMapa();*/
-				primeiraVolta = false;
-			}
-			gerenciarPosicaoPersonagem(&evento);
+			gerenciarPosicaoPersonagem(&evento);\
 
 			if(personagemPrincipal.movimento.posicao.posicaoX <= 5140 && personagemPrincipal.movimento.posicao.posicaoX >= 5050 && personagemPrincipal.movimento.posicao.posicaoY >= 5240) {
 				personagemPrincipal.movimento.posicao.posicaoX = 533;
@@ -172,14 +166,18 @@ int main(void) {
 		}
 	}
 
+	//Remover dados do programa da memoria
 	destruirCenarioItens(cenarioItemInicial);
 	cJSON_Delete(jsonCenario);
 	free(posicaoRealizarMistura);
 	destruirMissoes(missaoInicial);
 	cJSON_Delete(jsonMissoes);
 	destruirInvetario(personagemPrincipal.inventario);
-	al_destroy_font(fonte);
 	free(posicaoFinalizarMissao);
+	//Remover dados do ALLEGRO da memoria
+	al_destroy_font(fontePasso);
+	al_destroy_font(fonte);
+	al_destroy_bitmap(mapaImagem);
 	al_destroy_display(paginaPrincipal.display);
 	al_destroy_event_queue(eventos);
 	al_destroy_bitmap(personagemPrincipal.imagem);
@@ -402,7 +400,7 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 	}
 	else if (event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN || event.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
 		if (event.mouse.button == 1) {
-			if (posicaoColediu(*posicaoFinalizarMissao, posicaoMouse)) {
+			if (personagemPrincipal.missaoAtual != NULL && posicaoColediu(*posicaoFinalizarMissao, posicaoMouse)) {
 				Inventario * itemInventario = buscarItemInventario(personagemPrincipal.inventario, personagemPrincipal.missaoAtual->misturaFinal->produto->codigo);
 
 				if (itemInventario == NULL) {
@@ -423,7 +421,7 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 				};
 			}
 			else if (posicaoColediu(*posicaoRealizarMistura, posicaoMouse)) {
-				if (misturaPossuiTodosIngredientes(personagemPrincipal.missaoAtual->misturaFinal->ingrediente, personagemPrincipal.inventario)) {
+				if (personagemPrincipal.missaoAtual != NULL && misturaPossuiTodosIngredientes(personagemPrincipal.missaoAtual->misturaFinal->ingrediente, personagemPrincipal.inventario)) {
 					destruirInvetario(personagemPrincipal.inventario);
 					personagemPrincipal.inventario = inserirItemInventario(NULL, personagemPrincipal.missaoAtual->misturaFinal->produto);
 					abrirPaginaComposicao();
