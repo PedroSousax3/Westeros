@@ -1,10 +1,10 @@
 {
   "posicoesRealizarMistura": {
-    "posicaoX": 5661,
-    "posicaoY": 4929,
+    "posicaoX": 4775,
+    "posicaoY": 4890,
 
-    "tamanhoX": 62,
-    "tamanhoY": 98
+    "tamanhoX": 125,
+    "tamanhoY": 40
   },
   "posicaoFinalizarMissao": {
     "posicaoX": 5414,
@@ -61,11 +61,11 @@
     },
     {
       "codigo": 2,
-      "nome": "Missão 1",
+      "nome": "Missão 2",
       "mensagemInicial": "Você precisa fazer o remedio 1.",
       "mensagemFinal": "Você conclui a missão 1.",
       "mistura": {
-        "produto": 17,
+        "produto": 18,
         "ingredientes": [ 12, 13, 14 ]
       },
 
@@ -106,7 +106,7 @@
     },
     {
       "codigo": 3,
-      "nome": "Missão 2",
+      "nome": "Missão 3",
       "mensagemInicial": "Fazer pomada de Eucalipto, alecrim e hortelã,",
       "mensagemFinal": "Você conclui a missão 1.",
       "mistura": {

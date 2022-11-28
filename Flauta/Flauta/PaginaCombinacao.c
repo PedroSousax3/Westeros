@@ -29,7 +29,6 @@ void desenharItemInventarioTelaConbinacao(Inventario* inventario, Posicao posica
 void executarPaginaCombinacao(Pagina * pagina, Inventario * inventario) {
 	if (pagina->aberta)
 	{	
-		//desenhaQuadrado(pagina->posicao, al_map_rgb(255, 255, 255));
 		desenharImagem(pagina->background, pagina->posicao);
 		int posicaoY = pagina->posicao.tamanhoY - 80;
 		Posicao posicaoBase = {

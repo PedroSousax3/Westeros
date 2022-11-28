@@ -195,16 +195,19 @@
     <Image Include="Utils\Imagens\Casa.png" />
     <Image Include="Utils\Imagens\Cha_camomila_hortela.png" />
     <Image Include="Utils\Imagens\Cha_gengibre_mel.png" />
+    <Image Include="Utils\Imagens\Comandos.png" />
     <Image Include="Utils\Imagens\Eucalipto_Arvore.png" />
     <Image Include="Utils\Imagens\Eucalipto_Inv.png" />
     <Image Include="Utils\Imagens\Gengibre_Inv.png" />
     <Image Include="Utils\Imagens\Hortela_Inv.png" />
     <Image Include="Utils\Imagens\Inventario.png" />
+    <Image Include="Utils\Imagens\Lore.png" />
     <Image Include="Utils\Imagens\Mato_1.png" />
     <Image Include="Utils\Imagens\Mato_2.png" />
     <Image Include="Utils\Imagens\Mato_3.png" />
     <Image Include="Utils\Imagens\Mel_Inv.png" />
     <Image Include="Utils\Imagens\Pedra_1.png" />
+    <Image Include="Utils\Imagens\placeholder.png" />
     <Image Include="Utils\Imagens\planta.png" />
     <Image Include="Utils\Imagens\Eucalipto.png" />
     <Image Include="Utils\Imagens\Fundo_branco.png" />
@@ -217,7 +220,6 @@
     <Image Include="Utils\Imagens\Casa_Int.png" />
     <Image Include="Utils\Imagens\deepwater.png" />
     <Image Include="Utils\Imagens\orangetrees.png" />
-    <Image Include="Utils\Imagens\Quadrado.png" />
     <Image Include="Utils\Imagens\treeorange.png" />
     <Image Include="Utils\Imagens\Arvore_Cortada.png" />
   </ItemGroup>
