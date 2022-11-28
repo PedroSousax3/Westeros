@@ -25,12 +25,15 @@
 #include <locale.h>
 
 void gerarMapa();
+void startGame();
 int main(void);
 Personagem configurarPersonagemPrincipal(void);
 void configuracaoInicial(void);
 void registrarEventos(void);
+void menu();
+void abrirPaginaComandos();
 void abrirPaginaComposicao();
-void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento);
+int gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento);
 void cameraUpdate(float* cameraPosition, Posicao* posicaoBase);
 void carregarInformacaoesCenario(void);
 void carregarInformacoesMissoes(void);

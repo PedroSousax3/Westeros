@@ -30,20 +30,6 @@ bool primeiraVolta = true;
 
 float cameraPosition[2] = { 0 , 0 };
 
-Personagem configurarPersonagemPrincipal(void);
-void menu();
-void abrirPaginaComandos();
-void abrirPaginaComposicao();
-void configuracaoInicial(void);
-void registrarEventos(void);
-void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento);
-void cameraUpdate(float* cameraPosition, Posicao * posicaoBase);
-void carregarInformacaoesCenario(void);
-void carregarInformacoesMissoes(void);
-char* concatenarTexto(char* mensagem, char* conteudo, char* separador);
-void desenharPassoMissao(PassoMissao* passoMissao);
-
-
 void gerarMapa() {
 	al_set_new_display_flags(ALLEGRO_NOFRAME);
 	ALLEGRO_DISPLAY * displayMapa = al_create_display(
@@ -75,6 +61,15 @@ void gerarMapa() {
 
 	al_set_target_backbuffer(paginaPrincipal.display);
 }
+
+void startGame() {
+
+	carregarInformacaoesCenario();
+	carregarInformacoesMissoes();
+
+	personagemPrincipal.missaoAtual = missaoInicial;
+}
+
 int main(void) {
 	if (!al_init())
 		return -1;
@@ -88,35 +83,20 @@ int main(void) {
 
 	setlocale(LC_ALL, "Portuguese");
 
-	
 	configuracaoInicial();
 	personagemPrincipal = configurarPersonagemPrincipal();
-	menu();
-
+	bgCasa = al_load_bitmap("Utils/Imagens/Casa_Int.png");
 	paginaPrincipal.personagemPrincipal = &personagemPrincipal;
 	paginaCombinacao.personagemPrincipal = &personagemPrincipal;
+
+	menu();
+
+	Iniciar:
+	startGame();
 
 	if (!paginaPrincipal.display)
 		return -1;
 
-	//paginaPrincipal.background.imagem = al_load_bitmap("Mapa.png");
-	paginaPrincipal.background.imagem = al_load_bitmap("Utils/Imagens/Mapa.png");
-	paginaPrincipal.posicaoBackGroud.posicaoX = 0;
-	paginaPrincipal.posicaoBackGroud.tamanhoX = 5268;
-	paginaPrincipal.posicaoBackGroud.posicaoY = 0;
-	paginaPrincipal.posicaoBackGroud.tamanhoY = 2160;
-
-	paginaPrincipal.backgroundCasa.imagem = al_load_bitmap("Utils/Imagens/Casa_Int.png");
-	paginaPrincipal.posicaoBgCasa.posicaoX = 4500;
-	paginaPrincipal.posicaoBgCasa.tamanhoX = 1277;
-	paginaPrincipal.posicaoBgCasa.posicaoY = 4500;
-	paginaPrincipal.posicaoBgCasa.tamanhoY = 898;
-
-	bgCasa = al_load_bitmap("Utils/Imagens/Casa_Int.png");
-	carregarInformacaoesCenario();
-	carregarInformacoesMissoes();
-
-	personagemPrincipal.missaoAtual = missaoInicial;
 	al_start_timer(tempoRenderizacao);
 
 	//gerarMapa();
@@ -137,11 +117,16 @@ int main(void) {
 		}
 		
 		//Execucao de dislay
-		if (paginaPrincipal.aberta)
 		if (paginaCombinacao.aberta)
 			executarPaginaCombinacao(&paginaCombinacao, personagemPrincipal.inventario);
 		else if (paginaPrincipal.aberta) {
-			gerenciarPosicaoPersonagem(&evento);\
+			int retorno = gerenciarPosicaoPersonagem(&evento);
+			if (retorno != NULL) {
+				if (retorno == 1)
+					goto Restart;
+				else
+					goto FinalizarGame;
+			}
 
 			if(personagemPrincipal.movimento.posicao.posicaoX <= 5140 && personagemPrincipal.movimento.posicao.posicaoX >= 5050 && personagemPrincipal.movimento.posicao.posicaoY >= 5240) {
 				personagemPrincipal.movimento.posicao.posicaoX = 533;
@@ -154,28 +139,41 @@ int main(void) {
 		}
 	}
 
-	//Remover dados do programa da memoria
-	destruirCenarioItens(cenarioItemInicial);
-	cJSON_Delete(jsonCenario);
-	free(posicaoRealizarMistura);
-	destruirMissoes(missaoInicial);
-	cJSON_Delete(jsonMissoes);
-	destruirInvetario(personagemPrincipal.inventario);
-	free(posicaoFinalizarMissao);
-	//Remover dados do ALLEGRO da memoria
-	al_destroy_font(fontePasso);
-	al_destroy_font(fonte);
-	al_destroy_bitmap(mapaImagem);
-	al_destroy_display(paginaPrincipal.display);
-	al_destroy_event_queue(eventos);
-	al_destroy_bitmap(personagemPrincipal.imagem);
-	al_destroy_bitmap(paginaPrincipal.background.imagem);
-	al_destroy_bitmap(paginaPrincipal.backgroundCasa.imagem);
-	al_destroy_bitmap(paginaCombinacao.backgroundCasa.imagem);
-	al_destroy_bitmap(paginaMenu.background.imagem);
-	al_destroy_bitmap(paginaMenu.backgroundCasa.imagem);
-	al_destroy_bitmap(paginaComandos.background.imagem);
-	al_destroy_timer(tempoRenderizacao);
+	Restart:
+		if (paginaPrincipal.aberta) {
+			destruirCenarioItens(cenarioItemInicial);
+			free(posicaoRealizarMistura);
+			destruirMissoes(missaoInicial);
+			destruirInvetario(personagemPrincipal.inventario);
+			free(posicaoFinalizarMissao);
+			cJSON_Delete(jsonCenario);
+			cJSON_Delete(jsonMissoes);
+			goto Iniciar;
+		}
+
+	FinalizarGame:
+		//Remover dados do programa da memoria
+		destruirCenarioItens(cenarioItemInicial);
+		free(posicaoRealizarMistura);
+		destruirMissoes(missaoInicial);
+		destruirInvetario(personagemPrincipal.inventario);
+		free(posicaoFinalizarMissao);
+		cJSON_Delete(jsonCenario);
+		cJSON_Delete(jsonMissoes);
+		//Remover dados do ALLEGRO da memoria
+		al_destroy_font(fontePasso);
+		al_destroy_font(fonte);
+		al_destroy_bitmap(mapaImagem);
+		al_destroy_display(paginaPrincipal.display);
+		al_destroy_event_queue(eventos);
+		al_destroy_bitmap(personagemPrincipal.imagem);
+		al_destroy_bitmap(paginaPrincipal.background.imagem);
+		al_destroy_bitmap(paginaPrincipal.backgroundCasa.imagem);
+		al_destroy_bitmap(paginaCombinacao.backgroundCasa.imagem);
+		al_destroy_bitmap(paginaMenu.background.imagem);
+		al_destroy_bitmap(paginaMenu.backgroundCasa.imagem);
+		al_destroy_bitmap(paginaComandos.background.imagem);
+		al_destroy_timer(tempoRenderizacao);
 
 	return 0;
 }
@@ -213,6 +211,18 @@ Personagem configurarPersonagemPrincipal(void) {
 
 	movimento.posicao = posicao;
 	personagem.movimento = movimento;
+
+	paginaPrincipal.background.imagem = al_load_bitmap("Utils/Imagens/Mapa.png");
+	paginaPrincipal.posicaoBackGroud.posicaoX = 0;
+	paginaPrincipal.posicaoBackGroud.tamanhoX = 5268;
+	paginaPrincipal.posicaoBackGroud.posicaoY = 0;
+	paginaPrincipal.posicaoBackGroud.tamanhoY = 2160;
+
+	paginaPrincipal.backgroundCasa.imagem = al_load_bitmap("Utils/Imagens/Casa_Int.png");
+	paginaPrincipal.posicaoBgCasa.posicaoX = 4500;
+	paginaPrincipal.posicaoBgCasa.tamanhoX = 1277;
+	paginaPrincipal.posicaoBgCasa.posicaoY = 4500;
+	paginaPrincipal.posicaoBgCasa.tamanhoY = 898;
 
 	return personagem;
 }
@@ -271,7 +281,7 @@ void menu() {
 				al_flip_display();
 				desenharImagem(paginaMenu.backgroundCasa, paginaMenu.posicaoBackGroud);
 				al_flip_display();
-				al_rest(15);
+				al_rest(1);
 				paginaPrincipal.aberta = true;
 			}
 		}
@@ -330,7 +340,7 @@ void abrirPaginaComposicao() {
 	exibirPagina(&paginaCombinacao);
 }
 
-void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
+int gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 	int posicaoXPersonagem = personagemPrincipal.movimento.posicao.posicaoX;
 	int posicaoYPersonagem = personagemPrincipal.movimento.posicao.posicaoY;
 
@@ -467,11 +477,13 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 					personagemPrincipal.inventario = NULL;
 					printf("Missão finalizada.");
 
-					if (personagemPrincipal.missaoAtual->proxima != NULL)
+					if (personagemPrincipal.missaoAtual->proxima != NULL) {
+						al_show_native_message_box(paginaPrincipal.display, "Missao concluida", "Parabens,", "voce finalizou a missão, vamos para a proxima tarefa.", "Sim", ALLEGRO_MESSAGEBOX_WARN);
 						personagemPrincipal.missaoAtual = personagemPrincipal.missaoAtual->proxima;
+					}
 					else {
-						printf("Parabens, você chegou ao final do jogo.");
 						personagemPrincipal.missaoAtual = NULL;
+						return al_show_native_message_box(paginaPrincipal.display, "Final do jogo", "Parabens,", "voce chegou ao final do jogo. Deseja reiniciar o game?", "Sim", ALLEGRO_MESSAGEBOX_YES_NO);
 					}
 				};
 			}
@@ -485,7 +497,7 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 				{
 					destruirInvetario(personagemPrincipal.inventario);
 					personagemPrincipal.inventario = NULL;
-					printf("Não foi possível realizar a mistura.");
+					al_show_native_message_box(paginaPrincipal.display, "Ingredientes incorretos", "Ingredientes incorretos", "Nao foi possivel realizar a mistura com os ingredientes em seu inventario, colete os itens corretos e tente novamente.", NULL, ALLEGRO_MESSAGEBOX_WARN);
 				}
 			}
 			else if (colediuComCenario(cenarioItemInicial, posicaoMouse, false)) {
@@ -517,8 +529,11 @@ void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 			}
 		}
 	}
-	else if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
+	else if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
 		paginaPrincipal.aberta = false;
+	}
+
+	return NULL;
 }
 
 void cameraUpdate(float * cameraPosition, Posicao * posicaoBase)
