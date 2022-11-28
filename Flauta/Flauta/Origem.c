@@ -6,7 +6,8 @@ int fpsAnimacao = 0;
 Pagina paginaPrincipal;
 Posicao posicaoMouse;
 Pagina paginaCombinacao;
-Pagina paginaCriacao;
+Pagina paginaMenu;
+Pagina paginaComandos;
 Personagem personagemPrincipal;
 Posicao posicoes[1];
 Mistura * misturas;
@@ -30,8 +31,9 @@ bool primeiraVolta = true;
 float cameraPosition[2] = { 0 , 0 };
 
 Personagem configurarPersonagemPrincipal(void);
+void menu();
+void abrirPaginaComandos();
 void abrirPaginaComposicao();
-void abrirPaginaCriacao();
 void configuracaoInicial(void);
 void registrarEventos(void);
 void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento);
@@ -89,8 +91,10 @@ int main(void) {
 	//const char* lang = get_config_string("system", "language", "EN");
 	//al_set_config_value(config, "system", "language", "PT-BR");
 
+	
 	configuracaoInicial();
 	personagemPrincipal = configurarPersonagemPrincipal();
+	menu();
 
 	paginaPrincipal.personagemPrincipal = &personagemPrincipal;
 	paginaCombinacao.personagemPrincipal = &personagemPrincipal;
@@ -123,18 +127,8 @@ int main(void) {
 		al_wait_for_event(eventos, &evento);
 
 		//Gerenciador de display
-		if (personagemPrincipal.movimento.posicao.posicaoX <= 4980 && personagemPrincipal.movimento.posicao.posicaoX >= 4695 && personagemPrincipal.movimento.posicao.posicaoY >= 4930 && personagemPrincipal.movimento.posicao.posicaoY <= 4990) {
-			if (evento.type == ALLEGRO_EVENT_KEY_DOWN) {
-				if (evento.keyboard.keycode == ALLEGRO_KEY_I) {
-					if (paginaCriacao.aberta)
-						ocultarPagina(&paginaCriacao, &paginaPrincipal);
-					else
-						abrirPaginaCriacao();
-				}
-			}
-		}
 
-		else if (evento.type == ALLEGRO_EVENT_KEY_DOWN) {
+		if (evento.type == ALLEGRO_EVENT_KEY_DOWN) {
 			if (evento.keyboard.keycode == ALLEGRO_KEY_I) {
 				if (paginaCombinacao.aberta)
 					ocultarPagina(&paginaCombinacao, &paginaPrincipal);
@@ -144,13 +138,7 @@ int main(void) {
 		}
 		
 		//Execucao de dislay
-		if (paginaCriacao.aberta) {
-			executarPaginaCriacao(&paginaCriacao, personagemPrincipal.inventario);
-			if (evento.keyboard.keycode == ALLEGRO_KEY_1) {
-				realizarMistura(17, personagemPrincipal.inventario);
-			}
-		}
-		else if (paginaPrincipal.aberta)
+		if (paginaPrincipal.aberta)
 		if (paginaCombinacao.aberta)
 			executarPaginaCombinacao(&paginaCombinacao, personagemPrincipal.inventario);
 		else if (paginaPrincipal.aberta) {
@@ -186,7 +174,9 @@ int main(void) {
 	al_destroy_bitmap(paginaPrincipal.background.imagem);
 	al_destroy_bitmap(paginaPrincipal.backgroundCasa.imagem);
 	al_destroy_bitmap(paginaCombinacao.backgroundCasa.imagem);
-	al_destroy_bitmap(paginaCriacao.backgroundCasa.imagem);
+	al_destroy_bitmap(paginaMenu.background.imagem);
+	al_destroy_bitmap(paginaMenu.backgroundCasa.imagem);
+	al_destroy_bitmap(paginaComandos.background.imagem);
 	al_destroy_timer(tempoRenderizacao);
 
 	return 0;
@@ -259,6 +249,80 @@ void registrarEventos(void) {
 	al_register_event_source(eventos, al_get_mouse_event_source());
 }
 
+void menu() {
+	paginaMenu.background.imagem = al_load_bitmap("Utils/Imagens/placeholder.png");
+	paginaMenu.posicaoBackGroud.posicaoX = 0;
+	paginaMenu.posicaoBackGroud.tamanhoX = 1280;
+	paginaMenu.posicaoBackGroud.posicaoY = 0;
+	paginaMenu.posicaoBackGroud.tamanhoY = 720;
+	paginaMenu.backgroundCasa.imagem = al_load_bitmap("Utils/Imagens/Lore.png");
+	paginaMenu.aberta = true;
+	paginaPrincipal.aberta = false;
+
+	while (paginaMenu.aberta) {
+		ALLEGRO_EVENT evento;
+		al_wait_for_event(eventos, &evento);
+
+		desenharImagem(paginaMenu.background, paginaMenu.posicaoBackGroud);
+		al_flip_display();
+
+		if (evento.type == ALLEGRO_EVENT_KEY_DOWN) {
+			if (evento.keyboard.keycode == ALLEGRO_KEY_SPACE) {
+				paginaMenu.aberta = false;
+				al_clear_to_color(al_map_rgb(0, 0, 0));
+				al_flip_display();
+				desenharImagem(paginaMenu.backgroundCasa, paginaMenu.posicaoBackGroud);
+				al_flip_display();
+				al_rest(15);
+				paginaPrincipal.aberta = true;
+			}
+		}
+		if (evento.type == ALLEGRO_EVENT_KEY_DOWN) {
+			if (evento.keyboard.keycode == ALLEGRO_KEY_C) {
+				paginaMenu.aberta = false;
+				al_clear_to_color(al_map_rgb(0, 0, 0));
+				al_flip_display();
+				al_rest(1);
+				abrirPaginaComandos();
+			}
+		}
+		if (evento.type == ALLEGRO_EVENT_KEY_DOWN) {
+			if (evento.keyboard.keycode == ALLEGRO_KEY_ESCAPE) {
+				return 0;
+			}
+		}
+	}
+}
+
+void abrirPaginaComandos() {
+	paginaComandos.background.imagem = al_load_bitmap("Utils/Imagens/Comandos.png");
+	paginaComandos.posicaoBackGroud.posicaoX = 0;
+	paginaComandos.posicaoBackGroud.tamanhoX = 1280;
+	paginaComandos.posicaoBackGroud.posicaoY = 0;
+	paginaComandos.posicaoBackGroud.tamanhoY = 720;
+	paginaComandos.aberta = true;
+
+	while (paginaComandos.aberta) {
+		ALLEGRO_EVENT evento;
+		al_wait_for_event(eventos, &evento);
+
+		desenharImagem(paginaComandos.background, paginaComandos.posicaoBackGroud);
+		al_flip_display();
+
+		if (evento.type == ALLEGRO_EVENT_KEY_DOWN) {
+			if (evento.keyboard.keycode == ALLEGRO_KEY_ESCAPE) {
+				paginaComandos.aberta = false;
+				al_clear_to_color(al_map_rgb(0, 0, 0));
+				al_flip_display();
+				al_rest(1);
+				menu();
+
+			}
+		}
+	}
+
+}
+
 void abrirPaginaComposicao() {
 	paginaCombinacao.background.imagem = al_load_bitmap("Utils/Imagens/Inventario.png");
 	paginaCombinacao.posicao.posicaoX = 0;
@@ -266,15 +330,6 @@ void abrirPaginaComposicao() {
 	paginaCombinacao.posicao.tamanhoX = 230;
 	paginaCombinacao.posicao.tamanhoY = 104;
 	exibirPagina(&paginaCombinacao);
-}
-
-void abrirPaginaCriacao() {
-	paginaCriacao.background.imagem = al_load_bitmap("Utils/Imagens/Criacao.png");
-	paginaCriacao.posicao.posicaoX = 0;
-	paginaCriacao.posicao.posicaoY = 0;
-	paginaCriacao.posicao.tamanhoX = 230;
-	paginaCriacao.posicao.tamanhoY = 198;
-	exibirPagina(&paginaCriacao);
 }
 
 void gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
