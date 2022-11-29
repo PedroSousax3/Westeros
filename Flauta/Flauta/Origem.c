@@ -186,7 +186,7 @@ int main(void) {
 			if (retorno != NULL) {
 				if (retorno == 1)
 					goto Restart;
-				else
+				else if (retorno == 2)
 					goto FinalizarGame;
 			}
 
@@ -553,7 +553,7 @@ int gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 						al_flip_display();
 
 						al_rest(15);
-						return 0;
+						return 2;
 					}
 				};
 			}
