@@ -138,6 +138,9 @@ int main(void) {
 			menu(evento);
 		else if (paginaComandos.aberta) {			
 			abrirPaginaComandos(evento);
+			if (evento.keyboard.keycode == ALLEGRO_KEY_ESCAPE) {
+				paginaComandos.aberta = false;
+			}
 		}
 		else if (paginaCombinacao.aberta)
 			executarPaginaCombinacao(&paginaCombinacao, personagemPrincipal.inventario);
