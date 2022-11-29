@@ -288,11 +288,11 @@ void menu(ALLEGRO_EVENT evento) {
 		
 			desenharImagem(paginaMenu.backgroundCasa, paginaMenu.posicaoBackGroud);
 			al_flip_display();
-			al_rest(1);
+			al_rest(15);
 
 			abrirPaginaComandos(evento);
 			al_flip_display();
-			al_rest(1);
+			al_rest(10);
 
 			paginaPrincipal.aberta = true;
 		}
