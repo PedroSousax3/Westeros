@@ -39,7 +39,7 @@
       "nome": "Vazio",
       "descricao": "Parede Invisivel",
       "imagem": {
-        "endereco": "",
+        "endereco": "Utils/Imagens/Fundo_branco.png",
         "orientacao": 1
       },
       "imagemInventario": null,
@@ -150,27 +150,27 @@
             "posicaoX": 505,
             "posicaoY": 645,
 
-            "tamanhoX": 25,
+            "tamanhoX": 15,
             "tamanhoY": 45
           },
           "posicaoRelativa": {
             "posicaoX": 505,
             "posicaoY": 645,
 
-            "tamanhoX": 25,
+            "tamanhoX": 15,
             "tamanhoY": 45
           }
         },
         {
           "posicaoAbsoluta": {
-            "posicaoX": 570,
+            "posicaoX": 580,
             "posicaoY": 645,
 
             "tamanhoX": 135,
             "tamanhoY": 45
           },
           "posicaoRelativa": {
-            "posicaoX": 570,
+            "posicaoX": 580,
             "posicaoY": 645,
 
             "tamanhoX": 135,

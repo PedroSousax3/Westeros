@@ -126,9 +126,15 @@ int main(void) {
 					ocultarPagina(&paginaCombinacao, &paginaPrincipal);
 				else
 					abrirPaginaComposicao();
+
+				personagemPrincipal.movimento.direcaoY = DIRECAOYNENHUM;
+				personagemPrincipal.movimento.direcaoX = DIRECAOXNENHUM;
 			}
-			else if (evento.keyboard.keycode == ALLEGRO_KEY_C)
+			else if (evento.keyboard.keycode == ALLEGRO_KEY_C) {
+				personagemPrincipal.movimento.direcaoY = DIRECAOYNENHUM;
+				personagemPrincipal.movimento.direcaoX = DIRECAOXNENHUM;
 				paginaComandos.aberta = !(paginaComandos.aberta);
+			}
 		}
 		else if (evento.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
 			paginaPrincipal.aberta = false;
@@ -154,7 +160,7 @@ int main(void) {
 				personagemPrincipal.movimento.posicao.posicaoX = 533;
 				personagemPrincipal.movimento.posicao.posicaoY = 680;
 			}
-			if (personagemPrincipal.movimento.posicao.posicaoX >= 530 && personagemPrincipal.movimento.posicao.posicaoX <= 540 && personagemPrincipal.movimento.posicao.posicaoY >= 644 && personagemPrincipal.movimento.posicao.posicaoY <= 660) {
+			if (personagemPrincipal.movimento.posicao.posicaoX >= 535 && personagemPrincipal.movimento.posicao.posicaoX <= 540 && personagemPrincipal.movimento.posicao.posicaoY >= 644 && personagemPrincipal.movimento.posicao.posicaoY <= 660) {
 				personagemPrincipal.movimento.posicao.posicaoX = 5105;
 				personagemPrincipal.movimento.posicao.posicaoY = 5220;
 			}
@@ -288,11 +294,11 @@ void menu(ALLEGRO_EVENT evento) {
 		
 			desenharImagem(paginaMenu.backgroundCasa, paginaMenu.posicaoBackGroud);
 			al_flip_display();
-			al_rest(15);
+			al_rest(1);
 
 			abrirPaginaComandos(evento);
 			al_flip_display();
-			al_rest(10);
+			al_rest(1);
 
 			paginaPrincipal.aberta = true;
 		}
