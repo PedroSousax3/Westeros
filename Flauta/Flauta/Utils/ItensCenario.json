@@ -150,27 +150,27 @@
             "posicaoX": 505,
             "posicaoY": 645,
 
-            "tamanhoX": 25,
+            "tamanhoX": 20,
             "tamanhoY": 45
           },
           "posicaoRelativa": {
             "posicaoX": 505,
             "posicaoY": 645,
 
-            "tamanhoX": 25,
+            "tamanhoX": 20,
             "tamanhoY": 45
           }
         },
         {
           "posicaoAbsoluta": {
-            "posicaoX": 570,
+            "posicaoX": 575,
             "posicaoY": 645,
 
             "tamanhoX": 135,
             "tamanhoY": 45
           },
           "posicaoRelativa": {
-            "posicaoX": 570,
+            "posicaoX": 575,
             "posicaoY": 645,
 
             "tamanhoX": 135,

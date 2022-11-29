@@ -18,8 +18,17 @@ Missao* missaoInicial;
 cJSON* jsonCenario;
 cJSON* jsonMissoes;
 
+ALLEGRO_SAMPLE* sucesso = NULL;
+ALLEGRO_SAMPLE* title = NULL;
+ALLEGRO_SAMPLE* inGame = NULL;
+ALLEGRO_SAMPLE* interacao = NULL;
+ALLEGRO_SAMPLE_INSTANCE* titleInstance = NULL;
+ALLEGRO_SAMPLE_INSTANCE* inGameInstance = NULL;
+ALLEGRO_MIXER* mainMix = NULL;
+
 ALLEGRO_EVENT_QUEUE* eventos = NULL;
 ALLEGRO_BITMAP* bgCasa = NULL;
+ALLEGRO_BITMAP* imagemFinal = NULL;
 ALLEGRO_TRANSFORM camera;
 ALLEGRO_FONT *  fonte = NULL;
 ALLEGRO_KEYBOARD_STATE keyState;
@@ -76,10 +85,12 @@ int main(void) {
 
 	al_install_keyboard();
 	al_install_mouse();
+	al_install_audio();
 	al_init_primitives_addon();
 	al_init_image_addon();
 	al_init_font_addon();
 	al_init_ttf_addon();
+	al_init_acodec_addon();
 
 	setlocale(LC_ALL, "Portuguese");
 
@@ -96,13 +107,26 @@ int main(void) {
 	paginaComandos.posicaoBackGroud.tamanhoY = 720;
 	paginaComandos.aberta = false;
 
-	paginaMenu.background.imagem = al_load_bitmap("Utils/Imagens/placeholder.png");
+	paginaMenu.background.imagem = al_load_bitmap("Utils/Imagens/Menu.jpg");
 	paginaMenu.posicaoBackGroud.posicaoX = 0;
 	paginaMenu.posicaoBackGroud.tamanhoX = 1280;
 	paginaMenu.posicaoBackGroud.posicaoY = 0;
 	paginaMenu.posicaoBackGroud.tamanhoY = 720;
 	paginaMenu.backgroundCasa.imagem = al_load_bitmap("Utils/Imagens/Lore.png");
 	paginaMenu.aberta = true;
+
+	imagemFinal = al_load_bitmap("Utils/Imagens/Final.png");
+	al_reserve_samples(4);
+	sucesso = al_load_sample("Utils/Audio/Sucesso.ogg");
+	interacao = al_load_sample("Utils/Audio/Interacao.ogg");
+	title = al_load_sample("Utils/Audio/Title.ogg");
+	titleInstance = al_create_sample_instance(title);
+	al_set_sample_instance_playmode(titleInstance, ALLEGRO_PLAYMODE_LOOP);
+	al_attach_sample_instance_to_mixer(titleInstance, al_get_default_mixer());
+	inGame = al_load_sample("Utils/Audio/inGame.ogg");
+	inGameInstance = al_create_sample_instance(inGame);
+	al_set_sample_instance_playmode(inGameInstance, ALLEGRO_PLAYMODE_LOOP);
+	al_attach_sample_instance_to_mixer(inGameInstance, al_get_default_mixer());
 
 	Iniciar:
 	startGame();
@@ -126,16 +150,29 @@ int main(void) {
 					ocultarPagina(&paginaCombinacao, &paginaPrincipal);
 				else
 					abrirPaginaComposicao();
+				personagemPrincipal.movimento.direcaoY = DIRECAOYNENHUM;
+				personagemPrincipal.movimento.direcaoX = DIRECAOXNENHUM;
 			}
-			else if (evento.keyboard.keycode == ALLEGRO_KEY_C)
+			else if (evento.keyboard.keycode == ALLEGRO_KEY_C) {
 				paginaComandos.aberta = !(paginaComandos.aberta);
+				personagemPrincipal.movimento.direcaoY = DIRECAOYNENHUM;
+				personagemPrincipal.movimento.direcaoX = DIRECAOXNENHUM;
+			}
 		}
 		else if (evento.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
 			paginaPrincipal.aberta = false;
 		
 		//Execucao de dislay
-		if (paginaMenu.aberta)
+		
+		if (paginaMenu.aberta){
+			if (evento.type == ALLEGRO_EVENT_KEY_DOWN) {
+				if (evento.keyboard.keycode == ALLEGRO_KEY_ESCAPE) {
+					return 0;
+				}
+			}
 			menu(evento);
+		}
+		
 		else if (paginaComandos.aberta) {			
 			abrirPaginaComandos(evento);
 			if (evento.keyboard.keycode == ALLEGRO_KEY_ESCAPE) {
@@ -157,7 +194,7 @@ int main(void) {
 				personagemPrincipal.movimento.posicao.posicaoX = 533;
 				personagemPrincipal.movimento.posicao.posicaoY = 680;
 			}
-			if (personagemPrincipal.movimento.posicao.posicaoX >= 530 && personagemPrincipal.movimento.posicao.posicaoX <= 540 && personagemPrincipal.movimento.posicao.posicaoY >= 644 && personagemPrincipal.movimento.posicao.posicaoY <= 660) {
+			if (personagemPrincipal.movimento.posicao.posicaoX >= 525 && personagemPrincipal.movimento.posicao.posicaoX <= 545 && personagemPrincipal.movimento.posicao.posicaoY >= 644 && personagemPrincipal.movimento.posicao.posicaoY <= 660) {
 				personagemPrincipal.movimento.posicao.posicaoX = 5105;
 				personagemPrincipal.movimento.posicao.posicaoY = 5220;
 			}
@@ -199,6 +236,12 @@ int main(void) {
 		al_destroy_bitmap(paginaMenu.backgroundCasa.imagem);
 		al_destroy_bitmap(paginaComandos.background.imagem);
 		al_destroy_timer(tempoRenderizacao);
+		al_destroy_sample(title);
+		al_destroy_sample_instance(titleInstance);
+		al_destroy_sample(inGame);
+		al_destroy_sample_instance(inGameInstance);
+		al_destroy_sample(interacao);
+		al_destroy_sample(sucesso);
 
 	return 0;
 }
@@ -284,11 +327,12 @@ void registrarEventos(void) {
 
 void menu(ALLEGRO_EVENT evento) {
 	desenharImagem(paginaMenu.background, paginaMenu.posicaoBackGroud);
+	al_play_sample_instance(titleInstance);
 
 	if (evento.type == ALLEGRO_EVENT_KEY_DOWN) {
 		if (evento.keyboard.keycode == ALLEGRO_KEY_SPACE) {
 			paginaMenu.aberta = false;
-		
+			
 			desenharImagem(paginaMenu.backgroundCasa, paginaMenu.posicaoBackGroud);
 			al_flip_display();
 			al_rest(15);
@@ -296,7 +340,8 @@ void menu(ALLEGRO_EVENT evento) {
 			abrirPaginaComandos(evento);
 			al_flip_display();
 			al_rest(10);
-
+			al_stop_sample_instance(titleInstance);
+			al_play_sample_instance(inGameInstance);
 			paginaPrincipal.aberta = true;
 		}
 	}
@@ -494,7 +539,21 @@ int gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 					}
 					else {
 						personagemPrincipal.missaoAtual = NULL;
-						return al_show_native_message_box(paginaPrincipal.display, "Final do jogo", "Parabens,", "voce chegou ao final do jogo. Deseja reiniciar o game?", "Sim", ALLEGRO_MESSAGEBOX_YES_NO);
+						al_stop_sample_instance(inGameInstance);
+						//return al_show_native_message_box(paginaPrincipal.display, "Final do jogo", "Parabens,", "voce chegou ao final do jogo. Deseja reiniciar o game?", "Sim", ALLEGRO_MESSAGEBOX_YES_NO);
+						
+						al_draw_bitmap(
+							imagemFinal,
+							cameraPosition[0],
+							cameraPosition[1],
+							paginaComandos.posicaoBackGroud.tamanhoX,
+							paginaComandos.posicaoBackGroud.tamanhoY,
+							0
+						);
+						al_flip_display();
+
+						al_rest(15);
+						return 0;
 					}
 				};
 			}
@@ -502,6 +561,7 @@ int gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 				if (personagemPrincipal.missaoAtual != NULL && misturaPossuiTodosIngredientes(personagemPrincipal.missaoAtual->misturaFinal->ingrediente, personagemPrincipal.inventario)) {
 					destruirInvetario(personagemPrincipal.inventario);
 					personagemPrincipal.inventario = inserirItemInventario(NULL, personagemPrincipal.missaoAtual->misturaFinal->produto);
+					al_play_sample(sucesso, 5.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, 0);
 					abrirPaginaComposicao();
 				} 
 				else
@@ -517,6 +577,7 @@ int gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 				
 				if (elementoCenario->cenarioItem->coletavelPeloJogador) {
 					if (personagemPrincipal.inventario == NULL) {
+						al_play_sample(interacao, 5.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, 0);
 						personagemPrincipal.inventario = inserirItemInventario(personagemPrincipal.inventario, elementoCenario->cenarioItem);
 						if (cernarioItem->removeItenCenarioAposColeta)
 							elementoCenario = removerElementoCenario(elementoCenario);
@@ -524,6 +585,7 @@ int gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 					else if ((*personagemPrincipal.inventario->count) < 3) {
 						Inventario* ultimoInventario = ultimoItemInventario(personagemPrincipal.inventario);
 						if (ultimoInventario != NULL) {
+							al_play_sample(interacao, 5.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, 0);
 							ultimoInventario->proximo = inserirItemInventario(ultimoInventario, elementoCenario->cenarioItem);
 							if (cernarioItem->removeItenCenarioAposColeta)
 								elementoCenario = removerElementoCenario(elementoCenario);

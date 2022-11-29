@@ -198,6 +198,7 @@
     <Image Include="Utils\Imagens\Comandos.png" />
     <Image Include="Utils\Imagens\Eucalipto_Arvore.png" />
     <Image Include="Utils\Imagens\Eucalipto_Inv.png" />
+    <Image Include="Utils\Imagens\Final.png" />
     <Image Include="Utils\Imagens\Gengibre_Inv.png" />
     <Image Include="Utils\Imagens\Hortela_Inv.png" />
     <Image Include="Utils\Imagens\Inventario.png" />
@@ -206,6 +207,7 @@
     <Image Include="Utils\Imagens\Mato_2.png" />
     <Image Include="Utils\Imagens\Mato_3.png" />
     <Image Include="Utils\Imagens\Mel_Inv.png" />
+    <Image Include="Utils\Imagens\Menu.jpg" />
     <Image Include="Utils\Imagens\Pedra_1.png" />
     <Image Include="Utils\Imagens\placeholder.png" />
     <Image Include="Utils\Imagens\planta.png" />
@@ -229,6 +231,10 @@
   <ItemGroup>
     <None Include="libs\cJSON\LICENSE" />
     <None Include="packages.config" />
+    <None Include="Utils\Audio\inGame.ogg" />
+    <None Include="Utils\Audio\Interacao.ogg" />
+    <None Include="Utils\Audio\Sucesso.ogg" />
+    <None Include="Utils\Audio\Title.ogg" />
     <None Include="Utils\configuracao.cfg" />
     <None Include="Utils\ItensCenario.json" />
     <None Include="Utils\Missoes.json" />

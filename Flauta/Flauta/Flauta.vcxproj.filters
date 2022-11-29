@@ -69,11 +69,11 @@
     <ClCompile Include="Fonte\Utils\Utilitario.c">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
+    <ClCompile Include="Fonte\Ingrediente.c">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="BG-0001.png">
-      <Filter>Arquivos de Recurso</Filter>
-    </Image>
     <Image Include="Serena.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
@@ -125,18 +125,6 @@
     <Image Include="Utils\Imagens\Pomada.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
-    <Image Include="Utils\Imagens\Árvore_Cortada.png">
-      <Filter>Arquivos de Recurso</Filter>
-    </Image>
-    <Image Include="Mapa.png">
-      <Filter>Arquivos de Recurso</Filter>
-    </Image>
-    <Image Include="Serena_Player.png">
-      <Filter>Arquivos de Recurso</Filter>
-    </Image>
-    <Image Include="Sprite-0002.png">
-      <Filter>Arquivos de Recurso</Filter>
-    </Image>
     <Image Include="Utils\Imagens\planta.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
@@ -182,6 +170,54 @@
     <Image Include="Utils\Imagens\Arvore_mini_pura_2.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
+    <Image Include="Utils\Imagens\Agua_Inv.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Alecrim_Inv.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Camomila_Inv.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Cha_camomila_hortela.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Cha_gengibre_mel.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Comandos.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Eucalipto_Inv.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Gengibre_Inv.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Hortela_Inv.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Inventario.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Lore.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Mel_Inv.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\placeholder.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Arvore_Cortada.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Menu.jpg">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Utils\Imagens\Final.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="arial_narrow_7.ttf" />
@@ -192,6 +228,10 @@
     <None Include="Utils\ItensCenario.json" />
     <None Include="Utils\configuracao.cfg" />
     <None Include="Utils\Missoes.json" />
+    <None Include="Utils\Audio\inGame.ogg" />
+    <None Include="Utils\Audio\Interacao.ogg" />
+    <None Include="Utils\Audio\Title.ogg" />
+    <None Include="Utils\Audio\Sucesso.ogg" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cabecalho\Posicao.h">
@@ -234,6 +274,12 @@
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="Cabecalho\Utils\Utilitario.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Cabecalho\Ingrediente.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Origem.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
   </ItemGroup>
