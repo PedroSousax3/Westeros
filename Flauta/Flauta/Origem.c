@@ -89,7 +89,20 @@ int main(void) {
 	paginaPrincipal.personagemPrincipal = &personagemPrincipal;
 	paginaCombinacao.personagemPrincipal = &personagemPrincipal;
 
-	menu();
+	paginaComandos.background.imagem = al_load_bitmap("Utils/Imagens/Comandos.png");
+	paginaComandos.posicaoBackGroud.posicaoX = 0;
+	paginaComandos.posicaoBackGroud.tamanhoX = 1280;
+	paginaComandos.posicaoBackGroud.posicaoY = 0;
+	paginaComandos.posicaoBackGroud.tamanhoY = 720;
+	paginaComandos.aberta = false;
+
+	paginaMenu.background.imagem = al_load_bitmap("Utils/Imagens/placeholder.png");
+	paginaMenu.posicaoBackGroud.posicaoX = 0;
+	paginaMenu.posicaoBackGroud.tamanhoX = 1280;
+	paginaMenu.posicaoBackGroud.posicaoY = 0;
+	paginaMenu.posicaoBackGroud.tamanhoY = 720;
+	paginaMenu.backgroundCasa.imagem = al_load_bitmap("Utils/Imagens/Lore.png");
+	paginaMenu.aberta = true;
 
 	Iniciar:
 	startGame();
@@ -114,10 +127,19 @@ int main(void) {
 				else
 					abrirPaginaComposicao();
 			}
+			else if (evento.keyboard.keycode == ALLEGRO_KEY_C)
+				paginaComandos.aberta = !(paginaComandos.aberta);
 		}
+		else if (evento.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
+			paginaPrincipal.aberta = false;
 		
 		//Execucao de dislay
-		if (paginaCombinacao.aberta)
+		if (paginaMenu.aberta)
+			menu(evento);
+		else if (paginaComandos.aberta) {			
+			abrirPaginaComandos(evento);
+		}
+		else if (paginaCombinacao.aberta)
 			executarPaginaCombinacao(&paginaCombinacao, personagemPrincipal.inventario);
 		else if (paginaPrincipal.aberta) {
 			int retorno = gerenciarPosicaoPersonagem(&evento);
@@ -257,78 +279,64 @@ void registrarEventos(void) {
 	al_register_event_source(eventos, al_get_mouse_event_source());
 }
 
-void menu() {
-	paginaMenu.background.imagem = al_load_bitmap("Utils/Imagens/placeholder.png");
-	paginaMenu.posicaoBackGroud.posicaoX = 0;
-	paginaMenu.posicaoBackGroud.tamanhoX = 1280;
-	paginaMenu.posicaoBackGroud.posicaoY = 0;
-	paginaMenu.posicaoBackGroud.tamanhoY = 720;
-	paginaMenu.backgroundCasa.imagem = al_load_bitmap("Utils/Imagens/Lore.png");
-	paginaMenu.aberta = true;
-	paginaPrincipal.aberta = false;
+void menu(ALLEGRO_EVENT evento) {
+	desenharImagem(paginaMenu.background, paginaMenu.posicaoBackGroud);
 
-	while (paginaMenu.aberta) {
-		ALLEGRO_EVENT evento;
-		al_wait_for_event(eventos, &evento);
+	if (evento.type == ALLEGRO_EVENT_KEY_DOWN) {
+		if (evento.keyboard.keycode == ALLEGRO_KEY_SPACE) {
+			paginaMenu.aberta = false;
+		
+			desenharImagem(paginaMenu.backgroundCasa, paginaMenu.posicaoBackGroud);
+			al_flip_display();
+			al_rest(1);
 
-		desenharImagem(paginaMenu.background, paginaMenu.posicaoBackGroud);
-		al_flip_display();
+			abrirPaginaComandos(evento);
+			al_flip_display();
+			al_rest(1);
 
-		if (evento.type == ALLEGRO_EVENT_KEY_DOWN) {
-			if (evento.keyboard.keycode == ALLEGRO_KEY_SPACE) {
-				paginaMenu.aberta = false;
-				al_clear_to_color(al_map_rgb(0, 0, 0));
-				al_flip_display();
-				desenharImagem(paginaMenu.backgroundCasa, paginaMenu.posicaoBackGroud);
-				al_flip_display();
-				al_rest(1);
-				paginaPrincipal.aberta = true;
-			}
-		}
-		if (evento.type == ALLEGRO_EVENT_KEY_DOWN) {
-			if (evento.keyboard.keycode == ALLEGRO_KEY_C) {
-				paginaMenu.aberta = false;
-				al_clear_to_color(al_map_rgb(0, 0, 0));
-				al_flip_display();
-				al_rest(1);
-				abrirPaginaComandos();
-			}
-		}
-		if (evento.type == ALLEGRO_EVENT_KEY_DOWN) {
-			if (evento.keyboard.keycode == ALLEGRO_KEY_ESCAPE) {
-				return 0;
-			}
+			paginaPrincipal.aberta = true;
 		}
 	}
+
+	al_flip_display();
+	al_clear_to_color(al_map_rgb(0, 0, 0));
+	/*if (evento.type == ALLEGRO_EVENT_KEY_DOWN) {
+		if (evento.keyboard.keycode == ALLEGRO_KEY_C) {
+			paginaMenu.aberta = false;
+			al_clear_to_color(al_map_rgb(0, 0, 0));
+			al_flip_display();
+			al_rest(2);
+			abrirPaginaComandos(evento);
+		}
+	}
+	if (evento.type == ALLEGRO_EVENT_KEY_DOWN) {
+		if (evento.keyboard.keycode == ALLEGRO_KEY_ESCAPE) {
+			return 0;
+		}
+	}*/
 }
 
-void abrirPaginaComandos() {
-	paginaComandos.background.imagem = al_load_bitmap("Utils/Imagens/Comandos.png");
-	paginaComandos.posicaoBackGroud.posicaoX = 0;
-	paginaComandos.posicaoBackGroud.tamanhoX = 1280;
-	paginaComandos.posicaoBackGroud.posicaoY = 0;
-	paginaComandos.posicaoBackGroud.tamanhoY = 720;
-	paginaComandos.aberta = true;
+void abrirPaginaComandos(ALLEGRO_EVENT evento) {
 
-	while (paginaComandos.aberta) {
-		ALLEGRO_EVENT evento;
-		al_wait_for_event(eventos, &evento);
-
-		desenharImagem(paginaComandos.background, paginaComandos.posicaoBackGroud);
-		al_flip_display();
-
-		if (evento.type == ALLEGRO_EVENT_KEY_DOWN) {
-			if (evento.keyboard.keycode == ALLEGRO_KEY_ESCAPE) {
-				paginaComandos.aberta = false;
-				al_clear_to_color(al_map_rgb(0, 0, 0));
-				al_flip_display();
-				al_rest(1);
-				menu();
-
-			}
+	al_draw_bitmap(
+		paginaComandos.background.imagem,
+		cameraPosition[0],
+		cameraPosition[1],
+		paginaComandos.posicaoBackGroud.tamanhoX,
+		paginaComandos.posicaoBackGroud.tamanhoY,
+		0
+	);
+	al_flip_display();
+	//al_clear_to_color(al_map_rgb(0, 0, 0));
+	/*if (evento.type == ALLEGRO_EVENT_KEY_DOWN) {
+		if (evento.keyboard.keycode == ALLEGRO_KEY_ESCAPE) {
+			paginaComandos.aberta = false;
+			al_clear_to_color(al_map_rgb(0, 0, 0));
+			al_flip_display();
+			al_rest(1);
+			paginaMenu.aberta = true;
 		}
-	}
-
+	}*/
 }
 
 void abrirPaginaComposicao() {
@@ -528,9 +536,6 @@ int gerenciarPosicaoPersonagem(ALLEGRO_EVENT* evento) {
 				}
 			}
 		}
-	}
-	else if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
-		paginaPrincipal.aberta = false;
 	}
 
 	return NULL;
